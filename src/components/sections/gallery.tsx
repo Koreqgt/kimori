@@ -32,12 +32,12 @@ export function Gallery() {
             <div className="gallery-item h-tall">
               <Image
                 src="/assets/iconic.jpg"
-                alt="KIMORI iconic tower — reinforced concrete silhouette on the Serdang skyline"
+                alt="Podium roundabout with the iconic mature tree at the drop-off"
                 fill
                 sizes="(max-width: 960px) 100vw, 55vw"
                 style={{ objectFit: "cover" }}
               />
-              <div className="cap">01 · Iconic Tower</div>
+              <div className="cap">01 · Iconic Tree Roundabout</div>
             </div>
             <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gap: 24 }}>
               <div className="gallery-item">
@@ -53,12 +53,12 @@ export function Gallery() {
               <div className="gallery-item">
                 <Image
                   src="/assets/podium.jpg"
-                  alt="Podium roundabout with the iconic mature tree at the drop-off"
+                  alt="KIMORI iconic tower — reinforced concrete silhouette on the Serdang skyline"
                   fill
                   sizes="(max-width: 960px) 100vw, 45vw"
                   style={{ objectFit: "cover" }}
                 />
-                <div className="cap">03 · Iconic Tree Roundabout</div>
+                <div className="cap">03 · Iconic Tower</div>
               </div>
             </div>
           </div>
@@ -102,70 +102,64 @@ export function Gallery() {
               <div className="cap">06 · Moonlit Jacuzzi</div>
             </div>
             <div
-              className="gallery-item h-med"
-              style={{ background: "var(--forest)" }}
+              className="gallery-item h-med auto-mobile"
+              style={{
+                background: "var(--forest)",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                padding: "40px",
+                color: "var(--paper)",
+              }}
             >
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  padding: "40px",
-                  color: "var(--paper)",
-                  zIndex: 2,
-                }}
-              >
-                <div className="mono-tag" style={{ color: "var(--wood)" }}>
-                  07 · Full Experience
+              <div className="mono-tag" style={{ color: "var(--wood)" }}>
+                07 · Full Experience
+              </div>
+              <div>
+                <div
+                  className="jp"
+                  style={{
+                    fontSize: 72,
+                    color: "rgba(255,255,255,.14)",
+                    marginBottom: 12,
+                  }}
+                  aria-hidden="true"
+                >
+                  見
                 </div>
-                <div>
-                  <div
-                    className="jp"
-                    style={{
-                      fontSize: 72,
-                      color: "rgba(255,255,255,.14)",
-                      marginBottom: 12,
-                    }}
-                    aria-hidden="true"
+                <h3
+                  style={{
+                    fontFamily: "var(--font-cormorant), serif",
+                    fontWeight: 300,
+                    fontSize: 46,
+                    lineHeight: 1.05,
+                    marginBottom: 20,
+                  }}
+                >
+                  Walk through KIMORI in{" "}
+                  <em style={{ color: "var(--wood)" }}>360°</em>
+                </h3>
+                <p
+                  style={{
+                    fontSize: 14,
+                    lineHeight: 1.7,
+                    opacity: 0.78,
+                    marginBottom: 28,
+                    maxWidth: 360,
+                  }}
+                >
+                  Step into every room, every vista. A fully interactive
+                  virtual tour of the residences and facilities.
+                </p>
+                <Button asChild variant="outline-light">
+                  <a
+                    href={siteConfig.tour360}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    見
-                  </div>
-                  <h3
-                    style={{
-                      fontFamily: "var(--font-cormorant), serif",
-                      fontWeight: 300,
-                      fontSize: 46,
-                      lineHeight: 1.05,
-                      marginBottom: 20,
-                    }}
-                  >
-                    Walk through KIMORI in{" "}
-                    <em style={{ color: "var(--wood)" }}>360°</em>
-                  </h3>
-                  <p
-                    style={{
-                      fontSize: 14,
-                      lineHeight: 1.7,
-                      opacity: 0.78,
-                      marginBottom: 28,
-                      maxWidth: 360,
-                    }}
-                  >
-                    Step into every room, every vista. A fully interactive
-                    virtual tour of the residences and facilities.
-                  </p>
-                  <Button asChild variant="outline-light">
-                    <a
-                      href={siteConfig.tour360}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span>Enter Virtual Tour →</span>
-                    </a>
-                  </Button>
-                </div>
+                    <span>Enter Virtual Tour →</span>
+                  </a>
+                </Button>
               </div>
             </div>
           </div>
