@@ -1,65 +1,99 @@
-import Image from "next/image";
+import { Nav } from "@/components/sections/nav";
+import { Float360 } from "@/components/sections/float-360";
+import { Hero } from "@/components/sections/hero";
+import { About } from "@/components/sections/about";
+import { Feature } from "@/components/sections/feature";
+import { Philosophy } from "@/components/sections/philosophy";
+import { Gallery } from "@/components/sections/gallery";
+import { Location } from "@/components/sections/location";
+import { Facts } from "@/components/sections/facts";
+import { Residences } from "@/components/sections/residences";
+import { Facilities } from "@/components/sections/facilities";
+import { Developer } from "@/components/sections/developer";
+import { CTA } from "@/components/sections/cta";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      <Nav />
+      <Float360 />
+      <main>
+        <Hero />
+        <About />
+
+        <Feature
+          img="/assets/iconic.jpg"
+          alt="KIMORI iconic tower, 28 storeys of reinforced concrete"
+          tag="The Iconic Tower"
+          title="A quiet monument,"
+          titleEm="rooted in place."
+          desc="Twenty-eight storeys of reinforced concrete and measured proportion. Designed to be the skyline's most composed silhouette — not its loudest."
+          caption="Render · North Elevation"
+          align="start"
+          scrim="left"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        <Philosophy />
+
+        <Feature
+          img="/assets/podium.jpg"
+          alt="Podium roundabout with preserved iconic tree at the drop-off"
+          tag="The Iconic Tree"
+          title="Welcomed by"
+          titleEm="a living landmark."
+          desc="At the heart of the drop-off, a mature canopy tree preserved and celebrated — the first thing you return to, every evening. It sets the pace of the entire address."
+          caption="Render · Podium Roundabout"
+          align="end"
+          scrim="right"
+        />
+
+        <Gallery />
+
+        <Feature
+          img="/assets/pool.jpg"
+          alt="The 25 metre infinity pool with KLCC skyline at KIMORI"
+          tag="25-Metre Infinity Pool"
+          title="Swim into"
+          titleEm="the horizon."
+          desc="The rooftop pool is oriented north — framing the unblocked KLCC skyline by day and an unbroken starfield by night. Timber decking, woven screens, deep lounge chairs."
+          caption="Render · Level 4 Podium Deck"
+          align="start"
+          scrim="left"
+        />
+
+        <Location />
+        <Facts />
+
+        <Feature
+          img="/assets/jacuzzi.jpg"
+          alt="Sunken jacuzzi garden screened by timber lattice at KIMORI"
+          tag="After-Dusk"
+          title="Evenings that"
+          titleEm="belong only to you."
+          desc="The jacuzzi garden is sunk below the pool deck and screened by timber lattice — a private grove of steam and starlight, lit only by embedded ground lamps."
+          caption="Render · Night Setting"
+          align="end"
+          scrim="right"
+        />
+
+        <Residences />
+        <Facilities />
+
+        <Feature
+          img="/assets/rooftop.jpg"
+          alt="KIMORI rooftop garden at dusk — pines, par course and lawn"
+          tag="Rooftop Gardens"
+          title="The final floor"
+          titleEm="is a garden."
+          desc="Pines, par course, reading lawns, and a view that stretches from Putrajaya to Merdeka 118. The roof is not an afterthought — it is the crown of KIMORI."
+          caption="Render · Rooftop Dusk"
+          align="start"
+          scrim="bottom"
+        />
+
+        <Developer />
+        <CTA />
       </main>
-    </div>
+    </>
   );
 }
