@@ -367,20 +367,20 @@ export function Residences() {
               >
                 {t.desc}
               </p>
-              <div className="res-rows">
+              <dl className="res-rows">
                 <div>
-                  <div className="res-row-l">Bedrooms</div>
-                  <div className="res-row-v">{t.beds}</div>
+                  <dt className="res-row-l">Bedrooms</dt>
+                  <dd className="res-row-v">{t.beds}</dd>
                 </div>
                 <div>
-                  <div className="res-row-l">Bathrooms</div>
-                  <div className="res-row-v">{t.baths}</div>
+                  <dt className="res-row-l">Bathrooms</dt>
+                  <dd className="res-row-v">{t.baths}</dd>
                 </div>
                 <div>
-                  <div className="res-row-l">Carparks</div>
-                  <div className="res-row-v">{t.cars}</div>
+                  <dt className="res-row-l">Carparks</dt>
+                  <dd className="res-row-v">{t.cars}</dd>
                 </div>
-              </div>
+              </dl>
               <div style={{ marginTop: 40 }}>
                 <Button asChild variant="primary">
                   <a href="#cta">

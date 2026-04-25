@@ -47,12 +47,12 @@ export function Philosophy() {
         <div className="phil-grid">
           {PRINCIPLES.map((p, i) => (
             <Reveal key={p.n} delay={i * 0.12}>
-              <div className="phil-card">
+              <article className="phil-card">
                 <div className="phil-num">— {p.n}</div>
-                <div className="phil-kanji jp">{p.jp}</div>
-                <div className="phil-title">{p.title}</div>
-                <div className="phil-desc">{p.desc}</div>
-              </div>
+                <div className="phil-kanji jp" aria-hidden="true">{p.jp}</div>
+                <h3 className="phil-title">{p.title}</h3>
+                <p className="phil-desc">{p.desc}</p>
+              </article>
             </Reveal>
           ))}
         </div>

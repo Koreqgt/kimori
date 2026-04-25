@@ -56,13 +56,13 @@ export function Developer() {
               </p>
               <div className="dev-points">
                 {POINTS.map((p, i) => (
-                  <div key={i} className="dev-point">
+                  <article key={i} className="dev-point">
                     <div className="dev-p-n">{p.n}</div>
                     <div>
-                      <div className="dev-p-t">{p.t}</div>
-                      <div className="dev-p-d">{p.d}</div>
+                      <h3 className="dev-p-t">{p.t}</h3>
+                      <p className="dev-p-d">{p.d}</p>
                     </div>
-                  </div>
+                  </article>
                 ))}
               </div>
             </div>

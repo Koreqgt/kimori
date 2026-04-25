@@ -98,15 +98,15 @@ export function Facilities() {
         <div className="fac-grid">
           {COLS.map((c, i) => (
             <Reveal key={i} delay={i * 0.08}>
-              <div className="fac-col">
-                <div className="fac-col-title jp">{c.jp}</div>
-                <div className="fac-col-en">{c.en}</div>
+              <article className="fac-col">
+                <div className="fac-col-title jp" aria-hidden="true">{c.jp}</div>
+                <h3 className="fac-col-en">{c.en}</h3>
                 <ul>
                   {c.items.map((it, j) => (
                     <li key={j}>— {it}</li>
                   ))}
                 </ul>
-              </div>
+              </article>
             </Reveal>
           ))}
         </div>
