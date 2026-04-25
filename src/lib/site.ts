@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "KIMORI",
   brandLine: "木森 · A Serene Ascent Above Serdang",
-  title: "KIMORI — Freehold Residences on the Peak of Bukit Serdang",
+  title: "KIMORI | Freehold Condominium in Bukit Serdang, Selangor",
   description:
     "KIMORI Residences — a 418-unit freehold condominium shaped by Japanese principles of balance, light, and lasting craft, perched on the highest peak of Bukit Serdang. A Premierex Development.",
   url: "https://kimori.my",
