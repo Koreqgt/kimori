@@ -1443,6 +1443,10 @@ footer {
   .h-med {
     height: 360px;
   }
+  .h-med.auto-mobile {
+    height: auto;
+    min-height: 360px;
+  }
   .floating-360 {
     bottom: 20px;
     right: 20px;
