@@ -33,7 +33,11 @@ export const metadata: Metadata = {
   publisher: "Premierex Development",
   category: "real estate",
   alternates: {
-    canonical: "/",
+    canonical: siteConfig.url,
+    languages: {
+      "en-MY": siteConfig.url,
+      "x-default": siteConfig.url,
+    },
   },
   openGraph: {
     type: "website",
@@ -73,9 +77,6 @@ export const metadata: Metadata = {
     email: true,
     address: true,
   },
-  icons: {
-    icon: "/favicon.ico",
-  },
 };
 
 export const viewport: Viewport = {
@@ -110,6 +111,8 @@ export default function RootLayout({
           `${siteConfig.url}/assets/rooftop.jpg`,
         ],
         numberOfRooms: "3-5",
+        numberOfAccommodationUnits: 418,
+        accommodationCategory: "Condominium",
         address: {
           "@type": "PostalAddress",
           streetAddress: siteConfig.address.street,
@@ -125,7 +128,7 @@ export default function RootLayout({
         },
       },
       {
-        "@type": "RealEstateAgent",
+        "@type": "Organization",
         "@id": `${siteConfig.url}/#developer`,
         name: "Premierex Development Sdn Bhd",
         url: siteConfig.url,
