@@ -7,6 +7,26 @@ import { Button } from "@/components/ui/button";
 import { TreeMark } from "@/components/ui/tree-mark";
 import { siteConfig } from "@/lib/site";
 
+const shareUrl = encodeURIComponent(siteConfig.homeUrl);
+const shareText = encodeURIComponent(
+  "KIMORI Residences, a freehold condominium on Bukit Serdang's highest peak"
+);
+
+const SHARE_LINKS = [
+  {
+    label: "Share on Facebook",
+    href: `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`,
+  },
+  {
+    label: "Share on X",
+    href: `https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareText}`,
+  },
+  {
+    label: "Share on WhatsApp",
+    href: `https://api.whatsapp.com/send?text=${shareText}%20${shareUrl}`,
+  },
+];
+
 export function CTA() {
   const [submitted, setSubmitted] = useState(false);
 
@@ -20,7 +40,7 @@ export function CTA() {
       <div className="cta-hero" aria-hidden="true">
         <Image
           src="/assets/rooftop.jpg"
-          alt=""
+          alt="KIMORI rooftop garden overlooking the Bukit Serdang skyline"
           fill
           sizes="100vw"
           style={{ objectFit: "cover" }}
@@ -153,29 +173,44 @@ export function CTA() {
               <div className="foot-brand">KIMORI</div>
             </div>
             <div className="foot-tag">
-              木森 · A Premierex Development. Serdang Hilltop Condominium,
-              Bukit Serdang, Selangor, Malaysia.
+              木森 · Serdang Hilltop Condominium, Bukit Serdang, Selangor,
+              Malaysia.
+            </div>
+            <div className="foot-share" aria-label="Social sharing">
+              <div className="foot-share-label">Share</div>
+              <div className="foot-share-links">
+                {SHARE_LINKS.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
           <div className="foot-col">
-            <h5>Explore</h5>
+            <div className="foot-heading">Explore</div>
             <ul>
               <li>
                 <a href="#about">About Kimori</a>
               </li>
               <li>
-                <a href="#gallery">Renders</a>
+                <a href="#gallery">Rendered Gallery</a>
               </li>
               <li>
-                <a href="#residences">Residences</a>
+                <a href="#residences">Unit Layouts</a>
               </li>
               <li>
-                <a href="#facilities">Facilities</a>
+                <a href="#facilities">Facility List</a>
               </li>
             </ul>
           </div>
           <div className="foot-col">
-            <h5>Experience</h5>
+            <div className="foot-heading">Experience</div>
             <ul>
               <li>
                 <a
@@ -187,18 +222,18 @@ export function CTA() {
                 </a>
               </li>
               <li>
-                <a href="#cta">Book a Site Visit</a>
+                <a href="#cta">Arrange Private Viewing</a>
               </li>
               <li>
-                <a href="#location">Location Map</a>
+                <a href="#location">Bukit Serdang Map</a>
               </li>
               <li>
-                <a href="#developer">Developer</a>
+                <a href="#developer">Project Team</a>
               </li>
             </ul>
           </div>
           <div className="foot-col">
-            <h5>Sales Gallery</h5>
+            <div className="foot-heading">Sales Gallery</div>
             <ul>
               <li>{siteConfig.address.street}</li>
               <li>
@@ -215,8 +250,8 @@ export function CTA() {
         </div>
         <div className="foot-bottom">
           <div>
-            © {new Date().getFullYear()} Premierex Development Sdn Bhd. All
-            rights reserved.
+            © {new Date().getFullYear()} KIMORI Residences. All rights
+            reserved.
           </div>
           <div>Developer License · Advertising Permit · Terms</div>
         </div>

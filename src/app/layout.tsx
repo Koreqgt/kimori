@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter, Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
 import { Analytics } from "@vercel/analytics/next";
@@ -19,6 +19,13 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+const notoSerifJp = Noto_Serif_JP({
+  variable: "--font-noto-serif-jp",
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -33,11 +40,12 @@ export const metadata: Metadata = {
       { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
       { url: "/icon", sizes: "48x48", type: "image/png" },
     ],
+    apple: [{ url: "/apple-icon", sizes: "180x180", type: "image/png" }],
     shortcut: "/favicon.ico",
   },
-  authors: [{ name: "Premierex Development" }],
-  creator: "Premierex Development",
-  publisher: "Premierex Development",
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
   category: "real estate",
   alternates: {
     canonical: siteConfig.homeUrl,
@@ -249,21 +257,9 @@ export default function RootLayout({
   return (
     <html
       lang="en-MY"
-      className={`${inter.variable} ${cormorant.variable}`}
+      className={`${inter.variable} ${cormorant.variable} ${notoSerifJp.variable}`}
       data-scroll-behavior="smooth"
     >
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&display=swap"
-        />
-      </head>
       <body>
         {children}
         <script

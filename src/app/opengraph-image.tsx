@@ -49,7 +49,7 @@ export default async function OpengraphImage() {
           }}
         >
           <div style={{ width: 54, height: 1, background: "#be8e54" }} />
-          <span>Premierex Development · Bukit Serdang</span>
+          <span>Freehold Condominium · Bukit Serdang</span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>

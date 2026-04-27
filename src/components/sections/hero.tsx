@@ -42,11 +42,16 @@ export function Hero() {
       <div className="hero-content">
         <Reveal delay={0.1}>
           <div className="hero-eyebrow">
-            Premierex Development · Serdang Hilltop
+            Freehold Residences · Serdang Hilltop
           </div>
         </Reveal>
         <Reveal delay={0.25}>
-          <h1 className="hero-title">KIMORI</h1>
+          <h1 className="hero-title">
+            KIMORI
+            <span className="hero-title-sub">
+              Residences at Bukit Serdang
+            </span>
+          </h1>
         </Reveal>
         <Reveal delay={0.4}>
           <p className="hero-sub">

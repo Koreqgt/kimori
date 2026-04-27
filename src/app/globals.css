@@ -30,7 +30,7 @@
   --color-line-soft: var(--line-soft);
   --font-sans: var(--font-inter);
   --font-serif: var(--font-cormorant);
-  --font-jp: "Noto Serif JP";
+  --font-jp: var(--font-noto-serif-jp);
 }
 
 * {
@@ -86,10 +86,10 @@ button {
 .serif {
   font-family: var(--font-cormorant), serif;
   font-weight: 300;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 .jp {
-  font-family: "Noto Serif JP", serif;
+  font-family: var(--font-noto-serif-jp), serif;
   font-weight: 300;
 }
 .mono-tag {
@@ -343,7 +343,7 @@ button {
   color: var(--paper);
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
   writing-mode: vertical-rl;
-  font-family: "Noto Serif JP", serif;
+  font-family: var(--font-noto-serif-jp), serif;
   letter-spacing: 0.2em;
 }
 .hero-eyebrow {
@@ -368,9 +368,18 @@ button {
   font-weight: 300;
   font-size: clamp(60px, 10vw, 148px);
   line-height: 0.95;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   margin-bottom: 24px;
   text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+}
+.hero-title-sub {
+  display: block;
+  margin-top: 12px;
+  max-width: 760px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(20px, 2.3vw, 34px);
+  font-weight: 300;
+  line-height: 1.2;
 }
 .hero-title em {
   font-style: italic;
@@ -467,7 +476,7 @@ section {
   font-weight: 300;
   font-size: clamp(44px, 6vw, 84px);
   line-height: 1.02;
-  letter-spacing: -0.015em;
+  letter-spacing: 0;
   color: var(--ink);
 }
 .sec-title em {
@@ -494,7 +503,7 @@ section {
   align-items: start;
 }
 .about-kanji {
-  font-family: "Noto Serif JP", serif;
+  font-family: var(--font-noto-serif-jp), serif;
   font-size: 160px;
   line-height: 1;
   color: var(--forest);
@@ -606,7 +615,7 @@ section {
   font-weight: 300;
   font-size: clamp(48px, 6.4vw, 92px);
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   margin-bottom: 22px;
 }
 .feature-title em {
@@ -660,7 +669,7 @@ section {
   letter-spacing: 0.2em;
 }
 .phil-kanji {
-  font-family: "Noto Serif JP", serif;
+  font-family: var(--font-noto-serif-jp), serif;
   font-size: 38px;
   color: var(--forest);
   margin: 20px 0 12px;
@@ -1061,7 +1070,7 @@ section {
   min-height: 300px;
 }
 .fac-col-title {
-  font-family: "Noto Serif JP", serif;
+  font-family: var(--font-noto-serif-jp), serif;
   font-size: 14px;
   letter-spacing: 0.2em;
   color: var(--wood);
@@ -1189,7 +1198,7 @@ section {
   font-weight: 300;
   font-size: clamp(56px, 8vw, 124px);
   line-height: 0.98;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   max-width: 1100px;
 }
 .cta-title em {
@@ -1281,13 +1290,23 @@ footer {
   max-width: 300px;
   font-weight: 300;
 }
-.foot-col h5 {
+.foot-share {
+  margin-top: 24px;
+}
+.foot-share-label,
+.foot-heading {
   font-size: 10px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--wood);
   margin-bottom: 20px;
   font-weight: 500;
+}
+.foot-share-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 12px;
 }
 .foot-col ul {
   list-style: none;

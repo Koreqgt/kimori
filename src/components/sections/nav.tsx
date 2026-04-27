@@ -7,13 +7,17 @@ import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site";
 
 const LINKS = [
-  { href: "#about", label: "About" },
-  { href: "#philosophy", label: "Philosophy" },
-  { href: "#gallery", label: "Renders" },
-  { href: "#location", label: "Location" },
-  { href: "#residences", label: "Residences" },
-  { href: "#facilities", label: "Facilities" },
-  { href: "#developer", label: "Developer" },
+  { href: "#about", label: "About", mobileLabel: "About Kimori" },
+  {
+    href: "#philosophy",
+    label: "Philosophy",
+    mobileLabel: "Design Philosophy",
+  },
+  { href: "#gallery", label: "Renders", mobileLabel: "Render Gallery" },
+  { href: "#location", label: "Location", mobileLabel: "Location Access" },
+  { href: "#residences", label: "Residences", mobileLabel: "Residence Plans" },
+  { href: "#facilities", label: "Facilities", mobileLabel: "Facilities Deck" },
+  { href: "#developer", label: "Developer", mobileLabel: "Developer Profile" },
 ];
 
 export function Nav() {
@@ -93,7 +97,7 @@ export function Nav() {
           <nav aria-label="Mobile">
             {LINKS.map((l) => (
               <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
-                {l.label}
+                {l.mobileLabel}
               </a>
             ))}
           </nav>

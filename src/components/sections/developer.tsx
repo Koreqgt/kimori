@@ -32,7 +32,7 @@ export function Developer() {
             <div className="dev-image">
               <Image
                 src="/assets/entrance.jpg"
-                alt="Premierex craftsmanship at Kimori's entrance"
+                alt="KIMORI entrance framed by timber screens and preserved canopy"
                 fill
                 sizes="(max-width: 960px) 100vw, 40vw"
                 style={{ objectFit: "cover" }}
