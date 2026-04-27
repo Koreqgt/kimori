@@ -33,16 +33,16 @@ export const metadata: Metadata = {
   publisher: "Premierex Development",
   category: "real estate",
   alternates: {
-    canonical: siteConfig.url,
+    canonical: siteConfig.homeUrl,
     languages: {
-      "en-MY": siteConfig.url,
-      "x-default": siteConfig.url,
+      "en-MY": siteConfig.homeUrl,
+      "x-default": siteConfig.homeUrl,
     },
   },
   openGraph: {
     type: "website",
     locale: siteConfig.locale,
-    url: siteConfig.url,
+    url: siteConfig.homeUrl,
     siteName: siteConfig.name,
     title: siteConfig.title,
     description: siteConfig.description,
@@ -103,7 +103,7 @@ export default function RootLayout({
         name: "KIMORI Residences",
         alternateName: "木森",
         description: siteConfig.description,
-        url: siteConfig.url,
+        url: siteConfig.homeUrl,
         image: [
           `${siteConfig.url}/assets/aerial.jpg`,
           `${siteConfig.url}/assets/iconic.jpg`,
@@ -131,7 +131,7 @@ export default function RootLayout({
         "@type": "Organization",
         "@id": `${siteConfig.url}/#developer`,
         name: "Premierex Development Sdn Bhd",
-        url: siteConfig.url,
+        url: siteConfig.homeUrl,
         telephone: siteConfig.phone,
         address: {
           "@type": "PostalAddress",
@@ -146,7 +146,7 @@ export default function RootLayout({
       {
         "@type": "WebSite",
         "@id": `${siteConfig.url}/#website`,
-        url: siteConfig.url,
+        url: siteConfig.homeUrl,
         name: siteConfig.name,
         description: siteConfig.description,
         inLanguage: "en-MY",
@@ -155,7 +155,7 @@ export default function RootLayout({
       {
         "@type": "WebPage",
         "@id": `${siteConfig.url}/#webpage`,
-        url: siteConfig.url,
+        url: siteConfig.homeUrl,
         name: siteConfig.title,
         description: siteConfig.description,
         inLanguage: "en-MY",
