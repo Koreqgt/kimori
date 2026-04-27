@@ -28,6 +28,13 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   applicationName: siteConfig.name,
   keywords: siteConfig.keywords,
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+      { url: "/icon", sizes: "48x48", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+  },
   authors: [{ name: "Premierex Development" }],
   creator: "Premierex Development",
   publisher: "Premierex Development",
