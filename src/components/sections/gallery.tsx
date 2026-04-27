@@ -127,7 +127,7 @@ export function Gallery() {
                 >
                   見
                 </div>
-                <h3
+                <div
                   style={{
                     fontFamily: "var(--font-cormorant), serif",
                     fontWeight: 300,
@@ -138,7 +138,7 @@ export function Gallery() {
                 >
                   Walk through KIMORI in{" "}
                   <em style={{ color: "var(--wood)" }}>360°</em>
-                </h3>
+                </div>
                 <p
                   style={{
                     fontSize: 14,

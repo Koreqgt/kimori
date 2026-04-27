@@ -100,7 +100,7 @@ export function Facilities() {
             <Reveal key={i} delay={i * 0.08}>
               <article className="fac-col">
                 <div className="fac-col-title jp" aria-hidden="true">{c.jp}</div>
-                <h3 className="fac-col-en">{c.en}</h3>
+                <div className="fac-col-en">{c.en}</div>
                 <ul>
                   {c.items.map((it, j) => (
                     <li key={j}>— {it}</li>

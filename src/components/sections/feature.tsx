@@ -34,9 +34,9 @@ export function Feature({
         <div className="feature-text">
           <Reveal>
             <div className="feature-tag">{tag}</div>
-            <h2 className="feature-title">
+            <div className="feature-title">
               {title} {titleEm && <em>{titleEm}</em>}
-            </h2>
+            </div>
             <p className="feature-desc">{desc}</p>
           </Reveal>
         </div>

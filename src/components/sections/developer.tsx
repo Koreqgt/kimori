@@ -59,7 +59,7 @@ export function Developer() {
                   <article key={i} className="dev-point">
                     <div className="dev-p-n">{p.n}</div>
                     <div>
-                      <h3 className="dev-p-t">{p.t}</h3>
+                      <div className="dev-p-t">{p.t}</div>
                       <p className="dev-p-d">{p.d}</p>
                     </div>
                   </article>

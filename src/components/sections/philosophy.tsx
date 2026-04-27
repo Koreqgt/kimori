@@ -50,7 +50,7 @@ export function Philosophy() {
               <article className="phil-card">
                 <div className="phil-num">— {p.n}</div>
                 <div className="phil-kanji jp" aria-hidden="true">{p.jp}</div>
-                <h3 className="phil-title">{p.title}</h3>
+                <div className="phil-title">{p.title}</div>
                 <p className="phil-desc">{p.desc}</p>
               </article>
             </Reveal>

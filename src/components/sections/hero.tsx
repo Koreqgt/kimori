@@ -55,9 +55,9 @@ export function Hero() {
         </Reveal>
         <Reveal delay={0.4}>
           <p className="hero-sub">
-            A quiet ascent above the city. Freehold residences shaped by
-            Japanese principles of balance, light, and lasting craft — perched
-            on the highest peak of Bukit Serdang.
+            KIMORI Residences at Bukit Serdang is a quiet ascent above the
+            city. Freehold homes shaped by Japanese principles of balance,
+            light, and lasting craft — perched on the hill&apos;s highest peak.
           </p>
         </Reveal>
         <Reveal delay={0.55}>
