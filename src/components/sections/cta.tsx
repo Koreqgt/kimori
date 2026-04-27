@@ -7,26 +7,6 @@ import { Button } from "@/components/ui/button";
 import { TreeMark } from "@/components/ui/tree-mark";
 import { siteConfig } from "@/lib/site";
 
-const shareUrl = encodeURIComponent(siteConfig.homeUrl);
-const shareText = encodeURIComponent(
-  "KIMORI Residences, a freehold condominium on Bukit Serdang's highest peak"
-);
-
-const SHARE_LINKS = [
-  {
-    label: "Share on Facebook",
-    href: `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`,
-  },
-  {
-    label: "Share on X",
-    href: `https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareText}`,
-  },
-  {
-    label: "Share on WhatsApp",
-    href: `https://api.whatsapp.com/send?text=${shareText}%20${shareUrl}`,
-  },
-];
-
 export function CTA() {
   const [submitted, setSubmitted] = useState(false);
 
@@ -175,21 +155,6 @@ export function CTA() {
             <div className="foot-tag">
               木森 · Serdang Hilltop Condominium, Bukit Serdang, Selangor,
               Malaysia.
-            </div>
-            <div className="foot-share" aria-label="Social sharing">
-              <div className="foot-share-label">Share</div>
-              <div className="foot-share-links">
-                {SHARE_LINKS.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
             </div>
           </div>
           <div className="foot-col">
