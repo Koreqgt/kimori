@@ -3,21 +3,21 @@ import { Reveal } from "@/components/ui/reveal";
 const PRINCIPLES = [
   {
     n: "01",
-    jp: "間",
-    title: "Ma",
-    desc: "The eloquence of empty space. Layouts designed around breath — between rooms, between buildings, between hurry and rest.",
+    jp: "現代",
+    label: "Contemporary",
+    desc: "A modern silhouette grounded in Japanese restraint. Clean lines, honest materials, designed for the way families live now — and for thirty years from now.",
   },
   {
     n: "02",
-    jp: "和",
-    title: "Wa",
-    desc: "Harmony with surroundings. North–south orientation, cross-ventilation, and material honesty let the hill shape the home.",
+    jp: "集合",
+    label: "Collective",
+    desc: "The character 木 (tree) holds 人 (person) within it. KIMORI is built around this idea — a community of homes where neighbours become quiet companions.",
   },
   {
     n: "03",
-    jp: "詫寂",
-    title: "Wabi-Sabi",
-    desc: "Beauty in restraint. Warm wood, quiet stone, plaster that ages gracefully — nothing loud, nothing false.",
+    jp: "個性",
+    label: "Character",
+    desc: "Resembling the genius loci of Bukit Serdang — its hill, its canopy, its breath. Spaces that take their cue from the land they sit upon, not the trends of the moment.",
   },
 ];
 
@@ -28,20 +28,44 @@ export function Philosophy() {
       id="philosophy"
       aria-labelledby="philosophy-title"
     >
-      <div className="container-k">
+      <div className="phil-watermark jp" aria-hidden="true">森</div>
+      <div className="container-k" style={{ position: "relative", zIndex: 1 }}>
         <Reveal>
-          <div style={{ maxWidth: 680 }}>
-            <div className="sec-eyebrow">Design Philosophy</div>
-            <h2 id="philosophy-title" className="sec-title">
-              Three principles,
-              <br />
-              one <em>calm.</em>
-            </h2>
-            <p className="sec-lede" style={{ marginTop: 24 }}>
-              KIMORI draws from Japanese residential traditions — not as
-              pastiche, but as discipline. Every plan, every finish is tested
-              against three old, patient ideas.
-            </p>
+          <div className="phil-header">
+            <div className="phil-left">
+              <div className="sec-eyebrow">Design Concept</div>
+              <div
+                className="phil-equation"
+                aria-label="ki plus ki plus ki equals Mori"
+              >
+                <span className="phil-eq-char jp">木</span>
+                <span className="phil-eq-op">+</span>
+                <span className="phil-eq-char jp">木</span>
+                <span className="phil-eq-op">+</span>
+                <span className="phil-eq-char jp">木</span>
+                <span className="phil-eq-op">=</span>
+                <span className="phil-eq-char jp phil-eq-mori">森</span>
+              </div>
+              <div className="phil-roman">
+                <em>ki &nbsp;+&nbsp; ki &nbsp;+&nbsp; ki &nbsp;=&nbsp; Mori</em>
+              </div>
+            </div>
+            <div className="phil-right">
+              <p className="phil-intro">
+                <em>森</em> — <strong>MORI</strong> is the kanji for <em>forest</em>,
+                formed by three repetitions of the character 木 —{" "}
+                <strong>KI</strong>, meaning <em>tree</em>.
+              </p>
+              <p className="phil-intro">
+                Within the 木 character itself sits 人 — the kanji for{" "}
+                <em>person</em>. So MORI carries an older meaning: an assembly
+                of people who, together, become a community.
+              </p>
+              <p className="phil-intro">
+                This is the heart of KIMORI. Not just trees on a hill — but
+                lives, gathered.
+              </p>
+            </div>
           </div>
         </Reveal>
         <div className="phil-grid">
@@ -49,8 +73,14 @@ export function Philosophy() {
             <Reveal key={p.n} delay={i * 0.12}>
               <article className="phil-card">
                 <div className="phil-num">— {p.n}</div>
-                <div className="phil-kanji jp" aria-hidden="true">{p.jp}</div>
-                <div className="phil-title">{p.title}</div>
+                <div
+                  className="phil-kanji jp"
+                  aria-hidden="true"
+                  id={i === 0 ? "philosophy-title" : undefined}
+                >
+                  {p.jp}
+                </div>
+                <div className="phil-label">{p.label}</div>
                 <p className="phil-desc">{p.desc}</p>
               </article>
             </Reveal>

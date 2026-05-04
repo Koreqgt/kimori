@@ -12,7 +12,7 @@ export function Gallery() {
             <div>
               <div className="sec-eyebrow">The Residences in View</div>
               <h2 id="gallery-title" className="sec-title">
-                Rendered with
+                Composed with
                 <br />
                 <em>intention.</em>
               </h2>
@@ -20,7 +20,7 @@ export function Gallery() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="sec-lede">
-              Seven moments that define KIMORI — from the iconic tree at the
+              Moments that define KIMORI — from the iconic tree at the
               drop-off to the infinity pool suspended above the Serdang valley.
               Each render is a commitment.
             </p>

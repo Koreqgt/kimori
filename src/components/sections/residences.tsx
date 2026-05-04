@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
-import { Button } from "@/components/ui/button";
 
 type ResKey = "A" | "B";
 
@@ -89,256 +88,15 @@ export function Residences() {
 
         <div className="res-body">
           <Reveal>
-            <div className="res-plan">
-              <svg
-                viewBox="0 0 400 340"
-                style={{ width: "86%", height: "auto" }}
-                fill="none"
-                aria-label={`Stylized floor plan of Type ${active}`}
-              >
-                <rect
-                  x="10"
-                  y="10"
-                  width="380"
-                  height="320"
-                  stroke="var(--forest)"
-                  strokeWidth="1.5"
-                  fill="var(--paper)"
-                />
-                {active === "A" ? (
-                  <g
-                    stroke="var(--ink-soft)"
-                    strokeWidth="1"
-                    fill="var(--paper-2)"
-                  >
-                    <rect x="20" y="20" width="110" height="100" />
-                    <text
-                      x="30"
-                      y="45"
-                      fontSize="10"
-                      fill="var(--ink-muted)"
-                      letterSpacing="1"
-                    >
-                      MASTER
-                    </text>
-                    <rect
-                      x="130"
-                      y="20"
-                      width="130"
-                      height="100"
-                      fill="var(--paper)"
-                    />
-                    <text
-                      x="148"
-                      y="75"
-                      fontSize="12"
-                      fill="var(--forest)"
-                      letterSpacing="2"
-                    >
-                      LIVING
-                    </text>
-                    <rect x="260" y="20" width="130" height="100" />
-                    <text
-                      x="278"
-                      y="45"
-                      fontSize="10"
-                      fill="var(--ink-muted)"
-                      letterSpacing="1"
-                    >
-                      BEDROOM 2/3
-                    </text>
-                    <rect x="20" y="120" width="80" height="90" />
-                    <text
-                      x="28"
-                      y="145"
-                      fontSize="10"
-                      fill="var(--ink-muted)"
-                      letterSpacing="1"
-                    >
-                      BATH
-                    </text>
-                    <rect
-                      x="100"
-                      y="120"
-                      width="160"
-                      height="90"
-                      fill="var(--paper)"
-                    />
-                    <text
-                      x="130"
-                      y="170"
-                      fontSize="12"
-                      fill="var(--forest)"
-                      letterSpacing="2"
-                    >
-                      DINING
-                    </text>
-                    <rect x="260" y="120" width="130" height="90" />
-                    <text
-                      x="278"
-                      y="145"
-                      fontSize="10"
-                      fill="var(--ink-muted)"
-                      letterSpacing="1"
-                    >
-                      BEDROOM 4
-                    </text>
-                    <rect x="20" y="210" width="120" height="120" />
-                    <text
-                      x="28"
-                      y="235"
-                      fontSize="10"
-                      fill="var(--ink-muted)"
-                      letterSpacing="1"
-                    >
-                      KITCHEN
-                    </text>
-                    <rect x="140" y="210" width="120" height="120" />
-                    <text
-                      x="148"
-                      y="235"
-                      fontSize="10"
-                      fill="var(--ink-muted)"
-                      letterSpacing="1"
-                    >
-                      FOYER
-                    </text>
-                    <rect x="260" y="210" width="130" height="120" />
-                    <text
-                      x="268"
-                      y="235"
-                      fontSize="10"
-                      fill="var(--ink-muted)"
-                      letterSpacing="1"
-                    >
-                      YARD
-                    </text>
-                  </g>
-                ) : (
-                  <g
-                    stroke="var(--ink-soft)"
-                    strokeWidth="1"
-                    fill="var(--paper-2)"
-                  >
-                    <rect x="20" y="20" width="150" height="120" />
-                    <text
-                      x="32"
-                      y="45"
-                      fontSize="10"
-                      fill="var(--ink-muted)"
-                      letterSpacing="1"
-                    >
-                      MASTER
-                    </text>
-                    <rect
-                      x="170"
-                      y="20"
-                      width="100"
-                      height="120"
-                      fill="var(--paper)"
-                    />
-                    <text
-                      x="188"
-                      y="85"
-                      fontSize="12"
-                      fill="var(--forest)"
-                      letterSpacing="2"
-                    >
-                      LIVING
-                    </text>
-                    <rect x="270" y="20" width="120" height="120" />
-                    <text
-                      x="282"
-                      y="45"
-                      fontSize="10"
-                      fill="var(--ink-muted)"
-                      letterSpacing="1"
-                    >
-                      BALCONY
-                    </text>
-                    <rect x="20" y="140" width="150" height="110" />
-                    <text
-                      x="32"
-                      y="165"
-                      fontSize="10"
-                      fill="var(--ink-muted)"
-                      letterSpacing="1"
-                    >
-                      BEDROOM 2
-                    </text>
-                    <rect
-                      x="170"
-                      y="140"
-                      width="100"
-                      height="110"
-                      fill="var(--paper)"
-                    />
-                    <text
-                      x="188"
-                      y="200"
-                      fontSize="12"
-                      fill="var(--forest)"
-                      letterSpacing="2"
-                    >
-                      DINING
-                    </text>
-                    <rect x="270" y="140" width="120" height="110" />
-                    <text
-                      x="282"
-                      y="165"
-                      fontSize="10"
-                      fill="var(--ink-muted)"
-                      letterSpacing="1"
-                    >
-                      BEDROOM 3
-                    </text>
-                    <rect x="20" y="250" width="180" height="80" />
-                    <text
-                      x="32"
-                      y="275"
-                      fontSize="10"
-                      fill="var(--ink-muted)"
-                      letterSpacing="1"
-                    >
-                      KITCHEN
-                    </text>
-                    <rect x="200" y="250" width="190" height="80" />
-                    <text
-                      x="212"
-                      y="275"
-                      fontSize="10"
-                      fill="var(--ink-muted)"
-                      letterSpacing="1"
-                    >
-                      YARD · UTILITY
-                    </text>
-                  </g>
-                )}
-                <text
-                  x="200"
-                  y="165"
-                  fontSize="8"
-                  fill="var(--wood)"
-                  textAnchor="middle"
-                  letterSpacing="2"
-                  opacity=".6"
-                >
-                  TYPE {active}
-                </text>
-              </svg>
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: 20,
-                  right: 24,
-                  fontSize: 10,
-                  letterSpacing: ".32em",
-                  textTransform: "uppercase",
-                  color: "var(--ink-muted)",
-                }}
-              >
-                Stylized · Indicative
-              </div>
+            <div
+              className="res-plan"
+              style={{ background: "none", border: "none" }}
+            >
+              <img
+                src={active === "A" ? "/assets/plan A.png" : "/assets/plan B.png"}
+                alt={`Type ${active} floor plan`}
+                style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+              />
             </div>
           </Reveal>
           <Reveal delay={0.15}>
@@ -381,13 +139,6 @@ export function Residences() {
                   <dd className="res-row-v">{t.cars}</dd>
                 </div>
               </dl>
-              <div style={{ marginTop: 40 }}>
-                <Button asChild variant="primary">
-                  <a href="#cta">
-                    <span>Request Floorplan</span>
-                  </a>
-                </Button>
-              </div>
             </div>
           </Reveal>
         </div>

@@ -36,15 +36,10 @@ export function Hero() {
         />
       </motion.div>
       <div className="hero-scrim" aria-hidden="true" />
-      <div className="hero-kanji" aria-hidden="true">
-        木森
-      </div>
       <div className="hero-content">
-        <Reveal delay={0.1}>
-          <div className="hero-eyebrow">
-            Freehold Residences · Serdang Hilltop
-          </div>
-        </Reveal>
+        <div className="hero-eyebrow">
+          Freehold Residences · Serdang Hilltop
+        </div>
         <Reveal delay={0.25}>
           <h1 className="hero-title">
             KIMORI

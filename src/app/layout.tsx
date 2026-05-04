@@ -118,7 +118,7 @@ export default function RootLayout({
         "@type": "Residence",
         "@id": `${siteConfig.url}/#residence`,
         name: "KIMORI Residences",
-        alternateName: "木森",
+        alternateName: "森",
         description: siteConfig.description,
         url: siteConfig.homeUrl,
         image: [

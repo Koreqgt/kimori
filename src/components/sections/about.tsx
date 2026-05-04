@@ -21,7 +21,7 @@ export function About() {
           <Reveal delay={0.2}>
             <div className="about-body">
               <p>
-                KIMORI — 木森 — is a name formed from the Japanese characters
+                KIMORI — 森 — is a name formed from the Japanese characters
                 for tree and forest. It is a quiet promise: that home can feel
                 like a grove. Shelter from noise. Rooted, gentle, alive.
               </p>

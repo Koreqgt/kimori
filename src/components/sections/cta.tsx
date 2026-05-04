@@ -9,10 +9,37 @@ import { siteConfig } from "@/lib/site";
 
 export function CTA() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
+    setError(null);
+    setLoading(true);
+
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      phone: (form.elements.namedItem("phone") as HTMLInputElement).value,
+      unitType: (form.elements.namedItem("unitType") as HTMLSelectElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    };
+
+    try {
+      const res = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error();
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again or call us directly.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -84,40 +111,48 @@ export function CTA() {
               </label>
               <input
                 id="cta-name"
+                name="name"
                 className="cta-input"
                 placeholder="Full Name"
                 required
                 autoComplete="name"
+                disabled={loading}
               />
               <label className="sr-only" htmlFor="cta-email">
                 Email
               </label>
               <input
                 id="cta-email"
+                name="email"
                 className="cta-input"
                 placeholder="Email Address"
                 type="email"
                 required
                 autoComplete="email"
+                disabled={loading}
               />
               <label className="sr-only" htmlFor="cta-phone">
                 Phone
               </label>
               <input
                 id="cta-phone"
+                name="phone"
                 className="cta-input"
                 placeholder="Phone · +60"
                 required
                 autoComplete="tel"
+                disabled={loading}
               />
               <label className="sr-only" htmlFor="cta-type">
                 Preferred Unit Type
               </label>
               <select
                 id="cta-type"
+                name="unitType"
                 className="cta-input"
                 defaultValue=""
                 required
+                disabled={loading}
               >
                 <option value="" disabled>
                   Preferred Unit Type
@@ -131,14 +166,29 @@ export function CTA() {
               </label>
               <textarea
                 id="cta-message"
+                name="message"
                 className="cta-input"
                 placeholder="Message (optional)"
                 rows={2}
                 style={{ gridColumn: "1 / -1", resize: "vertical" }}
+                disabled={loading}
               />
+              {error && (
+                <p
+                  role="alert"
+                  style={{
+                    gridColumn: "1 / -1",
+                    color: "#e8a87c",
+                    fontSize: 14,
+                    margin: 0,
+                  }}
+                >
+                  {error}
+                </p>
+              )}
               <div className="cta-submit">
-                <Button type="submit" variant="primary">
-                  <span>Reserve a Viewing</span>
+                <Button type="submit" variant="primary" disabled={loading}>
+                  <span>{loading ? "Sending…" : "Reserve a Viewing"}</span>
                 </Button>
               </div>
             </form>
@@ -164,7 +214,7 @@ export function CTA() {
                 <a href="#about">About Kimori</a>
               </li>
               <li>
-                <a href="#gallery">Rendered Gallery</a>
+                <a href="#features">Rendered Gallery</a>
               </li>
               <li>
                 <a href="#residences">Unit Layouts</a>
@@ -191,9 +241,6 @@ export function CTA() {
               </li>
               <li>
                 <a href="#location">Bukit Serdang Map</a>
-              </li>
-              <li>
-                <a href="#developer">Project Team</a>
               </li>
             </ul>
           </div>

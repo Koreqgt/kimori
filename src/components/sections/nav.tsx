@@ -13,11 +13,11 @@ const LINKS = [
     label: "Philosophy",
     mobileLabel: "Design Philosophy",
   },
-  { href: "#gallery", label: "Renders", mobileLabel: "Render Gallery" },
+  { href: "#features", label: "Moments", mobileLabel: "Lived Moments" },
   { href: "#location", label: "Location", mobileLabel: "Location Access" },
   { href: "#residences", label: "Residences", mobileLabel: "Residence Plans" },
   { href: "#facilities", label: "Facilities", mobileLabel: "Facilities Deck" },
-  { href: "#developer", label: "Developer", mobileLabel: "Developer Profile" },
+  { href: "#cta", label: "Contact", mobileLabel: "Contact Us" },
 ];
 
 export function Nav() {
