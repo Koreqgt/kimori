@@ -117,7 +117,7 @@ export function Gallery() {
               </div>
               <div>
                 <div
-                  className="jp"
+                  className="jp gallery-tour-kanji"
                   style={{
                     fontSize: 72,
                     color: "rgba(255,255,255,.14)",
@@ -128,6 +128,7 @@ export function Gallery() {
                   見
                 </div>
                 <div
+                  className="gallery-tour-title"
                   style={{
                     fontFamily: "var(--font-cormorant), serif",
                     fontWeight: 300,
@@ -140,6 +141,7 @@ export function Gallery() {
                   <em style={{ color: "var(--wood)" }}>360°</em>
                 </div>
                 <p
+                  className="gallery-tour-copy"
                   style={{
                     fontSize: 14,
                     lineHeight: 1.7,

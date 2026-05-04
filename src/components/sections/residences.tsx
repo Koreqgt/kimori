@@ -64,7 +64,7 @@ export function Residences() {
               </h2>
             </div>
             <p className="sec-lede">
-              Concrete structure, SPC floors, quality tiles. Finishes we'd
+              Concrete structure, SPC floors, quality tiles. Finishes we&apos;d
               choose for our own families.
             </p>
           </div>

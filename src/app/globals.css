@@ -1942,6 +1942,16 @@ footer {
 }
 
 @media (max-width: 620px) {
+  :root {
+    --mobile-display-title: 42px;
+    --mobile-section-title: 38px;
+    --mobile-subtitle: 22px;
+    --mobile-card-title: 14px;
+    --mobile-body: 15px;
+    --mobile-small: 12px;
+    --mobile-meta: 10px;
+    --mobile-number: 42px;
+  }
   .hero-scrim {
     background: linear-gradient(
       180deg,
@@ -1958,18 +1968,18 @@ footer {
     text-shadow: 0 2px 24px rgba(5, 12, 8, 0.7), 0 1px 6px rgba(5, 12, 8, 0.5);
   }
   .hero-eyebrow {
-    font-size: 9px;
+    font-size: var(--mobile-meta);
   }
   .hero-title {
-    font-size: clamp(42px, 11vw, 60px);
+    font-size: var(--mobile-display-title);
     margin-bottom: 16px;
   }
   .hero-title-sub {
-    font-size: clamp(16px, 4.5vw, 22px);
+    font-size: var(--mobile-subtitle);
     margin-top: 8px;
   }
   .hero-sub {
-    font-size: 14px;
+    font-size: var(--mobile-body);
     margin-bottom: 28px;
   }
   .phil-watermark {
@@ -2026,7 +2036,7 @@ footer {
   }
   .sec-lede,
   .loc-lede {
-    font-size: 15px;
+    font-size: var(--mobile-body);
   }
   .about-stats {
     grid-template-columns: 1fr 1fr;
@@ -2103,5 +2113,124 @@ footer {
   .feat-thumb {
     width: 72px;
     height: 50px;
+  }
+  .loc-header,
+  .residences-head {
+    grid-template-columns: 1fr !important;
+    align-items: start !important;
+    gap: 24px !important;
+  }
+
+  .sec-title,
+  .feature-title,
+  .features-title,
+  .cta-title,
+  .fac-main-title,
+  .res-type {
+    font-size: var(--mobile-section-title) !important;
+    line-height: 1.08 !important;
+  }
+
+  .sec-lede,
+  .loc-lede,
+  .fac-lede,
+  .about-body p,
+  .phil-intro,
+  .phil-desc,
+  .feature-desc,
+  .features-desc,
+  .res-specs p,
+  .cta-sub,
+  .dev-p-d,
+  .foot-tag,
+  .foot-col li,
+  .cta-input,
+  .gallery-tour-copy {
+    font-size: var(--mobile-body) !important;
+    line-height: 1.7 !important;
+  }
+
+  .sec-eyebrow,
+  .feature-tag,
+  .features-tag,
+  .mono-tag,
+  .gallery-item .cap,
+  .fac-plan-caption,
+  .feature-caption,
+  .hlights-zone-label,
+  .res-tab,
+  .res-row-l,
+  .fact-l,
+  .hlights-stat-l,
+  .hlight-sub,
+  .dev-meta,
+  .foot-heading,
+  .btn,
+  .cta-input::placeholder,
+  .feat-thumb-label {
+    font-size: var(--mobile-meta) !important;
+  }
+
+  .access-item,
+  .access-item-distance,
+  .fac-col-name,
+  .foot-bottom,
+  .feat-counter {
+    font-size: var(--mobile-small) !important;
+  }
+
+  .hlight-label,
+  .access-card-title {
+    font-size: var(--mobile-card-title) !important;
+    line-height: 1.35 !important;
+  }
+
+  .fact-n,
+  .hlights-stat-n,
+  .hlight-stat {
+    font-size: var(--mobile-number) !important;
+    line-height: 1 !important;
+  }
+
+  .fact-n .unit,
+  .hlights-stat-u,
+  .hlight-u,
+  .res-size .u {
+    font-size: var(--mobile-small) !important;
+  }
+
+  .res-size,
+  .res-row-v,
+  .dev-p-t,
+  .feat-counter .cur,
+  .gallery-tour-title {
+    font-size: var(--mobile-subtitle) !important;
+    line-height: 1.18 !important;
+  }
+
+  .dev-p-n,
+  .phil-kanji {
+    font-size: 32px !important;
+    line-height: 1 !important;
+  }
+
+  .phil-eq-char {
+    font-size: var(--mobile-section-title) !important;
+  }
+
+  .phil-eq-op {
+    font-size: var(--mobile-subtitle) !important;
+  }
+
+  .phil-roman {
+    font-size: var(--mobile-body) !important;
+  }
+
+  .fac-col-letter {
+    font-size: var(--mobile-body) !important;
+  }
+
+  .gallery-tour-kanji {
+    font-size: 48px !important;
   }
 }

@@ -97,7 +97,7 @@ export function Feature({
           </Reveal>
         </div>
       </div>
-      {caption && <div className="feature-caption" style={{ zIndex: 3, position: "relative" }}>{caption}</div>}
+      {caption && <div className="feature-caption" style={{ zIndex: 3 }}>{caption}</div>}
     </section>
   );
 }
