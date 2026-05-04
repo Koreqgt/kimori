@@ -48,12 +48,7 @@ export function Features() {
   return (
     <section className="features" id="features" aria-labelledby="features-title">
       <div className="features-section-head">
-        <div className="sec-eyebrow">Lived Moments</div>
-        <h2 id="features-title" className="sec-title">
-          Designed for
-          <br />
-          <em>the way you live.</em>
-        </h2>
+        <div className="sec-eyebrow" style={{ color: "var(--paper)" }}>Gallery</div>
       </div>
 
       <div className="features-stage">

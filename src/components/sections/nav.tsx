@@ -13,9 +13,9 @@ const LINKS = [
     label: "Philosophy",
     mobileLabel: "Design Philosophy",
   },
-  { href: "#features", label: "Moments", mobileLabel: "Lived Moments" },
+  { href: "#features", label: "Gallery", mobileLabel: "Gallery" },
   { href: "#location", label: "Location", mobileLabel: "Location Access" },
-  { href: "#residences", label: "Residences", mobileLabel: "Residence Plans" },
+  { href: "#residences", label: "Floorplan", mobileLabel: "Floorplan" },
   { href: "#facilities", label: "Facilities", mobileLabel: "Facilities Deck" },
   { href: "#cta", label: "Contact", mobileLabel: "Contact Us" },
 ];

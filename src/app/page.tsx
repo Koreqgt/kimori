@@ -1,6 +1,7 @@
 import { Nav } from "@/components/sections/nav";
 import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
+import { Highlights } from "@/components/sections/highlights";
 import { Feature } from "@/components/sections/feature";
 import { Features } from "@/components/sections/features";
 import { Philosophy } from "@/components/sections/philosophy";
@@ -32,6 +33,7 @@ export default function Home() {
         <Philosophy />
 
         <Features />
+        <Highlights />
 
         <Location />
 

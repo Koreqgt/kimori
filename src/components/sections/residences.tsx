@@ -56,7 +56,7 @@ export function Residences() {
             className="residences-head"
           >
             <div>
-              <div className="sec-eyebrow">Residences</div>
+              <div className="sec-eyebrow">Floorplan</div>
               <h2 id="residences-title" className="sec-title">
                 Two plans.
                 <br />
@@ -64,8 +64,7 @@ export function Residences() {
               </h2>
             </div>
             <p className="sec-lede">
-              Reinforced concrete shells, SPC flooring in bedrooms, quality
-              tiles in the wet rooms. No surprises — only the finishes we would
+              Concrete structure, SPC floors, quality tiles. Finishes we'd
               choose for our own families.
             </p>
           </div>

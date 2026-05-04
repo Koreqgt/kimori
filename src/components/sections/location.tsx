@@ -228,8 +228,8 @@ export function Location() {
               </h2>
             </div>
             <p className="loc-lede">
-              Connected to Kuala Lumpur, Putrajaya, and the Klang Valley via
-              MEX, NSE, and SKVE — from a quiet elevation above the city.
+              KL, Putrajaya, and the Klang Valley via MEX, NSE, and SKVE —
+              from a quiet elevation above the city.
             </p>
           </div>
         </Reveal>

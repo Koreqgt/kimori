@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
 import { TreeMark } from "@/components/ui/tree-mark";
@@ -12,12 +12,12 @@ export function CTA() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: { preventDefault(): void; currentTarget: HTMLFormElement }) {
     e.preventDefault();
     setError(null);
     setLoading(true);
 
-    const form = e.currentTarget;
+    const form = e.currentTarget as HTMLFormElement;
     const data = {
       name: (form.elements.namedItem("name") as HTMLInputElement).value,
       email: (form.elements.namedItem("email") as HTMLInputElement).value,
@@ -44,7 +44,7 @@ export function CTA() {
 
   return (
     <section className="cta" id="cta" aria-labelledby="cta-title">
-      <div className="cta-hero" aria-hidden="true">
+<div className="cta-hero" aria-hidden="true">
         <Image
           src="/assets/rooftop.jpg"
           alt="KIMORI rooftop garden overlooking the Bukit Serdang skyline"

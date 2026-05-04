@@ -38,36 +38,6 @@ export function About() {
                 choosing a site with discipline, and building on it with
                 patience.
               </p>
-              <div className="about-stats">
-                <div>
-                  <div className="stat-v">34</div>
-                  <div className="stat-l">Facilities</div>
-                </div>
-                <div>
-                  <div className="stat-v">
-                    5{" "}
-                    <span style={{ fontSize: 22, color: "var(--wood)" }}>
-                      ac
-                    </span>
-                  </div>
-                  <div className="stat-l">Freehold Land</div>
-                </div>
-                <div>
-                  <div className="stat-v">
-                    105
-                    <span
-                      style={{
-                        fontSize: 18,
-                        color: "var(--wood)",
-                        marginLeft: 4,
-                      }}
-                    >
-                      /ac
-                    </span>
-                  </div>
-                  <div className="stat-l">Lowest Density</div>
-                </div>
-              </div>
             </div>
           </Reveal>
         </div>

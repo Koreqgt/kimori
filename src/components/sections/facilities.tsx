@@ -1,67 +1,27 @@
 import { Reveal } from "@/components/ui/reveal";
+import Image from "next/image";
 
-const COLS = [
-  {
-    jp: "水",
-    en: "Wetness Corner",
-    items: [
-      "Wading Pool",
-      "25m Infinity Pool",
-      "Jacuzzi",
-      "Outdoor Shower",
-      "Pool Cabana",
-      "Pool Deck",
-    ],
-  },
-  {
-    jp: "動",
-    en: "Fitness Zone",
-    items: [
-      "Inclusive Playground",
-      "Indoor Gym",
-      "Yoga Room",
-      "Half Basketball Court",
-      "Outdoor Fitness",
-      "Jogging Track",
-    ],
-  },
-  {
-    jp: "集",
-    en: "Closeness",
-    items: [
-      "BBQ Terrace",
-      "Study Room",
-      "Games Room",
-      "Multipurpose Hall",
-      "Grand Drop-off",
-      "Function Room",
-    ],
-  },
-  {
-    jp: "憩",
-    en: "Timeless Leisure",
-    items: [
-      "Iconic Tree Roundabout",
-      "Gazebo",
-      "Garden Lawn & Deck",
-      "Semi Open Lounge",
-      "Outdoor Par Course",
-      "Exercise Lawn",
-    ],
-  },
-  {
-    jp: "便",
-    en: "Access & Care",
-    items: [
-      "Guardhouse",
-      "Shop",
-      "Laundry Room",
-      "Management Office",
-      "Car Wash Bay",
-      "EV Charging Bay",
-    ],
-  },
+const FACILITIES = [
+  { id: "A", facility: "25m Infinity Pool" },
+  { id: "B", facility: "Jacuzzi" },
+  { id: "C", facility: "Wading Pool" },
+  { id: "D", facility: "Outdoor Shower" },
+  { id: "E", facility: "Pool Deck" },
+  { id: "F", facility: "Pool Cabana" },
+  { id: "G", facility: "Outdoor Fitness" },
+  { id: "H", facility: "Garden Lawn & Deck" },
+  { id: "I", facility: "Inclusive Playground" },
+  { id: "J", facility: "BBQ Terrace" },
+  { id: "K", facility: "Multipurpose Court" },
+  { id: "L", facility: "Integrated Play" },
+  { id: "M", facility: "Outdoor Par Course" },
+  { id: "N", facility: "Exercise Lawn" },
+  { id: "O", facility: "Garden Lawn" },
 ];
+
+const COL_A = FACILITIES.slice(0, 5);
+const COL_B = FACILITIES.slice(5, 10);
+const COL_C = FACILITIES.slice(10, 15);
 
 export function Facilities() {
   return (
@@ -72,44 +32,55 @@ export function Facilities() {
     >
       <div className="container-k">
         <Reveal>
-          <div style={{ maxWidth: 720 }}>
-            <div className="sec-eyebrow" style={{ color: "var(--wood)" }}>
-              Facilities
-            </div>
-            <h2
-              id="facilities-title"
-              className="sec-title"
-              style={{ color: "var(--paper)" }}
-            >
-              Thirty-four ways to
-              <br />
-              <em style={{ color: "var(--wood)" }}>come home.</em>
+          <div className="fac-header">
+            <div className="sec-eyebrow fac-eyebrow">Facilities</div>
+            <h2 id="facilities-title" className="sec-title fac-main-title">
+              Amenities for the{" "}
+              <em className="fac-title-accent">art of living.</em>
             </h2>
-            <p
-              className="sec-lede"
-              style={{ color: "rgba(255,255,255,.78)", marginTop: 24 }}
-            >
-              Arranged across five groves of use — from the wetness corner to
-              the rooftop gardens — each facility is sited for light, quiet,
-              and view.
+            <p className="fac-lede">
+              Fifteen curated spaces across Level 4 — each one designed to
+              complement the rhythms of everyday life.
             </p>
           </div>
         </Reveal>
-        <div className="fac-grid">
-          {COLS.map((c, i) => (
-            <Reveal key={i} delay={i * 0.08}>
-              <article className="fac-col">
-                <div className="fac-col-title jp" aria-hidden="true">{c.jp}</div>
-                <div className="fac-col-en">{c.en}</div>
-                <ul>
-                  {c.items.map((it, j) => (
-                    <li key={j}>— {it}</li>
-                  ))}
-                </ul>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+
+        <Reveal delay={0.18}>
+          <div className="fac-plan-frame">
+            <div className="fac-plan-inner">
+              <Image
+                src="/assets/Level 4.png"
+                alt="Level 4 facilities floorplan"
+                width={1304}
+                height={600}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1304px"
+                className="fac-plan-img"
+                priority
+              />
+            </div>
+            <div className="fac-plan-caption">
+              <span className="fac-plan-caption-line" />
+              <span>Level 4 &mdash; Resort-Inspired Facilities</span>
+              <span className="fac-plan-caption-line" />
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.28}>
+          <div className="fac-cols">
+            {[COL_A, COL_B, COL_C].map((col, ci) => (
+              <ul key={ci} className="fac-col-list">
+                {col.map((item) => (
+                  <li key={item.id} className="fac-col-row">
+                    <span className="fac-col-letter">{item.id}</span>
+                    <span className="fac-col-sep" aria-hidden="true" />
+                    <span className="fac-col-name">{item.facility}</span>
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
