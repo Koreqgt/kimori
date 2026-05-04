@@ -27,10 +27,10 @@ export function About() {
               </p>
               <p>
                 Rising from the highest point of Bukit Serdang, KIMORI
-                Residences is a 418-unit freehold condominium that trades
-                spectacle for sincerity. Walls are reinforced concrete. Layouts
-                are practical. Every home faces north–south to draw in the
-                softest light.
+                Residences is a new 418-unit freehold condominium project in
+                Serdang — and a quiet counterpoint to the noise of most new
+                launches. Walls are reinforced concrete. Layouts are practical.
+                Every home faces north–south to draw in the softest light.
               </p>
               <p>
                 What you see from the balcony — the unblocked KLCC skyline, the

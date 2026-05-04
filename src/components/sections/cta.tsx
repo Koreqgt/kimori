@@ -203,8 +203,8 @@ export function CTA() {
               <div className="foot-brand">KIMORI</div>
             </div>
             <div className="foot-tag">
-              木森 · Serdang Hilltop Condominium, Bukit Serdang, Selangor,
-              Malaysia.
+              木森 · A new freehold condominium project in Bukit Serdang,
+              Seri Kembangan, Selangor — by Premierex Development.
             </div>
           </div>
           <div className="foot-col">
@@ -240,7 +240,7 @@ export function CTA() {
                 <a href="#cta">Arrange Private Viewing</a>
               </li>
               <li>
-                <a href="#location">Bukit Serdang Map</a>
+                <a href="#location">Bukit Serdang Project Location</a>
               </li>
             </ul>
           </div>

@@ -118,7 +118,7 @@ export default function RootLayout({
         "@type": "Residence",
         "@id": `${siteConfig.url}/#residence`,
         name: "KIMORI Residences",
-        alternateName: "森",
+        alternateName: ["森", "木森", "Kimori Serdang", "Kimori Bukit Serdang"],
         description: siteConfig.description,
         url: siteConfig.homeUrl,
         image: [
@@ -143,11 +143,44 @@ export default function RootLayout({
           latitude: 3.0138,
           longitude: 101.7069,
         },
+        containedInPlace: { "@id": `${siteConfig.url}/#bukit-serdang` },
+      },
+      {
+        "@type": "Place",
+        "@id": `${siteConfig.url}/#bukit-serdang`,
+        name: "Bukit Serdang",
+        alternateName: ["Serdang", "Seri Kembangan"],
+        description:
+          "Bukit Serdang is an elevated mature township within Seri Kembangan, Selangor — minutes from UPM, MRT Putrajaya Line, and the southern Klang Valley corridor.",
+        containedInPlace: {
+          "@type": "Place",
+          name: "Seri Kembangan, Selangor, Malaysia",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 3.0138,
+          longitude: 101.7069,
+        },
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": `${siteConfig.url}/#listing`,
+        name: "KIMORI Residences — New Freehold Project in Bukit Serdang",
+        url: siteConfig.homeUrl,
+        description:
+          "New freehold condominium project in Bukit Serdang, Seri Kembangan. 418 units across 28 storeys, two layouts (Type A 1,095 sq ft, Type B 857 sq ft), 34 facilities, and unblocked KLCC views.",
+        image: [
+          `${siteConfig.url}/assets/aerial.jpg`,
+          `${siteConfig.url}/assets/iconic.jpg`,
+        ],
+        datePosted: "2026-04-25",
+        about: { "@id": `${siteConfig.url}/#residence` },
       },
       {
         "@type": "Organization",
         "@id": `${siteConfig.url}/#developer`,
         name: "Premierex Development Sdn Bhd",
+        alternateName: "Premierex",
         url: siteConfig.homeUrl,
         telephone: siteConfig.phone,
         address: {
@@ -158,7 +191,50 @@ export default function RootLayout({
           postalCode: siteConfig.address.postal,
           addressCountry: "MY",
         },
-        areaServed: "Malaysia",
+        areaServed: [
+          { "@type": "AdministrativeArea", name: "Selangor" },
+          { "@type": "AdministrativeArea", name: "Klang Valley" },
+          { "@type": "Place", name: "Bukit Serdang" },
+          { "@type": "Place", name: "Seri Kembangan" },
+          { "@type": "Place", name: "Serdang" },
+          { "@type": "Country", name: "Malaysia" },
+        ],
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${siteConfig.url}/#breadcrumbs`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Malaysia",
+            item: `${siteConfig.url}/#malaysia`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Selangor",
+            item: `${siteConfig.url}/#selangor`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: "Seri Kembangan",
+            item: `${siteConfig.url}/#seri-kembangan`,
+          },
+          {
+            "@type": "ListItem",
+            position: 4,
+            name: "Bukit Serdang",
+            item: `${siteConfig.url}/#bukit-serdang`,
+          },
+          {
+            "@type": "ListItem",
+            position: 5,
+            name: "KIMORI Residences",
+            item: siteConfig.homeUrl,
+          },
+        ],
       },
       {
         "@type": "WebSite",
@@ -193,6 +269,30 @@ export default function RootLayout({
             acceptedAnswer: {
               "@type": "Answer",
               text: "KIMORI Residences (木森) is a 418-unit freehold condominium perched on the highest peak of Bukit Serdang, Seri Kembangan, Selangor, developed by Premierex Development Sdn Bhd. Designed around Japanese principles of balance, light, and lasting craft, it rises 28 storeys with 34 curated facilities including a 25-metre north-facing infinity pool framing the KLCC skyline.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Is KIMORI a new project in Serdang?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. KIMORI is a new freehold condominium project in Serdang — specifically on the highest peak of Bukit Serdang, within the Seri Kembangan township in Selangor. It is the latest residential project by Premierex Development Sdn Bhd and one of the few new freehold launches in the Serdang area.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "What is the latest new launch in Bukit Serdang?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "KIMORI Residences is the latest new launch in Bukit Serdang. It is a 28-storey, 418-unit freehold condominium project on Jalan BS 1/2, sited on the highest peak of the hill, with two layouts (Type A 1,095 sq ft and Type B 857 sq ft) and 34 facilities.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Are there any new freehold condominium projects in Seri Kembangan?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes — KIMORI Residences is a new freehold condominium project in Seri Kembangan, located on Bukit Serdang at Jalan BS 1/2, 43300 Seri Kembangan. Freehold tenure is rare in this corridor, making it a notable new launch for the Serdang and Seri Kembangan area.",
             },
           },
           {
