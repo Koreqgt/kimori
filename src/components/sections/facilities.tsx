@@ -38,10 +38,6 @@ export function Facilities() {
               Amenities for the{" "}
               <em className="fac-title-accent">art of living.</em>
             </h2>
-            <p className="fac-lede">
-              Fifteen curated spaces across Level 4 — each one designed to
-              complement the rhythms of everyday life.
-            </p>
           </div>
         </Reveal>
 
@@ -60,7 +56,7 @@ export function Facilities() {
             </div>
             <div className="fac-plan-caption">
               <span className="fac-plan-caption-line" />
-              <span>Level 4 &mdash; Resort-Inspired Facilities</span>
+              <span>Level 4: Resort-Inspired Facilities</span>
               <span className="fac-plan-caption-line" />
             </div>
           </div>

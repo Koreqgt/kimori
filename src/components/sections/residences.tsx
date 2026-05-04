@@ -21,7 +21,7 @@ const TYPES: Record<ResKey, Spec> = {
     baths: "2",
     cars: "2",
     tag: "KLCC & Facilities View",
-    desc: "The largest floorplate — a family sanctuary with a wide balcony, formal dining, and four generous bedrooms plus a utility room.",
+    desc: "The largest floorplate, planned as a family sanctuary with a wide balcony, formal dining, and four generous bedrooms plus a utility room.",
   },
   B: {
     size: "857",

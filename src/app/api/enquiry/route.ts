@@ -24,7 +24,7 @@ function emailHtml(data: {
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>New Viewing Request — KIMORI</title>
+<title>New Viewing Request | KIMORI</title>
 </head>
 <body style="margin:0;padding:0;background:#f5f2ed;font-family:'Georgia',serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f2ed;padding:40px 16px;">
@@ -146,7 +146,7 @@ export async function POST(request: NextRequest) {
     from: "KIMORI Residences <onboarding@resend.dev>",
     to: [RECIPIENT],
     replyTo: email,
-    subject: `New Viewing Request — ${name}`,
+    subject: `New Viewing Request: ${name}`,
     html: emailHtml({ name, email, phone, unitType, message }),
   });
 

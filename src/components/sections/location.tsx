@@ -122,7 +122,7 @@ function BranchSvg() {
       />
       <circle cx="10" cy="244" r="2" fill="currentColor" />
       <circle cx="32" cy="260" r="1.8" fill="currentColor" />
-      {/* upper fork — left branch */}
+      {/* upper fork, left branch */}
       <path
         d="M 100 238 C 74 202 44 174 16 142"
         stroke="currentColor"
@@ -156,7 +156,7 @@ function BranchSvg() {
       <circle cx="8" cy="62" r="2.5" fill="currentColor" />
       <circle cx="68" cy="28" r="2" fill="currentColor" />
       <circle cx="100" cy="46" r="2" fill="currentColor" />
-      {/* upper fork — right branch */}
+      {/* upper fork, right branch */}
       <path
         d="M 100 238 C 128 200 160 172 188 140"
         stroke="currentColor"
@@ -228,7 +228,7 @@ export function Location() {
               </h2>
             </div>
             <p className="loc-lede">
-              KL, Putrajaya, and the Klang Valley via MEX, NSE, and SKVE —
+              KL, Putrajaya, and the Klang Valley via MEX, NSE, and SKVE,
               from a quiet elevation above the city.
             </p>
           </div>

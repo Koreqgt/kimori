@@ -52,7 +52,7 @@ export function Hero() {
           <p className="hero-sub">
             KIMORI Residences at Bukit Serdang is a quiet ascent above the
             city. Freehold homes shaped by Japanese principles of balance,
-            light, and lasting craft — perched on the hill&apos;s highest peak.
+            light, and lasting craft, perched on the hill&apos;s highest peak.
           </p>
         </Reveal>
         <Reveal delay={0.55}>

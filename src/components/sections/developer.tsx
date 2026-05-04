@@ -10,7 +10,7 @@ const POINTS = [
   {
     n: "350",
     t: "Units · Kondominium Timur Perdana",
-    d: "Completed in 2022 — a fully occupied high-rise residential development, delivered on time, on spec.",
+    d: "Completed in 2022, this fully occupied high-rise residential development was delivered on time and on spec.",
   },
   {
     n: "01",

@@ -20,7 +20,7 @@ export function Gallery() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="sec-lede">
-              Moments that define KIMORI — from the iconic tree at the
+              Moments that define KIMORI, from the iconic tree at the
               drop-off to the infinity pool suspended above the Serdang valley.
               Each render is a commitment.
             </p>
@@ -53,7 +53,7 @@ export function Gallery() {
               <div className="gallery-item">
                 <Image
                   src="/assets/podium.jpg"
-                  alt="KIMORI iconic tower — reinforced concrete silhouette on the Serdang skyline"
+                  alt="KIMORI iconic tower, a reinforced concrete silhouette on the Serdang skyline"
                   fill
                   sizes="(max-width: 960px) 100vw, 45vw"
                   style={{ objectFit: "cover" }}

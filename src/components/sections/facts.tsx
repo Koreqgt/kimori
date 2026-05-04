@@ -40,7 +40,7 @@ export function Facts() {
               className="sec-lede"
               style={{ maxWidth: 380, fontSize: 15 }}
             >
-              Every figure is a quiet argument for how KIMORI is built — not to
+              Every figure is a quiet argument for how KIMORI is built: not to
               impress, but to endure.
             </p>
           </div>

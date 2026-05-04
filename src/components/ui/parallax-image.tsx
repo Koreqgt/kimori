@@ -26,7 +26,7 @@ export function ParallaxImage({
     const el = ref.current;
     if (!el) return;
 
-    // Cache layout values — only update on resize, never on scroll
+    // Cache layout values. Only update on resize, never on scroll.
     let elTop = 0;
     let elHeight = 0;
 

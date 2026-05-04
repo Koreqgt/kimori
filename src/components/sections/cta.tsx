@@ -68,7 +68,7 @@ export function CTA() {
           </h2>
           <p className="cta-sub">
             Leave a few details and a member of our sales team will arrange a
-            private viewing at the Kimori Sales Gallery — or a guided tour of
+            private viewing at the Kimori Sales Gallery, or a guided tour of
             the 360° experience, whichever you prefer.
           </p>
         </Reveal>
@@ -204,7 +204,7 @@ export function CTA() {
             </div>
             <div className="foot-tag">
               木森 · A new freehold condominium project in Bukit Serdang,
-              Seri Kembangan, Selangor — by Premierex Development.
+              Seri Kembangan, Selangor, by Premierex Development.
             </div>
           </div>
           <div className="foot-col">

@@ -16,7 +16,7 @@ const slides = [
     tag: "02 · The Iconic Tree",
     title: "Welcomed by",
     em: "a living landmark.",
-    desc: "At the heart of the drop-off, a mature canopy tree preserved and celebrated — the first thing you return to, every evening.",
+    desc: "At the heart of the drop-off, a mature canopy tree is preserved and celebrated as the first thing you return to, every evening.",
   },
   {
     img: "/assets/pool.jpg",
@@ -30,7 +30,7 @@ const slides = [
     tag: "04 · Moonlit Jacuzzi",
     title: "Evenings that",
     em: "belong to you.",
-    desc: "The jacuzzi garden is sunk below the pool deck, screened by timber lattice — a private grove of steam and starlight.",
+    desc: "The jacuzzi garden is sunk below the pool deck, screened by timber lattice, and shaped as a private grove of steam and starlight.",
   },
   {
     img: "/assets/rooftop.jpg",

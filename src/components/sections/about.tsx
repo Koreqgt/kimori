@@ -21,20 +21,20 @@ export function About() {
           <Reveal delay={0.2}>
             <div className="about-body">
               <p>
-                KIMORI — 森 — is a name formed from the Japanese characters
+                KIMORI, 森, is a name formed from the Japanese characters
                 for tree and forest. It is a quiet promise: that home can feel
                 like a grove. Shelter from noise. Rooted, gentle, alive.
               </p>
               <p>
                 Rising from the highest point of Bukit Serdang, KIMORI
                 Residences is a new 418-unit freehold condominium project in
-                Serdang — and a quiet counterpoint to the noise of most new
+                Serdang, and a quiet counterpoint to the noise of most new
                 launches. Walls are reinforced concrete. Layouts are practical.
                 Every home faces north–south to draw in the softest light.
               </p>
               <p>
-                What you see from the balcony — the unblocked KLCC skyline, the
-                Serdang canopy below — is not decoration. It is the work of
+                What you see from the balcony, from the unblocked KLCC skyline
+                to the Serdang canopy below, is not decoration. It is the work of
                 choosing a site with discipline, and building on it with
                 patience.
               </p>

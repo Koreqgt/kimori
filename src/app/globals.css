@@ -477,7 +477,7 @@ section {
   color: var(--forest);
 }
 .sec-lede {
-  font-size: 18px;
+  font-size: 15px;
   line-height: 1.75;
   color: var(--ink-soft);
   font-weight: 300;
@@ -822,7 +822,7 @@ section {
 }
 .loc-lede {
   color: var(--ink-soft);
-  font-size: 18px;
+  font-size: 15px;
   line-height: 1.75;
   font-weight: 300;
   max-width: 640px;

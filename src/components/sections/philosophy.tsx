@@ -5,19 +5,19 @@ const PRINCIPLES = [
     n: "01",
     jp: "現代",
     label: "Contemporary",
-    desc: "A modern silhouette grounded in Japanese restraint. Clean lines, honest materials, designed for the way families live now — and for thirty years from now.",
+    desc: "A modern silhouette grounded in Japanese restraint. Clean lines and honest materials, designed for the way families live now and for thirty years from now.",
   },
   {
     n: "02",
     jp: "集合",
     label: "Collective",
-    desc: "The character 木 (tree) holds 人 (person) within it. KIMORI is built around this idea — a community of homes where neighbours become quiet companions.",
+    desc: "The character 木 (tree) holds 人 (person) within it. KIMORI is built around this idea: a community of homes where neighbours become quiet companions.",
   },
   {
     n: "03",
     jp: "個性",
     label: "Character",
-    desc: "Resembling the genius loci of Bukit Serdang — its hill, its canopy, its breath. Spaces that take their cue from the land they sit upon, not the trends of the moment.",
+    desc: "Resembling the genius loci of Bukit Serdang: its hill, its canopy, its breath. Spaces that take their cue from the land they sit upon, not the trends of the moment.",
   },
 ];
 
@@ -57,12 +57,12 @@ export function Philosophy() {
                 <strong>KI</strong>, meaning <em>tree</em>.
               </p>
               <p className="phil-intro">
-                Within the 木 character itself sits 人 — the kanji for{" "}
+                Within the 木 character itself sits 人, the kanji for{" "}
                 <em>person</em>. So MORI carries an older meaning: an assembly
                 of people who, together, become a community.
               </p>
               <p className="phil-intro">
-                This is the heart of KIMORI. Not just trees on a hill — but
+                This is the heart of KIMORI. Not just trees on a hill, but
                 lives, gathered.
               </p>
             </div>
@@ -72,7 +72,7 @@ export function Philosophy() {
           {PRINCIPLES.map((p, i) => (
             <Reveal key={p.n} delay={i * 0.12}>
               <article className="phil-card">
-                <div className="phil-num">— {p.n}</div>
+                <div className="phil-num">{p.n}</div>
                 <div
                   className="phil-kanji jp"
                   aria-hidden="true"

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/lib/site";
 
-export const alt = `${siteConfig.name} — A Serene Ascent Above Serdang`;
+export const alt = `${siteConfig.name}: A Serene Ascent Above Serdang`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -74,7 +74,7 @@ export default async function OpengraphImage() {
               lineHeight: 1.2,
             }}
           >
-            A quiet ascent above the city — freehold residences shaped by
+            A quiet ascent above the city, with freehold residences shaped by
             Japanese principles of balance, light, and lasting craft.
           </div>
         </div>
