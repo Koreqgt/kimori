@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { ArrowRight, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ChevronDown, X } from "lucide-react";
 import { TreeMark } from "@/components/ui/tree-mark";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site";
@@ -23,6 +23,8 @@ const LINKS = [
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [tourOpen, setTourOpen] = useState(false);
+  const tourRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -30,6 +32,22 @@ export function Nav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!tourOpen) return;
+    const onDown = (e: PointerEvent) => {
+      if (!tourRef.current?.contains(e.target as Node)) setTourOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setTourOpen(false);
+    };
+    document.addEventListener("pointerdown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [tourOpen]);
 
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
@@ -53,15 +71,46 @@ export function Nav() {
             </a>
           ))}
         </div>
-        <a
-          href={siteConfig.tour360}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="nav-cta"
-        >
-          <span>360° Tour</span>
-          <ArrowRight size={12} strokeWidth={1.2} />
-        </a>
+        <div className="nav-tour" ref={tourRef}>
+          <button
+            type="button"
+            className="nav-cta"
+            aria-haspopup="menu"
+            aria-expanded={tourOpen}
+            onClick={() => setTourOpen((v) => !v)}
+          >
+            <span>360° Tour</span>
+            <ChevronDown
+              size={12}
+              strokeWidth={1.2}
+              className={`nav-tour-chev${tourOpen ? " open" : ""}`}
+            />
+          </button>
+          {tourOpen && (
+            <div className="nav-tour-menu" role="menu">
+              <a
+                href={siteConfig.tour360TypeA}
+                target="_blank"
+                rel="noopener noreferrer"
+                role="menuitem"
+                onClick={() => setTourOpen(false)}
+              >
+                <span>Type A</span>
+                <em>1,095 sq ft</em>
+              </a>
+              <a
+                href={siteConfig.tour360TypeB}
+                target="_blank"
+                rel="noopener noreferrer"
+                role="menuitem"
+                onClick={() => setTourOpen(false)}
+              >
+                <span>Type B</span>
+                <em>857 sq ft</em>
+              </a>
+            </div>
+          )}
+        </div>
         <button
           type="button"
           className="nav-burger"
@@ -80,9 +129,9 @@ export function Nav() {
               href="#top"
               className="nav-logo"
               onClick={() => setOpen(false)}
-              style={{ color: "var(--ink)" }}
+              style={{ color: "var(--forest)" }}
             >
-              <TreeMark color="var(--forest)" />
+              <TreeMark color="var(--wood)" />
               <span>KIMORI</span>
             </a>
             <button
@@ -101,14 +150,23 @@ export function Nav() {
               </a>
             ))}
           </nav>
-          <div className="ms-cta">
+          <div className="ms-cta" style={{ display: "grid", gap: 12 }}>
             <Button asChild variant="primary">
               <a
-                href={siteConfig.tour360}
+                href={siteConfig.tour360TypeA}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span>Enter 360° Tour</span>
+                <span>360° Tour · Type A</span>
+              </a>
+            </Button>
+            <Button asChild variant="primary">
+              <a
+                href={siteConfig.tour360TypeB}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>360° Tour · Type B</span>
               </a>
             </Button>
           </div>

@@ -53,13 +53,38 @@ export function Gallery() {
               <div className="gallery-item">
                 <Image
                   src="/assets/podium.jpg"
-                  alt="KIMORI iconic tower, a reinforced concrete silhouette on the Serdang skyline"
+                  alt="Podium deck at KIMORI with alfresco dining, barbecue counters, and a play court overlooking the city"
                   fill
                   sizes="(max-width: 960px) 100vw, 45vw"
                   style={{ objectFit: "cover" }}
                 />
-                <div className="cap">03 · Iconic Tower</div>
+                <div className="cap">03 · Podium Deck</div>
               </div>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal>
+          <div className="h-pair" style={{ marginBottom: 24 }}>
+            <div className="gallery-item h-med">
+              <Image
+                src="/assets/lobby-02.jpg"
+                alt="Drop-off arrival opening into the marble lobby of KIMORI Residences"
+                fill
+                sizes="(max-width: 960px) 100vw, 50vw"
+                style={{ objectFit: "cover" }}
+              />
+              <div className="cap">04 · Arrival Lobby</div>
+            </div>
+            <div className="gallery-item h-med">
+              <Image
+                src="/assets/gym-02.jpg"
+                alt="Gymnasium with treadmills and free weights beneath a timber-slat ceiling at KIMORI"
+                fill
+                sizes="(max-width: 960px) 100vw, 50vw"
+                style={{ objectFit: "cover" }}
+              />
+              <div className="cap">05 · Sky Gym</div>
             </div>
           </div>
         </Reveal>
@@ -74,7 +99,7 @@ export function Gallery() {
                 sizes="(max-width: 960px) 100vw, 50vw"
                 style={{ objectFit: "cover" }}
               />
-              <div className="cap">04 · 25m Infinity Pool</div>
+              <div className="cap">06 · 25m Infinity Pool</div>
             </div>
             <div className="gallery-item h-med">
               <Image
@@ -84,7 +109,7 @@ export function Gallery() {
                 sizes="(max-width: 960px) 100vw, 50vw"
                 style={{ objectFit: "cover" }}
               />
-              <div className="cap">05 · Rooftop Horizon</div>
+              <div className="cap">07 · Rooftop Horizon</div>
             </div>
           </div>
         </Reveal>
@@ -99,7 +124,7 @@ export function Gallery() {
                 sizes="(max-width: 960px) 100vw, 50vw"
                 style={{ objectFit: "cover" }}
               />
-              <div className="cap">06 · Moonlit Jacuzzi</div>
+              <div className="cap">08 · Moonlit Jacuzzi</div>
             </div>
             <div
               className="gallery-item h-med auto-mobile"
@@ -113,7 +138,7 @@ export function Gallery() {
               }}
             >
               <div className="mono-tag" style={{ color: "var(--wood)" }}>
-                07 · Full Experience
+                09 · Full Experience
               </div>
               <div>
                 <div
@@ -153,15 +178,26 @@ export function Gallery() {
                   Step into every room, every vista. A fully interactive
                   virtual tour of the residences and facilities.
                 </p>
-                <Button asChild variant="outline-light">
-                  <a
-                    href={siteConfig.tour360}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span>Enter Virtual Tour →</span>
-                  </a>
-                </Button>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 14 }}>
+                  <Button asChild variant="outline-light">
+                    <a
+                      href={siteConfig.tour360TypeA}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span>Type A · 1,095 sq ft →</span>
+                    </a>
+                  </Button>
+                  <Button asChild variant="outline-light">
+                    <a
+                      href={siteConfig.tour360TypeB}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span>Type B · 857 sq ft →</span>
+                    </a>
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

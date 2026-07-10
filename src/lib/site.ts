@@ -18,6 +18,8 @@ export const siteConfig = {
     country: "Malaysia",
   },
   tour360: "https://www.7degree.com.my/360VR/Kimori/",
+  tour360TypeA: "https://www.7degree.com.my/360VR/Kimori/",
+  tour360TypeB: "https://my.treedis.com/tour/kimori-residences-type-b",
   keywords: [
     "Kimori",
     "Kimori Residences",

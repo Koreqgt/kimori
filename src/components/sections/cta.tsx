@@ -229,11 +229,20 @@ export function CTA() {
             <ul>
               <li>
                 <a
-                  href={siteConfig.tour360}
+                  href={siteConfig.tour360TypeA}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  360° Virtual Tour
+                  360° Tour · Type A (1,095 sq ft)
+                </a>
+              </li>
+              <li>
+                <a
+                  href={siteConfig.tour360TypeB}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  360° Tour · Type B (857 sq ft)
                 </a>
               </li>
               <li>

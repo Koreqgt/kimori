@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
+import { Button } from "@/components/ui/button";
+import { siteConfig } from "@/lib/site";
 
 type ResKey = "A" | "B";
 
@@ -12,6 +14,7 @@ type Spec = {
   cars: string;
   tag: string;
   desc: string;
+  tour: string;
 };
 
 const TYPES: Record<ResKey, Spec> = {
@@ -22,6 +25,7 @@ const TYPES: Record<ResKey, Spec> = {
     cars: "2",
     tag: "KLCC & Facilities View",
     desc: "The largest floorplate, planned as a family sanctuary with a wide balcony, formal dining, and four generous bedrooms plus a utility room.",
+    tour: siteConfig.tour360TypeA,
   },
   B: {
     size: "857",
@@ -30,6 +34,7 @@ const TYPES: Record<ResKey, Spec> = {
     cars: "2",
     tag: "Dual Outlook",
     desc: "An efficient three-bedroom plan with north–south ventilation, a private yard off the kitchen, and balcony off the living room.",
+    tour: siteConfig.tour360TypeB,
   },
 };
 
@@ -138,6 +143,13 @@ export function Residences() {
                   <dd className="res-row-v">{t.cars}</dd>
                 </div>
               </dl>
+              <div style={{ marginTop: 36 }}>
+                <Button asChild variant="primary">
+                  <a href={t.tour} target="_blank" rel="noopener noreferrer">
+                    <span>Type {active} · 360° Tour</span>
+                  </a>
+                </Button>
+              </div>
             </div>
           </Reveal>
         </div>
