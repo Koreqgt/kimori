@@ -133,8 +133,13 @@ export function Facilities() {
   const [activeId, setActiveId] = useState<number | null>(null);
   const [zoomStep, setZoomStep] = useState(0);
   const [expanded, setExpanded] = useState(false);
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLDivElement>(null);
+  // The inline plan and the full-screen one are both mounted while expanded, so
+  // they need separate refs — sharing one would leave it pointing at whichever
+  // mounted last, and nulled when the modal closes.
+  const inlineVpRef = useRef<HTMLDivElement>(null);
+  const inlineCanvasRef = useRef<HTMLDivElement>(null);
+  const modalVpRef = useRef<HTMLDivElement>(null);
+  const modalCanvasRef = useRef<HTMLDivElement>(null);
 
   // The plan always opens fitted to the frame, so nothing is hidden off-screen
   // and there is no sideways scrolling to discover. Reading the printed numbers
@@ -142,16 +147,22 @@ export function Facilities() {
   // so zoom stays opt-in via the +/Expand controls.
 
   const centerOn = useCallback((id: number) => {
-    const vp = viewportRef.current;
-    const canvas = canvasRef.current;
     const marker = MARKERS.find((m) => m.id === id);
-    if (!vp || !canvas || !marker) return;
+    if (!marker) return;
 
-    vp.scrollTo({
-      left: (canvas.offsetWidth * marker.x) / 100 - vp.clientWidth / 2,
-      top: (canvas.offsetHeight * marker.y) / 100 - vp.clientHeight / 2,
-      behavior: "smooth",
-    });
+    for (const [vpRef, canvasRef] of [
+      [inlineVpRef, inlineCanvasRef],
+      [modalVpRef, modalCanvasRef],
+    ] as const) {
+      const vp = vpRef.current;
+      const canvas = canvasRef.current;
+      if (!vp || !canvas) continue;
+      vp.scrollTo({
+        left: (canvas.offsetWidth * marker.x) / 100 - vp.clientWidth / 2,
+        top: (canvas.offsetHeight * marker.y) / 100 - vp.clientHeight / 2,
+        behavior: "smooth",
+      });
+    }
   }, []);
 
   const select = useCallback(
@@ -175,9 +186,38 @@ export function Facilities() {
   }, [expanded]);
 
   const zoom = ZOOM_STEPS[zoomStep];
+  const activeName = activeId ? NAME_BY_ID.get(activeId) : undefined;
+  const activeLabel =
+    activeId && activeName
+      ? `${activeId} · ${activeName}`
+      : "Tap a facility to locate it";
 
-  const plan = (
-    <div className="fac-plan-viewport" ref={viewportRef}>
+  const zoomControls = (
+    <div className="fac-plan-buttons">
+      <button
+        type="button"
+        onClick={() => setZoomStep((z) => Math.max(0, z - 1))}
+        disabled={zoomStep === 0}
+        aria-label="Zoom out"
+      >
+        &minus;
+      </button>
+      <button
+        type="button"
+        onClick={() => setZoomStep((z) => Math.min(ZOOM_STEPS.length - 1, z + 1))}
+        disabled={zoomStep === ZOOM_STEPS.length - 1}
+        aria-label="Zoom in"
+      >
+        +
+      </button>
+    </div>
+  );
+
+  const renderPlan = (
+    vpRef: React.RefObject<HTMLDivElement | null>,
+    canvasRef: React.RefObject<HTMLDivElement | null>,
+  ) => (
+    <div className="fac-plan-viewport" ref={vpRef}>
       <div
         className="fac-plan-canvas"
         ref={canvasRef}
@@ -227,30 +267,9 @@ export function Facilities() {
         <Reveal delay={0.18}>
           <div className="fac-plan-frame">
             <div className="fac-plan-tools">
-              <span className="fac-plan-hint">
-                {activeId && NAME_BY_ID.get(activeId)
-                  ? `${activeId} · ${NAME_BY_ID.get(activeId)}`
-                  : "Tap a facility to locate it"}
-              </span>
+              <span className="fac-plan-hint">{activeLabel}</span>
               <div className="fac-plan-buttons">
-                <button
-                  type="button"
-                  onClick={() => setZoomStep((z) => Math.max(0, z - 1))}
-                  disabled={zoomStep === 0}
-                  aria-label="Zoom out"
-                >
-                  &minus;
-                </button>
-                <button
-                  type="button"
-                  onClick={() =>
-                    setZoomStep((z) => Math.min(ZOOM_STEPS.length - 1, z + 1))
-                  }
-                  disabled={zoomStep === ZOOM_STEPS.length - 1}
-                  aria-label="Zoom in"
-                >
-                  +
-                </button>
+                {zoomControls}
                 <button
                   type="button"
                   onClick={() => setExpanded(true)}
@@ -261,7 +280,7 @@ export function Facilities() {
               </div>
             </div>
 
-            {plan}
+            {renderPlan(inlineVpRef, inlineCanvasRef)}
 
             <div className="fac-plan-caption">
               <span className="fac-plan-caption-line" />
@@ -337,15 +356,20 @@ export function Facilities() {
           aria-modal="true"
           aria-label="Facilities site plan"
         >
-          <button
-            type="button"
-            className="fac-plan-close"
-            onClick={() => setExpanded(false)}
-            aria-label="Close full screen plan"
-          >
-            Close
-          </button>
-          {plan}
+          <div className="fac-plan-modal-bar">
+            <span className="fac-plan-hint">{activeLabel}</span>
+            <div className="fac-plan-buttons">
+              {zoomControls}
+              <button
+                type="button"
+                onClick={() => setExpanded(false)}
+                aria-label="Close full screen plan"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+          {renderPlan(modalVpRef, modalCanvasRef)}
         </div>
       ) : null}
     </section>
