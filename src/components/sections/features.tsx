@@ -3,7 +3,16 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const slides = [
+type Slide = {
+  img: string;
+  alt?: string;
+  tag?: string;
+  title?: string;
+  em?: string;
+  desc?: string;
+};
+
+const slides: Slide[] = [
   {
     img: "/assets/entrance.jpg",
     tag: "01 · Grand Entrance",
@@ -19,36 +28,47 @@ const slides = [
     desc: "Marble, timber, and soft light compose an arrival hall that treats the everyday homecoming as a quiet ceremony.",
   },
   {
+    img: "/assets/lobby-02.jpg",
+    tag: "03 · Arrival Drop-Off",
+    title: "Arrival, sheltered",
+    em: "beneath timber.",
+    desc: "A covered porte-cochère opens straight into the lobby, so every arrival steps from car to marble without meeting the weather.",
+  },
+  {
     img: "/assets/gym-01.jpg",
-    tag: "03 · Sky Gym",
+    tag: "04 · Sky Gym",
     title: "Strength, framed",
     em: "by the skyline.",
     desc: "A fully equipped gymnasium beneath a timber-slat ceiling, its glass line opening to the city far below.",
   },
   {
+    img: "/assets/gym-02.jpg",
+    alt: "Gymnasium at KIMORI with treadmills, weight racks, and a mirrored wall beneath a timber-slat ceiling",
+  },
+  {
     img: "/assets/games-room.jpg",
-    tag: "04 · Games Room",
+    tag: "06 · Games Room",
     title: "Play, at",
     em: "an easy pace.",
     desc: "Foosball, table tennis, and board games gathered in a timber-latticed room made for slow afternoons together.",
   },
   {
     img: "/assets/podium.jpg",
-    tag: "05 · Podium Deck",
+    tag: "07 · Podium Deck",
     title: "Days that gather",
     em: "in open air.",
     desc: "Alfresco dining under umbrellas, barbecue counters, a play court, and a children's playground, all laid out on a hilltop deck above the city.",
   },
   {
     img: "/assets/pool.jpg",
-    tag: "06 · 25m Infinity Pool",
+    tag: "08 · 25m Infinity Pool",
     title: "Swim into",
     em: "the horizon.",
     desc: "The rooftop pool is oriented to frame the unblocked KLCC skyline by day and an unbroken starfield by night.",
   },
   {
     img: "/assets/rooftop.jpg",
-    tag: "07 · Sky Lounge",
+    tag: "09 · Sky Lounge",
     title: "Where the day",
     em: "softens into dusk.",
     desc: "A communal terrace at the crown of KIMORI, oriented to catch the slowest light of the evening.",
@@ -70,7 +90,7 @@ export function Features() {
           <motion.img
             key={f.img}
             src={f.img}
-            alt={f.title}
+            alt={f.alt ?? f.title ?? ""}
             className="features-img"
             initial={{ opacity: 0, scale: 1.06 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -91,11 +111,13 @@ export function Features() {
                 exit={{ opacity: 0, y: -24 }}
                 transition={{ duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
               >
-                <div className="features-tag">{f.tag}</div>
-                <h3 className="features-title">
-                  {f.title} <em>{f.em}</em>
-                </h3>
-                <p className="features-desc">{f.desc}</p>
+                {f.tag ? <div className="features-tag">{f.tag}</div> : null}
+                {f.title ? (
+                  <h3 className="features-title">
+                    {f.title} <em>{f.em}</em>
+                  </h3>
+                ) : null}
+                {f.desc ? <p className="features-desc">{f.desc}</p> : null}
               </motion.div>
             </AnimatePresence>
           </div>
@@ -113,7 +135,7 @@ export function Features() {
                   type="button"
                   className={`feat-thumb ${idx === i ? "active" : ""}`}
                   onClick={() => setI(idx)}
-                  aria-label={s.tag}
+                  aria-label={s.tag ?? s.alt ?? `Slide ${idx + 1}`}
                 >
                   <img src={s.img} alt="" />
                   <div className="feat-thumb-label">

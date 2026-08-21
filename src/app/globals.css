@@ -1226,35 +1226,50 @@ section {
 /* facilities columns */
 .fac-cols {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 0;
   border-top: 1px solid var(--line);
+}
+.fac-zone {
+  border-right: 1px solid var(--line-soft);
+  padding-top: 26px;
+}
+.fac-zone:last-child {
+  border-right: 0;
+}
+.fac-zone:not(:first-child) {
+  padding-left: 24px;
+}
+.fac-zone-title {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--wood);
+  font-weight: 500;
+  margin-bottom: 14px;
+  padding-right: 24px;
 }
 .fac-col-list {
   list-style: none;
   padding: 0;
-  border-right: 1px solid var(--line-soft);
-}
-.fac-col-list:last-child {
-  border-right: 0;
 }
 .fac-col-row {
   display: flex;
   align-items: center;
   gap: 0;
-  padding: 15px 28px 15px 0;
+  padding: 15px 24px 15px 0;
   border-bottom: 1px solid var(--line-soft);
   margin-left: 0;
 }
-.fac-col-list:not(:first-child) .fac-col-row {
-  padding-left: 28px;
+.fac-col-list li:last-child {
+  border-bottom: 0;
 }
 .fac-col-letter {
   font-family: var(--font-cormorant), serif;
   font-size: 16px;
   font-weight: 400;
   color: var(--wood);
-  width: 28px;
+  width: 26px;
   flex-shrink: 0;
   line-height: 1;
 }
@@ -1271,6 +1286,18 @@ section {
   color: var(--ink-soft);
   letter-spacing: 0.03em;
   line-height: 1.45;
+}
+
+@media (max-width: 1200px) {
+  .fac-cols {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .fac-zone:nth-child(3n) {
+    border-right: 0;
+  }
+  .fac-zone:nth-child(3n + 1) {
+    padding-left: 0;
+  }
 }
 
 /* highlights */
@@ -1656,7 +1683,7 @@ footer {
 .features {
   position: relative;
   height: 100vh;
-  min-height: 680px;
+  height: 100dvh;
   overflow: hidden;
   background: var(--paper);
   font-family: var(--font-inter), -apple-system, sans-serif;
@@ -1664,7 +1691,7 @@ footer {
 }
 .features-section-head {
   position: absolute;
-  top: 60px;
+  top: 96px;
   left: 48px;
   z-index: 3;
   color: var(--paper);
@@ -1685,8 +1712,7 @@ footer {
 }
 .features-stage {
   position: relative;
-  height: 100vh;
-  min-height: 680px;
+  height: 100%;
   width: 100%;
   overflow: hidden;
   background: #141a16;
@@ -1841,6 +1867,9 @@ footer {
 
 /* responsive */
 @media (max-width: 960px) {
+  .features-section-head {
+    top: 80px;
+  }
   .hero-scroll--desktop {
     display: none;
   }
@@ -1999,11 +2028,23 @@ footer {
   .fac-header {
     margin-bottom: 48px;
   }
+  .fac-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .fac-zone:nth-child(3n) {
+    border-right: 1px solid var(--line-soft);
+  }
+  .fac-zone:nth-child(2n) {
+    border-right: 0;
+  }
+  .fac-zone:not(:first-child) {
+    padding-left: 20px;
+  }
+  .fac-zone:nth-child(odd) {
+    padding-left: 0;
+  }
   .fac-col-row {
     padding: 13px 20px 13px 0;
-  }
-  .fac-col-list:not(:first-child) .fac-col-row {
-    padding-left: 20px;
   }
   .fac-col-name {
     font-size: 11px;
@@ -2077,15 +2118,20 @@ footer {
   .fac-cols {
     grid-template-columns: 1fr;
   }
-  .fac-col-list {
+  .fac-zone,
+  .fac-zone:nth-child(3n),
+  .fac-zone:nth-child(2n) {
     border-right: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-left: 0;
   }
-  .fac-col-list:last-child {
-    border-bottom: 0;
+  .fac-zone:not(:last-child) {
+    border-bottom: 1px solid var(--line-soft);
+    padding-bottom: 22px;
   }
-  .fac-col-row,
-  .fac-col-list:not(:first-child) .fac-col-row {
+  .fac-zone-title {
+    padding-right: 0;
+  }
+  .fac-col-row {
     padding: 13px 0;
   }
   .fac-col-letter {
@@ -2117,11 +2163,8 @@ footer {
   .feature-content {
     padding: 0 24px;
   }
-  .features {
-    min-height: 620px;
-  }
   .features-section-head {
-    top: 32px;
+    top: 76px;
     left: 20px;
     right: 20px;
     max-width: none;
@@ -2136,8 +2179,7 @@ footer {
     font-size: clamp(26px, 7vw, 36px);
   }
   .features-stage {
-    height: 100vh;
-    min-height: 620px;
+    height: 100%;
   }
   .features-scrim {
     background: linear-gradient(
@@ -2305,5 +2347,251 @@ footer {
 
   .gallery-tour-kanji {
     font-size: 48px !important;
+  }
+}
+
+/* The features carousel is locked to exactly one viewport height, so on short
+   screens (landscape phones, small laptop windows) its overlay has to compact
+   instead of overflowing that fixed height and being clipped. */
+@media (max-height: 720px) {
+  .features-overlay {
+    padding-bottom: 20px;
+  }
+  .features-text {
+    margin-bottom: 16px;
+  }
+  .features-title {
+    font-size: clamp(22px, 3.4vh, 34px);
+    margin-bottom: 8px;
+  }
+  .features-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .features-controls {
+    padding-top: 16px;
+    gap: 20px;
+  }
+  .feat-thumb {
+    width: 64px;
+    height: 44px;
+  }
+  .feat-arrows button {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* ---- facilities: interactive site plan + zone tabs ---- */
+.fac-plan-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.fac-plan-hint {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--wood);
+  font-weight: 500;
+}
+.fac-plan-buttons {
+  display: flex;
+  gap: 8px;
+}
+.fac-plan-buttons button {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.fac-plan-buttons button:hover:not(:disabled) {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: var(--paper);
+}
+.fac-plan-buttons button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.fac-plan-viewport {
+  position: relative;
+  width: 100%;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.fac-plan-canvas {
+  position: relative;
+  min-width: 100%;
+}
+.fac-plan-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* Transparent hit target sitting over each number already printed on the plan,
+   so tapping the printed circle works and nothing is drawn twice. */
+.fac-marker {
+  /* sized as a share of the plan, not fixed px, so the halo keeps the same
+     relation to the printed circle at every zoom level */
+  position: absolute;
+  width: 2.3%;
+  aspect-ratio: 1;
+  min-width: 20px;
+  transform: translate(-50%, -50%);
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+.fac-marker::before,
+.fac-marker::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+}
+.fac-marker::after {
+  inset: 0;
+  border: 2px solid transparent;
+  transition: all 0.25s;
+}
+.fac-marker:hover::after {
+  inset: -35%;
+  border-color: var(--wood);
+  background: rgba(200, 169, 110, 0.22);
+}
+.fac-marker.is-active::after {
+  /* white outer edge guarantees contrast wherever it lands on the plan */
+  inset: -62%;
+  border: 3px solid var(--wood);
+  background: rgba(200, 169, 110, 0.16);
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.92),
+    0 10px 24px rgba(20, 40, 25, 0.32);
+}
+.fac-marker.is-active::before {
+  inset: -62%;
+  border: 2px solid var(--wood);
+  animation: fac-pulse 1.7s ease-out infinite;
+}
+@keyframes fac-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+.fac-tabs {
+  display: none;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.fac-tab {
+  /* every zone stays on screen: chips wrap onto two rows rather than
+     scrolling sideways, so none of them can hide off the right edge */
+  flex: 1 1 calc(50% - 4px);
+  padding: 10px 14px;
+  text-align: center;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-muted);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.fac-tab.is-active {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: var(--paper);
+}
+/* rows became buttons, so strip the default button chrome */
+.fac-col-row {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line-soft);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+.fac-col-row:hover:not(:disabled) {
+  background: rgba(200, 169, 110, 0.08);
+}
+.fac-col-row.is-active {
+  background: rgba(200, 169, 110, 0.16);
+}
+.fac-col-row:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+.fac-plan-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 0 0;
+}
+.fac-plan-modal .fac-plan-viewport {
+  max-height: 100dvh;
+}
+.fac-plan-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  padding: 10px 18px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+@media (max-width: 960px) {
+  /* one zone at a time instead of all 37 rows stacked */
+  .fac-tabs {
+    display: flex;
+  }
+  .fac-zone {
+    display: none;
+  }
+  .fac-zone.is-active {
+    display: block;
+    border-right: 0;
+    padding-left: 0;
+    padding-bottom: 0;
+  }
+  .fac-cols {
+    display: block;
+  }
+  .fac-plan-viewport {
+    max-height: 52vh;
   }
 }

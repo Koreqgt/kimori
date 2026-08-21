@@ -9,7 +9,8 @@ export const siteConfig = {
   homeUrl: "https://www.kimori.my/",
   developer: "Premierex Development",
   locale: "en_MY",
-  phone: "+60 3-XXXX XXXX",
+  phone: "+60 12-718 5534",
+  whatsapp: "60127185534",
   address: {
     street: "Jalan BS 1/2, Bukit Serdang",
     postal: "43300",

@@ -17,6 +17,24 @@ function escapeHtml(value: string) {
     .replace(/'/g, "&#39;");
 }
 
+const STATIC_ASSET_PATH = /^\/assets\/[^/]+\.[a-z0-9]+$/i;
+
+/**
+ * Next resolves local images for /_next/image through a mocked request that is
+ * built with no headers at all (see `fetchInternalImage`), so the access cookie
+ * can never ride along. Without this bypass the optimizer receives the auth page
+ * instead of the file and answers 400 for every image that is not already in the
+ * image cache.
+ */
+function isInternalImageRequest(request: NextRequest) {
+  return (
+    request.method === "GET" &&
+    !request.headers.get("host") &&
+    !request.headers.get("user-agent") &&
+    STATIC_ASSET_PATH.test(request.nextUrl.pathname)
+  );
+}
+
 function requestedPath(request: NextRequest) {
   if (request.nextUrl.pathname === "/auth") {
     return sanitizeRedirectPath(request.nextUrl.searchParams.get("from"));
@@ -203,7 +221,8 @@ export async function proxy(request: NextRequest) {
 
   if (
     request.nextUrl.pathname === "/robots.txt" ||
-    request.nextUrl.pathname.startsWith("/api/auth")
+    request.nextUrl.pathname.startsWith("/api/auth") ||
+    isInternalImageRequest(request)
   ) {
     return NextResponse.next();
   }
