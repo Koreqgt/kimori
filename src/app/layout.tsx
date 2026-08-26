@@ -21,20 +21,29 @@ const sans = Instrument_Sans({
   display: "swap",
 });
 
+// `swap`, not `optional`. `optional` gives the file a ~100ms block period and
+// no swap period at all, so on a cold visit Cormorant loses the race and the
+// browser locks in the fallback for the whole page load -- generic serif is
+// Times, which has neither a 300 nor a 600, so the hero drops to regular and
+// the nav wordmark synthesises to actual bold. It only looked right on the
+// second visit, off disk cache. Preloaded because this is the nav and hero
+// face: the fetch has to start in <head> or the swap flashes above the fold.
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
-  display: "optional",
-  preload: false,
+  display: "swap",
+  preload: true,
 });
 
+// Same swap fix, but left unpreloaded: the JP face is decorative (the 木森
+// marks) and its CJK slices are far too heavy to spend head bandwidth on.
 const notoSerifJp = Noto_Serif_JP({
   variable: "--font-noto-serif-jp",
   subsets: ["latin"],
   weight: ["300", "400", "500"],
-  display: "optional",
+  display: "swap",
   preload: false,
 });
 
