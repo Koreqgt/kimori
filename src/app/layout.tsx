@@ -1,13 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Inter, Noto_Serif_JP } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  Instrument_Sans,
+  Noto_Serif_JP,
+} from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
 import { Analytics } from "@vercel/analytics/next";
 
-const inter = Inter({
-  variable: "--font-inter",
+// Loaded variable (no `weight`) so the whole 400-700 range costs one file.
+// Instrument Sans bottoms out at 400, which is the point: the old Inter Light
+// went hairline at the 12px the facility legend and micro-labels run at.
+// `wdth` is pulled in as an extra axis -- the five-column facilities grid needs
+// to squeeze "CLOSENESS COMMUNITY" into a fifth of the container, and narrowing
+// the chip is what buys back the two points of size it was giving up.
+const sans = Instrument_Sans({
+  variable: "--font-instrument",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  axes: ["wdth"],
   display: "swap",
 });
 
@@ -359,7 +369,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-MY"
-      className={`${inter.variable} ${cormorant.variable} ${notoSerifJp.variable}`}
+      className={`${sans.variable} ${cormorant.variable} ${notoSerifJp.variable}`}
       data-scroll-behavior="smooth"
     >
       <body>

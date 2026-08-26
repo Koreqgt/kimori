@@ -72,9 +72,12 @@ export function ParallaxImage({
         style={{
           y,
           width: "100%",
-          height: "110%",
+          // Overhang is tied to the travel distance, not a percentage: at 110%
+          // a short section overhangs by less than the parallax shift and the
+          // image edge slides into view.
+          height: `calc(100% + ${strength}px)`,
           position: "absolute",
-          top: "-5%",
+          top: -strength / 2,
           left: 0,
           willChange: "transform",
         }}

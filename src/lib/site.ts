@@ -12,7 +12,7 @@ export const siteConfig = {
   phone: "+60 12-718 5534",
   whatsapp: "60127185534",
   address: {
-    street: "Jalan BS 1/2, Bukit Serdang",
+    street: "No. LG69-70, Jalan BS 1/2, Bukit Serdang",
     postal: "43300",
     locality: "Seri Kembangan",
     region: "Selangor",

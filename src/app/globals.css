@@ -5,14 +5,27 @@
   --paper-2: oklch(0.955 0.012 85);
   --ink: oklch(0.22 0.012 80);
   --ink-soft: oklch(0.38 0.012 80);
-  --ink-muted: oklch(0.55 0.012 80);
+  --ink-muted: oklch(0.50 0.012 80);
   --forest: oklch(0.38 0.042 148);
   --forest-deep: oklch(0.28 0.038 150);
   --moss: oklch(0.58 0.055 135);
   --wood: oklch(0.62 0.065 62);
   --wood-deep: oklch(0.48 0.058 55);
+  /* The logo's own tan, a touch lighter and cleaner than --wood. The mark
+     is a fixed brand asset and holds this colour on every background. */
+  --mark: oklch(0.679 0.085 64);
   --line: oklch(0.88 0.01 80);
   --line-soft: oklch(0.92 0.008 80);
+  /* Height of the fixed nav. These are the static fallbacks for first paint;
+     Nav measures itself and overwrites --nav-h at runtime, which matters
+     because the bar reflows to 96px around 1024px wide. */
+  --nav-h: 81px;
+}
+
+@media (max-width: 960px) {
+  :root {
+    --nav-h: 68px;
+  }
 }
 
 @theme inline {
@@ -26,9 +39,10 @@
   --color-moss: var(--moss);
   --color-wood: var(--wood);
   --color-wood-deep: var(--wood-deep);
+  --color-mark: var(--mark);
   --color-line: var(--line);
   --color-line-soft: var(--line-soft);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-instrument);
   --font-serif: var(--font-cormorant);
   --font-jp: var(--font-noto-serif-jp);
 }
@@ -41,15 +55,17 @@
 
 html {
   scroll-behavior: smooth;
+  /* Keeps #anchor jumps clear of the fixed nav. No scroll snapping: sections
+     are sized to fit the band under the nav, but the page is left to scroll
+     freely rather than pulling itself into alignment. */
+  scroll-padding-top: var(--nav-h);
 }
 html,
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-inter), -apple-system, sans-serif;
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased;
-  font-feature-settings: "ss01", "cv11";
+  font-family: var(--font-instrument), -apple-system, sans-serif;
+  font-weight: 400;
 }
 
 body {
@@ -96,9 +112,9 @@ button {
   font-weight: 300;
 }
 .mono-tag {
-  font-family: var(--font-inter), sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.32em;
+  font-family: var(--font-instrument), sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 500;
 }
@@ -126,6 +142,23 @@ button {
   color: var(--ink);
   border-bottom: 1px solid var(--line-soft);
 }
+/* Brand mark. The logo is a single-colour silhouette, so it is applied as a
+   mask tinted with --mark rather than dropped in as an <img>: the brand tan
+   then lives in the palette with every other colour instead of being baked
+   into the PNG. It holds that one colour on every background -- the nav
+   wordmark still flips paper/forest as you scroll, the mark deliberately does
+   not. The mask is public/assets/kimori-mark.png inlined: an external mask URL
+   leaves the element painting its raw background square for the frames before
+   the image lands, so the two must be regenerated together. */
+.tree-mark {
+  --tree-mark-src: url("data:image/png;base64,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");
+  display: inline-block;
+  flex: none;
+  color: var(--mark);
+  background-color: currentColor;
+  -webkit-mask: var(--tree-mark-src) center / contain no-repeat;
+  mask: var(--tree-mark-src) center / contain no-repeat;
+}
 .nav-logo {
   display: flex;
   align-items: center;
@@ -137,20 +170,22 @@ button {
   color: var(--paper);
   transition: color 0.6s ease;
 }
-.nav-logo svg {
+.nav-logo .tree-mark {
   width: 22px;
   height: 22px;
-  color: var(--paper);
-  stroke-width: 1.8;
-  transition: color 0.6s ease;
 }
 .nav.scrolled .nav-logo,
 .mobile-sheet .nav-logo {
-  color: var(--forest);
+  color: var(--ink);
 }
-.nav.scrolled .nav-logo svg,
-.mobile-sheet .nav-logo svg {
-  color: var(--wood);
+/* On the light bar the wordmark reads as part of the link row, so it takes the
+   same 0.88 the links carry. The opacity sits on the text span, not on
+   .nav-logo: a parent opacity would drag the tan mark down with it, and a
+   child cannot undo it. Full-strength --ink here sits visibly darker than the
+   links beside it. */
+.nav.scrolled .nav-wordmark,
+.mobile-sheet .nav-wordmark {
+  opacity: 0.88;
 }
 .nav-links {
   display: flex;
@@ -158,8 +193,8 @@ button {
   align-items: center;
 }
 .nav-links a {
-  font-size: 11px;
-  letter-spacing: 0.22em;
+  font-size: 12px;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
   font-weight: 400;
   opacity: 0.88;
@@ -175,8 +210,8 @@ button {
   padding: 10px 18px;
   border: 1px solid currentColor;
   border-radius: 0;
-  font-size: 10px;
-  letter-spacing: 0.24em;
+  font-size: 11px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   transition: all 0.3s;
 }
@@ -227,8 +262,8 @@ button {
   justify-content: space-between;
   gap: 20px;
   padding: 13px 20px;
-  font-size: 10px;
-  letter-spacing: 0.22em;
+  font-size: 11px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink);
   transition: background 0.25s, color 0.25s;
@@ -325,8 +360,8 @@ button {
   justify-content: center;
   gap: 10px;
   padding: 14px 26px;
-  font-size: 11px;
-  letter-spacing: 0.24em;
+  font-size: 12px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 500;
   border: 1px solid;
@@ -368,8 +403,12 @@ button {
 /* hero */
 .hero {
   position: relative;
+  /* svh is the viewport WITH the mobile browser bars showing, so the section is
+     never taller than what is actually on screen; 100vh is the fallback for
+     browsers without svh. Deliberately no pixel min-height: it forced the
+     section taller than a short laptop window and clipped the composition. */
   height: 100vh;
-  min-height: 720px;
+  height: 100svh;
   width: 100%;
   overflow: hidden;
   color: var(--paper);
@@ -410,8 +449,8 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  font-size: 10px;
-  letter-spacing: 0.4em;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #fff;
   text-shadow:
@@ -441,9 +480,9 @@ button {
   display: block;
   margin-top: 12px;
   max-width: 760px;
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-instrument), sans-serif;
   font-size: clamp(20px, 2.3vw, 34px);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.2;
 }
 .hero-title em {
@@ -455,7 +494,7 @@ button {
   max-width: 580px;
   font-size: 17px;
   line-height: 1.65;
-  font-weight: 300;
+  font-weight: 400;
   opacity: 0.88;
   margin-bottom: 42px;
 }
@@ -474,8 +513,8 @@ button {
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  font-size: 9px;
-  letter-spacing: 0.32em;
+  font-size: 11px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   opacity: 0.75;
 }
@@ -523,8 +562,8 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  font-size: 10px;
-  letter-spacing: 0.4em;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--forest);
   margin-bottom: 20px;
@@ -549,10 +588,10 @@ section {
   color: var(--forest);
 }
 .sec-lede {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.75;
   color: var(--ink-soft);
-  font-weight: 300;
+  font-weight: 400;
   max-width: 640px;
 }
 
@@ -580,7 +619,7 @@ section {
   font-size: 17px;
   line-height: 1.8;
   color: var(--ink-soft);
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 24px;
 }
 .about-body p:first-of-type::first-letter {
@@ -596,8 +635,11 @@ section {
 /* full-bleed feature */
 .feature {
   position: relative;
-  height: 100vh;
-  min-height: 680px;
+  /* The band under the fixed nav, not the whole viewport: the nav covers the
+     top of whatever is in frame, so a full 100svh section always lost its top
+     edge behind it and pushed its bottom edge off-screen. */
+  height: calc(100vh - var(--nav-h));
+  height: calc(100svh - var(--nav-h));
   overflow: hidden;
   color: var(--paper);
   background: #141a16;
@@ -648,8 +690,8 @@ section {
   max-width: 520px;
 }
 .feature-tag {
-  font-size: 10px;
-  letter-spacing: 0.4em;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   opacity: 0.85;
   margin-bottom: 18px;
@@ -667,17 +709,17 @@ section {
   opacity: 0.88;
 }
 .feature-desc {
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.7;
   opacity: 0.88;
-  font-weight: 300;
+  font-weight: 400;
 }
 .feature-caption {
   position: absolute;
   bottom: 32px;
   right: 40px;
-  font-size: 10px;
-  letter-spacing: 0.32em;
+  font-size: 11px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   opacity: 0.6;
 }
@@ -744,10 +786,10 @@ section {
   padding-top: 36px;
 }
 .phil-intro {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.8;
   color: var(--ink-soft);
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 18px;
 }
 .phil-intro:last-child {
@@ -786,18 +828,18 @@ section {
   font-weight: 400;
 }
 .phil-label {
-  font-size: 10px;
-  letter-spacing: 0.2em;
+  font-size: 11px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-soft);
   margin-bottom: 18px;
   font-weight: 500;
 }
 .phil-desc {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.7;
   color: var(--ink-soft);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 /* renders gallery */
@@ -837,8 +879,8 @@ section {
   left: 24px;
   bottom: 24px;
   color: var(--paper);
-  font-size: 10px;
-  letter-spacing: 0.3em;
+  font-size: 11px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   background: rgba(20, 26, 22, 0.4);
   backdrop-filter: blur(6px);
@@ -894,9 +936,9 @@ section {
 }
 .loc-lede {
   color: var(--ink-soft);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.75;
-  font-weight: 300;
+  font-weight: 400;
   max-width: 640px;
 }
 .loc-eyebrow {
@@ -907,7 +949,10 @@ section {
 }
 .loc-image {
   width: 100%;
-  max-width: 1260px;
+  /* the map is nearly square (3104x2860), so width sets height almost 1:1 --
+     at the old 1260px it stood 1161px tall and swallowed the viewport. 1040
+     still leaves margin either side inside the 1304px container. */
+  max-width: 1040px;
   margin: 0 auto 40px;
 }
 .loc-image img {
@@ -916,79 +961,65 @@ section {
   display: block;
 }
 
-/* accessibility cards */
+/* accessibility cards.
+   Built as the facilities legend is built: a filled colour block heading a
+   plain column of rows, columns split by hairlines rather than boxed into
+   cards. --tone is set per column from CATEGORIES in location.tsx.
+   Anything changed here almost certainly wants changing in .fac-cols too. */
 .access-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 18px;
+  gap: 0;
+  border-top: 1px solid var(--line);
 }
 .access-card {
   --tone: var(--forest);
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.45s ease, box-shadow 0.45s ease,
-    border-color 0.45s ease;
+  border-right: 1px solid var(--line-soft);
+  padding-top: 26px;
 }
-.access-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--line);
-  box-shadow: 0 18px 40px -28px rgba(35, 32, 28, 0.28);
+.access-card:last-child {
+  border-right: 0;
 }
-.access-card--forest {
-  --tone: var(--forest);
+.access-card:not(:first-child) {
+  padding-left: 24px;
 }
-.access-card--moss {
-  --tone: var(--moss);
-}
-.access-card--slate {
-  --tone: oklch(0.46 0.018 230);
-}
-.access-card--wood {
-  --tone: var(--wood);
-}
-.access-card--wood-deep {
-  --tone: var(--wood-deep);
-}
+/* margin, not padding, on the right: the fill has to stop short of the
+   column divider rather than run underneath it */
 .access-card-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 20px;
-  background: var(--tone);
-  color: var(--paper);
-  border: 0;
-  margin: 0;
+  margin: 0 24px 18px 0;
 }
-.access-card-icon {
-  width: 26px;
-  height: 26px;
-  display: inline-flex;
+/* matches .fac-zone-title exactly -- the two blocks are the same component in
+   two places, so keep the values in step */
+.access-card-title {
+  display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.18);
-  color: var(--paper);
-  flex-shrink: 0;
-}
-.access-card-title {
-  font-family: var(--font-inter), sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--paper);
-  letter-spacing: 0.22em;
+  width: 100%;
+  border: 0;
+  font-family: var(--font-instrument), sans-serif;
+  background: var(--tone);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin: 0;
+  font-weight: 600;
+  text-align: center;
+  padding: 14px 12px;
   line-height: 1;
+  border-radius: 4px;
+  /* nothing to collapse while all five columns are open */
+  cursor: default;
+}
+/* accordion affordances; the column layout has no use for them */
+.access-card-dot,
+.access-card-chev {
+  display: none;
 }
 .access-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  padding: 6px 20px 18px;
+  padding: 0;
   margin: 0;
 }
 .access-item {
@@ -996,26 +1027,33 @@ section {
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
-  padding: 12px 0;
+  padding: 15px 24px 15px 0;
   border-bottom: 1px solid var(--line-soft);
-  font-size: 13px;
 }
 .access-item:last-child {
   border-bottom: 0;
 }
+/* matches .fac-col-name */
 .access-item-name {
+  font-size: 14px;
+  font-weight: 400;
   color: var(--ink-soft);
-  font-weight: 300;
+  letter-spacing: 0.03em;
   line-height: 1.45;
 }
+/* the distance sits where the facility number sits over in .fac-col-letter, and
+   wears the same serif and the same neutral tone so the two lists match */
+/* the distance sits where the facility number sits in .fac-col-letter, so it
+   takes the same serif, size, weight and tone */
 .access-item-distance {
-  color: var(--tone);
-  font-family: var(--font-inter), sans-serif;
-  font-size: 12px;
-  white-space: nowrap;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-family: var(--font-cormorant), serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--wood);
+  letter-spacing: 0.02em;
   text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* facts grid */
@@ -1051,7 +1089,7 @@ section {
 }
 .fact-l {
   font-size: 12px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-soft);
   margin-top: 14px;
@@ -1073,8 +1111,8 @@ section {
 }
 .res-tab {
   padding: 16px 0;
-  font-size: 11px;
-  letter-spacing: 0.26em;
+  font-size: 12px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-muted);
   border-bottom: 1px solid transparent;
@@ -1127,7 +1165,7 @@ section {
 }
 .res-size .u {
   font-size: 12px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-muted);
   margin-left: 6px;
@@ -1143,8 +1181,8 @@ section {
   gap: 24px;
 }
 .res-row-l {
-  font-size: 10px;
-  letter-spacing: 0.26em;
+  font-size: 11px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-muted);
   margin-bottom: 8px;
@@ -1185,10 +1223,10 @@ section {
 }
 .fac-lede {
   margin-top: 20px;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.75;
   color: var(--ink-soft);
-  font-weight: 300;
+  font-weight: 400;
   max-width: 520px;
 }
 
@@ -1209,8 +1247,8 @@ section {
   align-items: center;
   gap: 18px;
   margin-top: 42px;
-  font-size: 9px;
-  letter-spacing: 0.42em;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-muted);
   font-weight: 500;
@@ -1240,14 +1278,47 @@ section {
 .fac-zone:not(:first-child) {
   padding-left: 24px;
 }
+/* --zone is set per column from FACILITY_ZONES, so the header block and the
+   marker rings take that zone's colour from the printed legend. The row
+   numbers deliberately stay neutral: at this size the lighter hues read as
+   faded rather than coded. Every use keeps a fallback in case it is unset. */
+/* margin, not padding, on the right: the fill has to stop short of the
+   column divider rather than run underneath it */
+.fac-zone-head {
+  margin: 0 24px 18px 0;
+}
 .fac-zone-title {
-  font-size: 9px;
-  letter-spacing: 0.28em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 0;
+  font-family: inherit;
+  background: var(--zone, var(--wood));
+  color: #fff;
+  /* the site's label scale: .btn and .res-tab are 12px/0.14em in a chip about
+     39px tall. This is that scale with the tracking pulled in one notch. The
+     size used to be capped at 10px because "CLOSENESS COMMUNITY" wrapped in a
+     fifth of the container between 1200 and 1300px wide; cutting the tracking
+     from 0.2em and narrowing the wdth axis to 88% both buy back more width
+     than the two extra points cost, so it now fits with room to spare. The
+     padding carries the height. */
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  font-stretch: 88%;
   text-transform: uppercase;
-  color: var(--wood);
-  font-weight: 500;
-  margin-bottom: 14px;
-  padding-right: 24px;
+  font-weight: 600;
+  text-align: center;
+  padding: 14px 12px;
+  line-height: 1;
+  border-radius: 4px;
+  /* nothing to collapse while all five columns are open */
+  cursor: default;
+}
+/* accordion affordances; the column layout has no use for them */
+.fac-zone-dot,
+.fac-zone-chev {
+  display: none;
 }
 .fac-col-list {
   list-style: none;
@@ -1281,8 +1352,8 @@ section {
   margin-right: 14px;
 }
 .fac-col-name {
-  font-size: 12px;
-  font-weight: 300;
+  font-size: 14px;
+  font-weight: 400;
   color: var(--ink-soft);
   letter-spacing: 0.03em;
   line-height: 1.45;
@@ -1296,6 +1367,15 @@ section {
     border-right: 0;
   }
   .fac-zone:nth-child(3n + 1) {
+    padding-left: 0;
+  }
+  .access-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .access-card:nth-child(3n) {
+    border-right: 0;
+  }
+  .access-card:nth-child(3n + 1) {
     padding-left: 0;
   }
 }
@@ -1340,8 +1420,8 @@ section {
   margin-left: 3px;
 }
 .hlights-stat-l {
-  font-size: 10px;
-  letter-spacing: 0.22em;
+  font-size: 11px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-muted);
   margin-top: 12px;
@@ -1350,8 +1430,8 @@ section {
   display: flex;
   align-items: center;
   gap: 18px;
-  font-size: 9px;
-  letter-spacing: 0.38em;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-muted);
   margin-bottom: 32px;
@@ -1407,14 +1487,14 @@ section {
   color: var(--wood);
 }
 .hlight-label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--ink);
   letter-spacing: 0.02em;
   line-height: 1.4;
 }
 .hlight-sub {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--ink-muted);
   margin-top: 4px;
   letter-spacing: 0.04em;
@@ -1446,8 +1526,8 @@ section {
   padding: 28px;
   background: linear-gradient(0deg, rgba(20, 26, 22, 0.85), transparent);
   color: var(--paper);
-  font-size: 11px;
-  letter-spacing: 0.28em;
+  font-size: 12px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   z-index: 2;
 }
@@ -1483,16 +1563,16 @@ section {
   margin-bottom: 8px;
 }
 .dev-p-d {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.7;
   color: var(--ink-soft);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 /* cta footer */
 .cta {
   position: relative;
-  padding: 160px 0 0;
+  padding: 0;
   background: var(--ink);
   color: var(--paper);
   overflow: hidden;
@@ -1516,12 +1596,23 @@ section {
   position: relative;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 48px;
+  padding: clamp(14px, 4vh, 48px) 48px;
+  /* Same rule as the image sections: the registration block occupies exactly
+     the band under the fixed nav, so arriving at the top of the CTA shows the
+     whole thing rather than cutting it off at the fold. The footer follows
+     below it as its own scroll stop. */
+  min-height: calc(100vh - var(--nav-h));
+  min-height: calc(100svh - var(--nav-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 .cta-title {
   font-family: var(--font-cormorant), serif;
   font-weight: 300;
-  font-size: clamp(56px, 8vw, 124px);
+  /* As large as the width allows, but never so tall that the block stops
+     fitting the band under the nav - hence the vh ceiling. */
+  font-size: min(clamp(56px, 8vw, 124px), 9.3vh);
   line-height: 0.98;
   letter-spacing: 0;
   max-width: 1100px;
@@ -1530,40 +1621,48 @@ section {
   font-style: italic;
   color: var(--wood);
 }
+.cta .mono-tag {
+  margin-bottom: clamp(10px, 2.6vh, 28px) !important;
+}
 .cta-sub {
   max-width: 580px;
-  font-size: 18px;
-  line-height: 1.7;
+  font-size: clamp(14px, 1.9vh, 18px);
+  line-height: 1.65;
   color: rgba(255, 255, 255, 0.75);
-  margin-top: 32px;
-  font-weight: 300;
+  margin-top: clamp(10px, 2.6vh, 28px);
+  font-weight: 400;
 }
 .cta-form {
-  margin-top: 56px;
+  margin-top: clamp(14px, 4.4vh, 44px);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: clamp(10px, 1.9vh, 20px);
   max-width: 720px;
 }
 .cta-input {
   background: transparent;
   border: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 16px 0;
+  padding: clamp(7px, 1.7vh, 16px) 0;
   color: var(--paper);
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 15px;
+  font-weight: 400;
   outline: none;
   transition: border-color 0.3s;
   font-family: inherit;
+}
+textarea.cta-input {
+  min-height: 0;
+  height: clamp(40px, 7vh, 88px);
+  resize: vertical;
 }
 .cta-input:focus {
   border-bottom-color: var(--wood);
 }
 .cta-input::placeholder {
   color: rgba(255, 255, 255, 0.4);
-  font-size: 11px;
-  letter-spacing: 0.26em;
+  font-size: 12px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 .cta-input option {
@@ -1582,8 +1681,6 @@ footer {
   position: relative;
 }
 .foot-grid {
-  max-width: 1400px;
-  margin: 0 auto;
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1fr;
   gap: 60px;
@@ -1598,7 +1695,7 @@ footer {
   align-items: center;
   gap: 12px;
 }
-.foot-logo-mark svg {
+.foot-logo-mark .tree-mark {
   width: 28px;
   height: 28px;
 }
@@ -1609,15 +1706,15 @@ footer {
   font-weight: 500;
 }
 .foot-tag {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.55);
   max-width: 300px;
-  font-weight: 300;
+  font-weight: 400;
 }
 .foot-heading {
-  font-size: 10px;
-  letter-spacing: 0.32em;
+  font-size: 11px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--wood);
   margin-bottom: 20px;
@@ -1627,27 +1724,70 @@ footer {
   list-style: none;
 }
 .foot-col li {
-  font-size: 13px;
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.65);
   padding: 5px 0;
-  font-weight: 300;
+  font-weight: 400;
 }
 .foot-col a:hover {
   color: var(--paper);
 }
 .foot-bottom {
-  max-width: 1400px;
-  margin: 40px auto 0;
+  margin: 40px 0 0;
   padding-top: 30px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   justify-content: space-between;
-  font-size: 11px;
+  font-size: 12px;
   color: rgba(255, 255, 255, 0.4);
   letter-spacing: 0.08em;
   gap: 16px;
   flex-wrap: wrap;
 }
+
+/* On a landscape screen the registration block and the footer are meant to
+   read as one screen, so the whole section is locked to the band under the nav
+   and the copy sits beside the form instead of stacked above it. Below this
+   width a five-field form and a four-column footer cannot share one screen, so
+   the section goes back to flowing normally. */
+@media (min-width: 1000px) {
+  .cta {
+    /* min-height, not height: on a screen with the room the footer is pulled
+       up into the same view, and on a short one the section simply grows
+       rather than clipping anything. */
+    min-height: calc(100vh - var(--nav-h));
+    min-height: calc(100svh - var(--nav-h));
+    display: flex;
+    flex-direction: column;
+  }
+  .cta-inner {
+    flex: 1;
+    min-height: 0;
+    /* as a flex item its auto side margins would otherwise shrink it to fit
+       its content and pull the copy inward, away from the left edge */
+    width: 100%;
+    padding: clamp(28px, 7vh, 110px) 48px clamp(20px, 4vh, 64px);
+  }
+  footer {
+    margin-top: 0;
+    flex-shrink: 0;
+    padding: clamp(14px, 2.4vh, 40px) 48px clamp(10px, 1.8vh, 28px);
+  }
+  .foot-grid {
+    gap: clamp(20px, 2.6vw, 60px);
+  }
+  .foot-bottom {
+    margin-top: clamp(12px, 2vh, 40px);
+    padding-top: clamp(10px, 1.6vh, 30px);
+  }
+  .foot-col li {
+    padding: clamp(2px, 0.5vh, 8px) 0;
+  }
+  .foot-tag {
+    margin-top: clamp(8px, 1.4vh, 18px);
+  }
+}
+
 
 /* 360 floating btn */
 .floating-360 {
@@ -1663,8 +1803,8 @@ footer {
   color: var(--paper);
   border-radius: 999px;
   box-shadow: 0 12px 40px rgba(20, 40, 25, 0.25);
-  font-size: 11px;
-  letter-spacing: 0.24em;
+  font-size: 12px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 500;
   transition: all 0.3s;
@@ -1682,20 +1822,29 @@ footer {
 /* features carousel */
 .features {
   position: relative;
-  height: 100vh;
-  height: 100dvh;
+  /* svh, not dvh: dvh grows mid-scroll as the mobile browser bars retract,
+     which resized this section under the reader's thumb. Minus the nav, as
+     in .feature. */
+  height: calc(100vh - var(--nav-h));
+  height: calc(100svh - var(--nav-h));
   overflow: hidden;
   background: var(--paper);
-  font-family: var(--font-inter), -apple-system, sans-serif;
-  font-weight: 300;
+  font-family: var(--font-instrument), -apple-system, sans-serif;
+  font-weight: 400;
 }
 .features-section-head {
   position: absolute;
   top: 96px;
-  left: 48px;
+  /* same centred container as .features-overlay - anchoring this to the
+     viewport edge instead left it out of line with the slide copy on any
+     screen wider than 1600px */
+  left: 0;
+  right: 0;
   z-index: 3;
   color: var(--paper);
-  max-width: 520px;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 48px;
 }
 .features-section-head .sec-eyebrow {
   color: var(--paper);
@@ -1750,8 +1899,8 @@ footer {
   margin-bottom: 40px;
 }
 .features-tag {
-  font-size: 10px;
-  letter-spacing: 0.4em;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   opacity: 0.8;
   margin-bottom: 14px;
@@ -1769,10 +1918,10 @@ footer {
   opacity: 0.92;
 }
 .features-desc {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   opacity: 0.85;
-  font-weight: 300;
+  font-weight: 400;
   max-width: 520px;
   margin: 0;
 }
@@ -1837,8 +1986,8 @@ footer {
   position: absolute;
   top: 4px;
   left: 6px;
-  font-size: 9px;
-  letter-spacing: 0.18em;
+  font-size: 11px;
+  letter-spacing: 0.12em;
   color: var(--paper);
   font-weight: 500;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
@@ -1914,22 +2063,99 @@ footer {
   .res-rows {
     grid-template-columns: 1fr;
   }
+  /* Same treatment as the facilities zones: five quiet rules, each carrying
+     its category colour as a dot rather than a filled block, one open at a
+     time. Keep this in step with the .fac-zone-* accordion below. */
   .access-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    display: block;
+    border-top: 0;
+  }
+  .access-card,
+  .access-card:nth-child(3n),
+  .access-card:nth-child(2n),
+  .access-card:not(:first-child),
+  .access-card:not(:last-child) {
+    display: block;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 1px solid var(--line-soft);
+    padding: 0;
+  }
+  .access-card:last-child {
+    border-bottom: 1px solid var(--line-soft);
   }
   .access-card-head {
-    padding: 14px 16px;
+    margin: 0;
   }
-  .access-list {
-    padding: 4px 16px 14px;
+  .access-card-title {
+    justify-content: flex-start;
+    gap: 13px;
+    padding: 19px 2px;
+    background: transparent;
+    color: var(--ink);
+    border-radius: 0;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    font-stretch: 100%;
+    text-align: left;
+    cursor: pointer;
+  }
+  .access-card-dot {
+    display: block;
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--tone);
+    /* the halo is the whole "this one is open" signal, in place of a fill */
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--tone) 30%, transparent);
+    transition: box-shadow 0.3s;
+  }
+  .access-card.is-active .access-card-dot {
+    box-shadow: 0 0 0 5px color-mix(in oklab, var(--tone) 26%, transparent);
+  }
+  .access-card-name {
+    flex: 1;
+  }
+  .access-card-chev {
+    display: block;
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--ink-muted);
+    border-bottom: 1px solid var(--ink-muted);
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 0.3s;
+  }
+  .access-card.is-active .access-card-chev {
+    transform: translateY(1px) rotate(225deg);
+  }
+  /* 0fr -> 1fr animates open to the list's own height without measuring it */
+  .access-card-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .access-card.is-active .access-card-body {
+    grid-template-rows: 1fr;
+  }
+  .access-card-body > .access-list {
+    min-height: 0;
+    overflow: hidden;
   }
   .access-item {
-    font-size: 12px;
-    padding: 10px 0;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line-soft);
   }
-  .access-item-distance {
-    font-size: 11px;
+  .access-item:first-child {
+    border-top: 1px solid var(--line-soft);
+  }
+  .access-item:last-child {
+    border-bottom: 0;
+    margin-bottom: 8px;
+  }
+  .access-item-name {
+    font-size: 13px;
   }
   .loc-deco {
     display: none;
@@ -1940,7 +2166,7 @@ footer {
   }
   .sec-lede,
   .loc-lede {
-    font-size: 15px;
+    font-size: 16px;
   }
   .loc-image {
     margin-bottom: 32px;
@@ -2047,7 +2273,7 @@ footer {
     padding: 13px 20px 13px 0;
   }
   .fac-col-name {
-    font-size: 11px;
+    font-size: 13px;
   }
   footer {
     padding: 50px 24px 30px;
@@ -2059,27 +2285,30 @@ footer {
     --mobile-display-title: 42px;
     --mobile-section-title: 38px;
     --mobile-subtitle: 22px;
-    --mobile-card-title: 14px;
-    --mobile-body: 15px;
-    --mobile-small: 12px;
-    --mobile-meta: 10px;
+    --mobile-card-title: 15px;
+    --mobile-body: 16px;
+    --mobile-small: 13px;
+    --mobile-meta: 12px;
     --mobile-number: 42px;
   }
   .hero-scrim {
     background: linear-gradient(
       180deg,
-      rgba(10, 20, 15, 0.45) 0%,
-      rgba(10, 20, 15, 0.1) 30%,
-      rgba(10, 20, 15, 0.5) 52%,
-      rgba(10, 20, 15, 0.82) 72%,
-      rgba(10, 20, 15, 0.94) 100%
+      rgba(14, 17, 15, 0.42) 0%,
+      rgba(14, 17, 15, 0.08) 28%,
+      rgba(14, 17, 15, 0.24) 56%,
+      rgba(14, 17, 15, 0.58) 80%,
+      rgba(14, 17, 15, 0.8) 100%
     );
   }
   .hero-title,
   .hero-title-sub,
   .hero-sub,
   .hero-eyebrow {
-    text-shadow: 0 2px 24px rgba(5, 12, 8, 0.7), 0 1px 6px rgba(5, 12, 8, 0.5);
+    text-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.9),
+      0 2px 18px rgba(0, 0, 0, 0.75),
+      0 0 44px rgba(0, 0, 0, 0.5);
   }
   .hero-eyebrow {
     font-size: var(--mobile-meta);
@@ -2111,7 +2340,6 @@ footer {
   }
   .phil-grid,
   .facts-grid,
-  .access-grid,
   .foot-grid {
     grid-template-columns: 1fr;
   }
@@ -2128,8 +2356,8 @@ footer {
     border-bottom: 1px solid var(--line-soft);
     padding-bottom: 22px;
   }
-  .fac-zone-title {
-    padding-right: 0;
+  .fac-zone-head {
+    margin-right: 0;
   }
   .fac-col-row {
     padding: 13px 0;
@@ -2137,18 +2365,6 @@ footer {
   .fac-col-letter {
     font-size: 15px;
     width: 26px;
-  }
-  .access-card-head {
-    gap: 10px;
-    padding: 13px 16px;
-  }
-  .access-card-icon {
-    width: 24px;
-    height: 24px;
-  }
-  .access-card-title {
-    font-size: 10px;
-    letter-spacing: 0.2em;
   }
   .hero-content {
     padding-bottom: 56px;
@@ -2165,14 +2381,15 @@ footer {
   }
   .features-section-head {
     top: 76px;
-    left: 20px;
-    right: 20px;
+    left: 0;
+    right: 0;
     max-width: none;
+    padding: 0 20px;
     text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
   }
   .features-section-head .sec-eyebrow {
-    font-size: 9px;
-    letter-spacing: 0.32em;
+    font-size: 11px;
+    letter-spacing: 0.16em;
     margin-bottom: 10px;
   }
   .features-section-head .sec-title {
@@ -2197,8 +2414,8 @@ footer {
     margin-bottom: 24px;
   }
   .features-tag {
-    font-size: 9px;
-    letter-spacing: 0.32em;
+    font-size: 11px;
+    letter-spacing: 0.16em;
     margin-bottom: 10px;
   }
   .features-title {
@@ -2207,7 +2424,7 @@ footer {
     margin-bottom: 12px;
   }
   .features-desc {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.6;
   }
   .features-controls {
@@ -2217,7 +2434,7 @@ footer {
     padding-top: 20px;
   }
   .feat-counter {
-    font-size: 12px;
+    font-size: 13px;
   }
   .feat-counter .cur {
     font-size: 20px;
@@ -2286,16 +2503,14 @@ footer {
     font-size: var(--mobile-meta) !important;
   }
 
-  .access-item,
-  .access-item-distance,
+  .access-item-name,
   .fac-col-name,
   .foot-bottom,
   .feat-counter {
     font-size: var(--mobile-small) !important;
   }
 
-  .hlight-label,
-  .access-card-title {
+  .hlight-label {
     font-size: var(--mobile-card-title) !important;
     line-height: 1.35 !important;
   }
@@ -2341,12 +2556,49 @@ footer {
     font-size: var(--mobile-body) !important;
   }
 
-  .fac-col-letter {
+  .fac-col-letter,
+  .access-item-distance {
     font-size: var(--mobile-body) !important;
   }
 
   .gallery-tour-kanji {
     font-size: 48px !important;
+  }
+}
+
+/* Short viewports (small laptop windows, landscape phones). The full-bleed
+   sections are locked to one viewport height, so their type compacts here
+   instead of overflowing that height and being clipped. */
+@media (max-height: 640px) {
+  .hero-content {
+    padding-bottom: 48px;
+  }
+  .hero-eyebrow {
+    margin-bottom: 14px;
+  }
+  .hero-title {
+    margin-bottom: 16px;
+  }
+  .hero-title-sub {
+    margin-top: 8px;
+  }
+  .hero-sub {
+    margin-bottom: 24px;
+  }
+  .hero-scroll {
+    display: none;
+  }
+  .feature-tag {
+    margin-bottom: 12px;
+  }
+  .feature-title {
+    margin-bottom: 14px;
+  }
+  .feature-content.bottom {
+    padding-bottom: 56px;
+  }
+  footer {
+    margin-top: 60px;
   }
 }
 
@@ -2389,16 +2641,9 @@ footer {
 .fac-plan-tools {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 16px;
   margin-bottom: 14px;
-}
-.fac-plan-hint {
-  font-size: 10px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--wood);
-  font-weight: 500;
 }
 .fac-plan-buttons {
   display: flex;
@@ -2411,8 +2656,8 @@ footer {
   border: 1px solid var(--line);
   background: transparent;
   color: var(--ink-soft);
-  font-size: 11px;
-  letter-spacing: 0.18em;
+  font-size: 12px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.25s;
@@ -2442,158 +2687,191 @@ footer {
   height: auto;
   display: block;
 }
-/* Transparent hit target sitting over each number already printed on the plan,
-   so tapping the printed circle works and nothing is drawn twice. */
-.fac-marker {
-  /* sized as a share of the plan, not fixed px, so the halo keeps the same
-     relation to the printed circle at every zoom level */
-  position: absolute;
-  width: 2.3%;
-  aspect-ratio: 1;
-  min-width: 20px;
-  transform: translate(-50%, -50%);
-  border: 0;
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
-}
-.fac-marker::before,
-.fac-marker::after {
-  content: "";
-  position: absolute;
-  border-radius: 999px;
-  pointer-events: none;
-}
-.fac-marker::after {
-  inset: 0;
-  border: 2px solid transparent;
-  transition: all 0.25s;
-}
-.fac-marker:hover::after {
-  inset: -35%;
-  border-color: var(--wood);
-  background: rgba(200, 169, 110, 0.22);
-}
-.fac-marker.is-active::after {
-  /* white outer edge guarantees contrast wherever it lands on the plan */
-  inset: -62%;
-  border: 3px solid var(--wood);
-  background: rgba(200, 169, 110, 0.16);
-  box-shadow:
-    0 0 0 3px rgba(255, 255, 255, 0.92),
-    0 10px 24px rgba(20, 40, 25, 0.32);
-}
-.fac-marker.is-active::before {
-  inset: -62%;
-  border: 2px solid var(--wood);
-  animation: fac-pulse 1.7s ease-out infinite;
-}
-@keyframes fac-pulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.85;
-  }
-  100% {
-    transform: scale(2.2);
-    opacity: 0;
-  }
-}
-.fac-tabs {
-  display: none;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-.fac-tab {
-  /* every zone stays on screen: chips wrap onto two rows rather than
-     scrolling sideways, so none of them can hide off the right edge */
-  flex: 1 1 calc(50% - 4px);
-  padding: 10px 14px;
-  text-align: center;
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--ink-muted);
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.25s;
-}
-.fac-tab.is-active {
-  background: var(--forest);
-  border-color: var(--forest);
-  color: var(--paper);
-}
-/* rows became buttons, so strip the default button chrome */
-.fac-col-row {
-  width: 100%;
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid var(--line-soft);
-  text-align: left;
-  font: inherit;
-  cursor: pointer;
-  transition: background 0.25s;
-}
-.fac-col-row:hover:not(:disabled) {
-  background: rgba(200, 169, 110, 0.08);
-}
-.fac-col-row.is-active {
-  background: rgba(200, 169, 110, 0.16);
-}
-.fac-col-row:disabled {
-  cursor: default;
-  opacity: 0.75;
-}
-.fac-plan-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 80;
-  background: var(--paper-2);
-  display: flex;
-  flex-direction: column;
-}
-.fac-plan-modal-bar {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 18px 24px;
-  border-bottom: 1px solid var(--line-soft);
-}
-.fac-plan-modal-bar .fac-plan-buttons {
-  display: flex;
-  gap: 8px;
-}
-.fac-plan-modal .fac-plan-viewport {
-  flex: 1;
-  min-height: 0;
-  /* centre the plan in the leftover space; "safe" keeps the top-left reachable
-     when the plan is zoomed larger than the screen */
-  display: grid;
-  place-content: safe center;
-}
-
 @media (max-width: 960px) {
-  /* one zone at a time instead of all 37 rows stacked */
-  .fac-tabs {
-    display: flex;
-  }
-  .fac-zone {
-    display: none;
-  }
-  .fac-zone.is-active {
-    display: block;
-    border-right: 0;
-    padding-left: 0;
-    padding-bottom: 0;
-  }
+  /* All 37 rows stacked is too long to scroll, and five filled chips sitting
+     above a sixth filled header was too loud, so the zones become an accordion:
+     five quiet rules, each carrying its legend colour as a dot rather than a
+     block, one open at a time. */
   .fac-cols {
     display: block;
+    border-top: 0;
+  }
+  .fac-zone,
+  .fac-zone:nth-child(3n),
+  .fac-zone:nth-child(2n),
+  .fac-zone:not(:first-child),
+  .fac-zone:not(:last-child) {
+    display: block;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 1px solid var(--line-soft);
+    padding: 0;
+  }
+  .fac-zone:last-child {
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .fac-zone-head {
+    margin: 0;
+  }
+  .fac-zone-title {
+    justify-content: flex-start;
+    gap: 13px;
+    padding: 19px 2px;
+    background: transparent;
+    color: var(--ink);
+    border-radius: 0;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-align: left;
+    cursor: pointer;
+  }
+  .fac-zone-dot {
+    display: block;
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--zone, var(--wood));
+    /* the halo is the whole "this one is open" signal, in place of a fill */
+    box-shadow: 0 0 0 0
+      color-mix(in oklab, var(--zone, var(--wood)) 30%, transparent);
+    transition: box-shadow 0.3s;
+  }
+  .fac-zone.is-active .fac-zone-dot {
+    box-shadow: 0 0 0 5px
+      color-mix(in oklab, var(--zone, var(--wood)) 26%, transparent);
+  }
+  .fac-zone-name {
+    flex: 1;
+  }
+  .fac-zone-chev {
+    display: block;
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--ink-muted);
+    border-bottom: 1px solid var(--ink-muted);
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 0.3s;
+  }
+  .fac-zone.is-active .fac-zone-chev {
+    transform: translateY(1px) rotate(225deg);
+  }
+  /* 0fr -> 1fr animates open to the list's own height without measuring it */
+  .fac-zone-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .fac-zone.is-active .fac-zone-body {
+    grid-template-rows: 1fr;
+  }
+  .fac-zone-body > .fac-col-list {
+    min-height: 0;
+    overflow: hidden;
+  }
+  .fac-col-list li:first-child .fac-col-row {
+    border-top: 1px solid var(--line-soft);
+  }
+  .fac-col-list li:last-child .fac-col-row {
+    border-bottom: 0;
+    margin-bottom: 8px;
   }
   .fac-plan-viewport {
     max-height: 52vh;
+  }
+}
+
+@media (max-width: 960px) and (prefers-reduced-motion: reduce) {
+  .fac-zone-body,
+  .fac-zone-chev,
+  .fac-zone-dot,
+  .access-card-body,
+  .access-card-chev,
+  .access-card-dot {
+    transition: none;
+  }
+}
+
+
+/* ---- phones: the registration block is one screen and the footer is the
+   next, rather than one long run that has to be scrolled blind. Placed last
+   so it wins over the earlier width breakpoints. ---- */
+@media (max-width: 960px) {
+  /* Fills the band under the nav so the footer starts on the next screen
+     rather than peeking in at the bottom. The copy and form stop growing once
+     their clamps cap out, so the leftover height is centred - that splits it
+     evenly above and below instead of piling it all under the button. The
+     earlier breakpoint's 100px top-only padding on .cta is zeroed for the
+     same reason: it made the top and bottom uneven. */
+  .cta {
+    padding: 0;
+  }
+  .cta-inner {
+    min-height: calc(100vh - var(--nav-h));
+    min-height: calc(100svh - var(--nav-h));
+    justify-content: center;
+    padding: clamp(24px, 4vh, 48px) 24px;
+  }
+  .cta .mono-tag {
+    margin-bottom: clamp(8px, 1.4vh, 20px) !important;
+  }
+  .cta-sub {
+    margin-top: clamp(8px, 1.6vh, 20px);
+    line-height: 1.55;
+  }
+  .cta-form {
+    margin-top: clamp(12px, 2.6vh, 28px);
+    gap: clamp(7px, 1.3vh, 14px);
+  }
+  .cta-input {
+    padding: clamp(6px, 1.1vh, 12px) 0;
+  }
+  textarea.cta-input {
+    height: clamp(34px, 5vh, 56px);
+  }
+
+  /* the footer is left at its natural height here - forcing it to a full
+     screen and centring it only padded it out with empty space */
+  footer {
+    margin-top: 0;
+    padding: clamp(28px, 4vh, 48px) 24px clamp(20px, 3vh, 32px);
+  }
+  /* two columns, and Sales Gallery lifted beside the logo so the four blocks
+     make a 2x2 that fits one screen */
+  .foot-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(16px, 2.6vh, 32px) 24px;
+  }
+  .foot-grid > *:nth-child(1) {
+    grid-area: 1 / 1;
+  }
+  .foot-grid > *:nth-child(2) {
+    grid-area: 2 / 1;
+  }
+  .foot-grid > *:nth-child(3) {
+    grid-area: 2 / 2;
+  }
+  .foot-grid > *:nth-child(4) {
+    grid-area: 1 / 2;
+  }
+  /* footer copy inherits the 15px/1.7 mobile body size, which is far too
+     large for links and pushes the footer past a screen - these are the
+     later !important so they win over that group */
+  .foot-tag {
+    font-size: 12px;
+    line-height: 1.5 !important;
+  }
+  .foot-col li {
+    font-size: 13px;
+    line-height: 1.45 !important;
+    padding: clamp(3px, 0.55vh, 7px) 0;
+  }
+  .foot-heading {
+    margin-bottom: clamp(8px, 1.4vh, 14px);
+  }
+  .foot-bottom {
+    margin-top: clamp(12px, 2vh, 28px);
+    padding-top: clamp(10px, 1.6vh, 22px);
   }
 }

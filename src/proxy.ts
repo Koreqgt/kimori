@@ -89,7 +89,7 @@ function authHtml(request: NextRequest, status: number) {
         linear-gradient(120deg, rgba(47, 90, 58, 0.1), transparent 38%),
         var(--paper);
       color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     main {
@@ -110,16 +110,16 @@ function authHtml(request: NextRequest, status: number) {
     p {
       margin: 0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 15px;
       line-height: 1.7;
     }
 
     .eyebrow {
       margin-bottom: 10px;
       color: var(--gold);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
     }
 
@@ -140,9 +140,9 @@ function authHtml(request: NextRequest, status: number) {
 
     label {
       color: var(--muted);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
@@ -172,9 +172,9 @@ function authHtml(request: NextRequest, status: number) {
       color: var(--paper);
       cursor: pointer;
       font: inherit;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 

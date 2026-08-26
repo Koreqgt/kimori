@@ -1,21 +1,20 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import {
-  GraduationCap,
-  ShoppingBag,
-  Stethoscope,
-  TrainFront,
-  Trees,
-  type LucideIcon,
-} from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
+import { useIsAccordion } from "@/lib/use-is-accordion";
 
-type AccessTone = "forest" | "moss" | "slate" | "wood" | "wood-deep";
-
+/**
+ * Categories are keyed to the same five hues as the facilities legend, and the
+ * columns below are built the same way, so the two sections read as one piece.
+ * `color` only ever fills the heading block -- the distances stay neutral, as
+ * the facility numbers do, because these hues go pale as small text.
+ */
 type AccessCategory = {
   key: string;
   title: string;
-  tone: AccessTone;
-  icon: LucideIcon;
+  color: string;
   items: { name: string; distance: string }[];
 };
 
@@ -23,8 +22,7 @@ const CATEGORIES: AccessCategory[] = [
   {
     key: "shopping",
     title: "Shopping",
-    tone: "forest",
-    icon: ShoppingBag,
+    color: "#e0a445",
     items: [
       { name: "Olive Hill Business Park", distance: "850 m" },
       { name: "Equine Boulevard", distance: "5.8 km" },
@@ -37,8 +35,7 @@ const CATEGORIES: AccessCategory[] = [
   {
     key: "recreation",
     title: "Recreation",
-    tone: "moss",
-    icon: Trees,
+    color: "#4ba84b",
     items: [
       { name: "Bukit Serdang Hiking Trail", distance: "600 m" },
       { name: "Bukit Jalil Recreational Park", distance: "7.0 km" },
@@ -50,8 +47,7 @@ const CATEGORIES: AccessCategory[] = [
   {
     key: "transport",
     title: "Public Transport",
-    tone: "slate",
-    icon: TrainFront,
+    color: "#5d9bd1",
     items: [
       { name: "MRT UPM", distance: "3.2 km" },
       { name: "MRT Serdang Jaya", distance: "3.2 km" },
@@ -61,8 +57,7 @@ const CATEGORIES: AccessCategory[] = [
   {
     key: "healthcare",
     title: "Healthcare",
-    tone: "wood",
-    icon: Stethoscope,
+    color: "#d8452c",
     items: [
       { name: "Columbia Asia Hospital Bukit Jalil", distance: "7.3 km" },
       { name: "Andorra Women & Children Hospital", distance: "9.9 km" },
@@ -73,8 +68,7 @@ const CATEGORIES: AccessCategory[] = [
   {
     key: "education",
     title: "Education",
-    tone: "wood-deep",
-    icon: GraduationCap,
+    color: "#a98bc7",
     items: [
       { name: "SMK Seri Kembangan", distance: "1.1 km" },
       { name: "SJK(C) Serdang Baru 1", distance: "1.1 km" },
@@ -195,6 +189,9 @@ function BranchSvg() {
 }
 
 export function Location() {
+  const [activeCat, setActiveCat] = useState(0);
+  const isAccordion = useIsAccordion();
+
   return (
     <section
       className="location"
@@ -238,33 +235,50 @@ export function Location() {
             <Image
               src="/assets/Accessibility.png"
               alt="Map showing Kimori's connectivity to surrounding amenities across the Klang Valley"
-              width={1440}
-              height={810}
+              width={3104}
+              height={2860}
+              sizes="(max-width: 960px) 92vw, 1040px"
               style={{ width: "100%", height: "auto" }}
             />
           </div>
         </Reveal>
         <Reveal delay={0.1}>
           <div className="access-grid">
-            {CATEGORIES.map(({ key, title, tone, icon: Icon, items }) => (
-              <article key={key} className={`access-card access-card--${tone}`}>
-                <header className="access-card-head">
-                  <span className="access-card-icon" aria-hidden="true">
-                    <Icon strokeWidth={1.6} size={18} />
-                  </span>
-                  <h3 className="access-card-title">{title}</h3>
-                </header>
-                <ul className="access-list">
-                  {items.map((item) => (
-                    <li key={item.name} className="access-item">
-                      <span className="access-item-name">{item.name}</span>
-                      <span className="access-item-distance">
-                        {item.distance}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
+            {CATEGORIES.map(({ key, title, color, items }, ci) => (
+              <div
+                key={key}
+                className={`access-card${ci === activeCat ? " is-active" : ""}`}
+                style={{ "--tone": color } as React.CSSProperties}
+              >
+                {/* Desktop lays all five categories out as open columns, so the
+                    collapse state only exists — and is only announced — once
+                    the accordion is actually in play below 960px. */}
+                <h3 className="access-card-head">
+                  <button
+                    type="button"
+                    className="access-card-title"
+                    onClick={() => setActiveCat((c) => (c === ci ? -1 : ci))}
+                    aria-expanded={isAccordion ? ci === activeCat : undefined}
+                    aria-controls={`access-panel-${ci}`}
+                  >
+                    <span className="access-card-dot" aria-hidden="true" />
+                    <span className="access-card-name">{title}</span>
+                    <span className="access-card-chev" aria-hidden="true" />
+                  </button>
+                </h3>
+                <div className="access-card-body" id={`access-panel-${ci}`}>
+                  <ul className="access-list">
+                    {items.map((item) => (
+                      <li key={item.name} className="access-item">
+                        <span className="access-item-name">{item.name}</span>
+                        <span className="access-item-distance">
+                          {item.distance}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             ))}
           </div>
         </Reveal>

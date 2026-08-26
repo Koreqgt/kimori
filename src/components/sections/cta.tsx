@@ -199,7 +199,7 @@ export function CTA() {
         <div className="foot-grid">
           <div className="foot-logo">
             <div className="foot-logo-mark">
-              <TreeMark color="var(--wood)" size={28} />
+              <TreeMark size={28} />
               <div className="foot-brand">KIMORI</div>
             </div>
             <div className="foot-tag">

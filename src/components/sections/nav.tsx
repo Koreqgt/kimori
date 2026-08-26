@@ -25,6 +25,24 @@ export function Nav() {
   const [open, setOpen] = useState(false);
   const [tourOpen, setTourOpen] = useState(false);
   const tourRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+
+  // The nav is fixed, so it covers the top of whatever section is in frame.
+  // Publish its real height so the full-bleed sections can size themselves to
+  // the band below it. clientHeight, not offsetHeight: it excludes the 1px
+  // border the bar grows when scrolled, so the value never churns mid-scroll.
+  useEffect(() => {
+    const el = navRef.current;
+    if (!el) return;
+
+    const publish = () =>
+      document.documentElement.style.setProperty("--nav-h", `${el.clientHeight}px`);
+
+    publish();
+    const ro = new ResizeObserver(publish);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -59,10 +77,14 @@ export function Nav() {
 
   return (
     <>
-      <nav className={`nav${scrolled ? " scrolled" : ""}`} aria-label="Primary">
+      <nav
+        ref={navRef}
+        className={`nav${scrolled ? " scrolled" : ""}`}
+        aria-label="Primary"
+      >
         <a href="#top" className="nav-logo" aria-label={`${siteConfig.name} home`}>
           <TreeMark />
-          <span>KIMORI</span>
+          <span className="nav-wordmark">KIMORI</span>
         </a>
         <div className="nav-links">
           {LINKS.map((l) => (
@@ -129,10 +151,9 @@ export function Nav() {
               href="#top"
               className="nav-logo"
               onClick={() => setOpen(false)}
-              style={{ color: "var(--forest)" }}
             >
-              <TreeMark color="var(--wood)" />
-              <span>KIMORI</span>
+              <TreeMark />
+              <span className="nav-wordmark">KIMORI</span>
             </a>
             <button
               type="button"
