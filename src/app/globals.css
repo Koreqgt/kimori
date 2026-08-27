@@ -2296,24 +2296,41 @@ footer {
     --mobile-meta: 12px;
     --mobile-number: 42px;
   }
+  /* Neutral black, not the near-forest 20/26/22 the desktop scrims are mixed
+     from: at these alphas a tinted wash reads as a colour filter laid over the
+     photograph, where pure black reads as exposure and the eye lets it pass.
+     It is also confined to the two bands that actually carry type -- a short
+     cap under the nav, and the lower half behind the headline -- leaving the
+     middle of the image at full colour. The stop count is the point: a
+     two-stop ramp over this distance bands visibly on a phone's narrow frame,
+     so the alphas follow an ease curve instead. */
   .hero-scrim {
     background: linear-gradient(
       180deg,
-      rgba(14, 17, 15, 0.42) 0%,
-      rgba(14, 17, 15, 0.08) 28%,
-      rgba(14, 17, 15, 0.24) 56%,
-      rgba(14, 17, 15, 0.58) 80%,
-      rgba(14, 17, 15, 0.8) 100%
+      rgba(0, 0, 0, 0.42) 0%,
+      rgba(0, 0, 0, 0.3) 6%,
+      rgba(0, 0, 0, 0.12) 13%,
+      rgba(0, 0, 0, 0) 20%,
+      rgba(0, 0, 0, 0) 42%,
+      rgba(0, 0, 0, 0.05) 50%,
+      rgba(0, 0, 0, 0.14) 58%,
+      rgba(0, 0, 0, 0.28) 66%,
+      rgba(0, 0, 0, 0.44) 74%,
+      rgba(0, 0, 0, 0.58) 82%,
+      rgba(0, 0, 0, 0.68) 90%,
+      rgba(0, 0, 0, 0.74) 100%
     );
   }
   .hero-title,
   .hero-title-sub,
   .hero-sub,
   .hero-eyebrow {
+    /* One tight edge shadow and one short halo. The 44px glow this replaces
+       was standing in for a scrim that was not covering the type, and put a
+       grey cloud around every line to do it. */
     text-shadow:
-      0 1px 3px rgba(0, 0, 0, 0.9),
-      0 2px 18px rgba(0, 0, 0, 0.75),
-      0 0 44px rgba(0, 0, 0, 0.5);
+      0 1px 2px rgba(0, 0, 0, 0.55),
+      0 2px 12px rgba(0, 0, 0, 0.38);
   }
   .hero-eyebrow {
     font-size: var(--mobile-meta);
@@ -2381,8 +2398,40 @@ footer {
   .about-stats {
     grid-template-columns: 1fr 1fr;
   }
+  /* Desktop sets this copy in the left or right third and washes that side of
+     the frame. On a phone the copy is full width, so the horizontal
+     .feature-scrim was darkening the wrong half and missing the type it exists
+     for -- which is why its alphas had crept to 0.7. Bottom-align the copy and
+     give it the hero's wash instead: all three full-bleed stages then read the
+     same way, and the top third of every photograph is left alone. */
   .feature-content {
-    padding: 0 24px;
+    padding: 0 24px 64px;
+    align-items: flex-end;
+  }
+  .feature-content.bottom {
+    padding-bottom: 64px;
+  }
+  .feature-text {
+    max-width: none;
+    text-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.5),
+      0 2px 12px rgba(0, 0, 0, 0.35);
+  }
+  .feature-scrim,
+  .feature-scrim.right,
+  .feature-scrim.bottom {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) 34%,
+      rgba(0, 0, 0, 0.05) 42%,
+      rgba(0, 0, 0, 0.14) 51%,
+      rgba(0, 0, 0, 0.28) 60%,
+      rgba(0, 0, 0, 0.44) 69%,
+      rgba(0, 0, 0, 0.58) 78%,
+      rgba(0, 0, 0, 0.69) 88%,
+      rgba(0, 0, 0, 0.76) 100%
+    );
   }
   .features-section-head {
     top: 76px;
@@ -2390,7 +2439,9 @@ footer {
     right: 0;
     max-width: none;
     padding: 0 20px;
-    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+    text-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.5),
+      0 2px 10px rgba(0, 0, 0, 0.3);
   }
   .features-section-head .sec-eyebrow {
     font-size: 11px;
@@ -2403,13 +2454,25 @@ footer {
   .features-stage {
     height: 100%;
   }
+  /* The carousel is the one stage that carries type at both ends -- the
+     section head sits at top: 76px and the slide label and controls sit on the
+     floor -- so it keeps two bands rather than one, and the slide itself clears
+     between roughly 38% and 58%. */
   .features-scrim {
     background: linear-gradient(
       180deg,
-      rgba(20, 26, 22, 0.7) 0%,
-      rgba(20, 26, 22, 0.25) 28%,
-      rgba(20, 26, 22, 0.2) 55%,
-      rgba(20, 26, 22, 0.92) 100%
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.5) 10%,
+      rgba(0, 0, 0, 0.38) 18%,
+      rgba(0, 0, 0, 0.22) 25%,
+      rgba(0, 0, 0, 0.08) 31%,
+      rgba(0, 0, 0, 0) 38%,
+      rgba(0, 0, 0, 0) 58%,
+      rgba(0, 0, 0, 0.06) 66%,
+      rgba(0, 0, 0, 0.18) 74%,
+      rgba(0, 0, 0, 0.36) 82%,
+      rgba(0, 0, 0, 0.56) 91%,
+      rgba(0, 0, 0, 0.7) 100%
     );
   }
   .features-overlay {
@@ -2855,34 +2918,19 @@ footer {
     margin-top: 0;
     padding: clamp(28px, 4vh, 48px) 24px clamp(20px, 3vh, 32px);
   }
-  /* two columns, and Sales Gallery lifted beside the logo so the four blocks
-     make a 2x2 that fits one screen */
-  .foot-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(16px, 2.6vh, 32px) 24px;
-  }
-  .foot-grid > *:nth-child(1) {
-    grid-area: 1 / 1;
-  }
-  .foot-grid > *:nth-child(2) {
-    grid-area: 2 / 1;
-  }
-  .foot-grid > *:nth-child(3) {
-    grid-area: 2 / 2;
-  }
-  .foot-grid > *:nth-child(4) {
-    grid-area: 1 / 2;
-  }
-  /* footer copy inherits the 15px/1.7 mobile body size, which is far too
-     large for links and pushes the footer past a screen - these are the
-     later !important so they win over that group */
+  /* footer copy is its own scale, not body copy. The mobile type group above
+     sweeps .foot-tag and .foot-col li in with the section ledes at
+     var(--mobile-body) (16px), which reads as a paragraph and leaves the
+     links larger than the footer's own headings (12px) and bottom bar (13px).
+     These hold the desktop footer sizes, and need !important of their own to
+     win against that group rather than only being later in the file. */
   .foot-tag {
-    font-size: 12px;
-    line-height: 1.5 !important;
+    font-size: 13px !important;
+    line-height: 1.6 !important;
   }
   .foot-col li {
-    font-size: 13px;
-    line-height: 1.45 !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
     padding: clamp(3px, 0.55vh, 7px) 0;
   }
   .foot-heading {
