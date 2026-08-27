@@ -428,12 +428,35 @@ button {
 .hero-scrim {
   position: absolute;
   inset: 0;
+  /* Neutral black, not the 20/26/22 near-forest this was mixed from, and the
+     midframe now goes fully clear instead of holding a flat 0.15 from 35% to
+     60%. That flat band was the whole frame: a tinted wash at constant alpha
+     over the entire photograph reads as a colour filter, and it cost the
+     terracotta on the tower most, leaving the hazy skyline this crop exposes
+     down both sides to set the temperature. Black reads as exposure and the
+     eye lets it pass -- the same reasoning as the phone scrim below.
+
+     Alphas from 60% down are held at or just above what the old linear ramp
+     gave, because .hero-sub carries no text-shadow of its own and .hero-title
+     only a light one; on desktop the copy leans on this gradient in a way the
+     mobile block does not. The stop count is the point: over a hero this tall
+     a two-stop ramp bands visibly, so the curve is eased instead. */
   background: linear-gradient(
     180deg,
-    rgba(20, 26, 22, 0.55) 0%,
-    rgba(20, 26, 22, 0.15) 35%,
-    rgba(20, 26, 22, 0.15) 60%,
-    rgba(20, 26, 22, 0.75) 100%
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.46) 6%,
+    rgba(0, 0, 0, 0.28) 12%,
+    rgba(0, 0, 0, 0.12) 18%,
+    rgba(0, 0, 0, 0) 24%,
+    rgba(0, 0, 0, 0) 46%,
+    rgba(0, 0, 0, 0.06) 54%,
+    rgba(0, 0, 0, 0.14) 60%,
+    rgba(0, 0, 0, 0.25) 66%,
+    rgba(0, 0, 0, 0.36) 72%,
+    rgba(0, 0, 0, 0.46) 78%,
+    rgba(0, 0, 0, 0.56) 85%,
+    rgba(0, 0, 0, 0.66) 92%,
+    rgba(0, 0, 0, 0.75) 100%
   );
 }
 .hero-content {

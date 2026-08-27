@@ -31,7 +31,19 @@ export function Hero() {
           alt="Aerial view of KIMORI Residences rising above the green hills of Bukit Serdang"
           fill
           priority
-          sizes="100vw"
+          /* 100vw is a lie for this element and desktop paid for it. The
+             image is object-fit: cover inside a 100svh box, so a 16:9 source
+             scales to fill the HEIGHT and gets cropped on the width -- it
+             renders far wider than the viewport -- and the scroll transform
+             on the wrapper (1.05 at rest, 1.18 scrolled) magnifies it again.
+             At 100vw a ~1450px window asked for 1450px, got the 1920
+             candidate, and painted it ~2330px wide: 0.82 source px per CSS
+             px, i.e. a real upscale, visible at 1x. Phones never showed it
+             because DPR 3 already pushed 430px past the 1080 candidate.
+             Above the mobile breakpoint just ask for 2560 -- the largest
+             deviceSize and the source's own native width, so it is a
+             ceiling rather than a guess. Below it, unchanged. */
+          sizes="(max-width: 620px) 100vw, 2560px"
           style={{ objectFit: "cover" }}
         />
       </motion.div>
