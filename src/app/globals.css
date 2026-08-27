@@ -420,7 +420,18 @@ button {
   height: 100%;
   overflow: hidden;
 }
+/* <picture> is display:inline by default and so has no definite height for
+   the img to resolve its 100% against. This used to be carried by next/image
+   fill, which absolutely positioned the img and made the chain irrelevant;
+   the art-directed <picture> has no such inline styles, so the height has to
+   be handed down explicitly. Without this the hero collapses. */
+.hero-img-wrap picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .hero-img-wrap img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
