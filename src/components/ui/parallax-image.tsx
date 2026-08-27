@@ -10,6 +10,10 @@ type Props = {
   strength?: number;
   priority?: boolean;
   sizes?: string;
+  /* Which edge of the image is kept when the section crops it. A portrait
+     render in a landscape band loses a lot of height, and for some of them the
+     ground is the subject and the sky is filler. */
+  focus?: "top" | "center" | "bottom" | `${number}%`;
 };
 
 export function ParallaxImage({
@@ -18,6 +22,7 @@ export function ParallaxImage({
   strength = 100,
   priority = false,
   sizes = "100vw",
+  focus = "center",
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const y = useMotionValue(0);
@@ -88,7 +93,7 @@ export function ParallaxImage({
           fill
           priority={priority}
           sizes={sizes}
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "cover", objectPosition: `center ${focus}` }}
         />
       </motion.div>
     </div>

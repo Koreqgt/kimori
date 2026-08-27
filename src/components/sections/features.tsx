@@ -10,11 +10,22 @@ type Slide = {
   title?: string;
   em?: string;
   desc?: string;
+  /* Which edge survives when the stage crops this slide vertically. */
+  focus?: "top" | "center" | "bottom" | `${number}%`;
 };
 
 const slides: Slide[] = [
   {
     img: "/assets/entrance.jpg",
+    /* Portrait render, so wide screens crop a lot of its height. The guard
+       house and drop-off are the subject, not the tower above.
+
+       85, not 70, for a focal point at the 70th percentile: object-position
+       lines the image's own 85% mark up with the frame's 85% mark rather than
+       centring the frame on it, so the band that lands on screen is centred
+       nearer 73%. A literal 70% would end the crop at row 2277 and cut both
+       cars in half. */
+    focus: "85%",
     tag: "01 · Grand Entrance",
     title: "The first",
     em: "impression.",
@@ -36,6 +47,7 @@ const slides: Slide[] = [
   },
   {
     img: "/assets/gym-01.jpg",
+    focus: "bottom",
     tag: "04 · Sky Gym",
     title: "Strength, framed",
     em: "by the skyline.",
@@ -78,6 +90,10 @@ const slides: Slide[] = [
 export function Features() {
   const [i, setI] = useState(0);
   const f = slides[i];
+  /* Mobile drops the tag/title/copy block and shows the name beside the
+     counter instead, where the "01 ·" prefix would only repeat the "01 / 09"
+     sitting next to it. Falls back to the whole tag if it is not prefixed. */
+  const label = f.tag?.replace(/^\d+\s*·\s*/, "");
 
   return (
     <section className="features" id="features" aria-labelledby="features-title">
@@ -92,6 +108,7 @@ export function Features() {
             src={f.img}
             alt={f.alt ?? f.title ?? ""}
             className="features-img"
+            style={{ objectPosition: `center ${f.focus ?? "center"}` }}
             initial={{ opacity: 0, scale: 1.06 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, transition: { duration: 1.1, ease: "linear" } }}
@@ -126,6 +143,7 @@ export function Features() {
             <div className="feat-counter">
               <span className="cur">{String(i + 1).padStart(2, "0")}</span> /{" "}
               {String(slides.length).padStart(2, "0")}
+              {label ? <span className="feat-slide-label">{label}</span> : null}
             </div>
 
             <div className="feat-thumbs">

@@ -1940,6 +1940,11 @@ footer {
   font-weight: 300;
   min-width: 80px;
 }
+/* Mobile only - on wider screens the slide name lives in the tag above the
+   title, which mobile hides. */
+.feat-slide-label {
+  display: none;
+}
 .feat-counter .cur {
   font-size: 24px;
   color: var(--paper);
@@ -2410,8 +2415,10 @@ footer {
   .features-overlay {
     padding: 0 20px 24px;
   }
+  /* The photo is small on a phone and the tag, title and copy crowded it out.
+     The slide name moves beside the counter; the rest goes. */
   .features-text {
-    margin-bottom: 24px;
+    display: none;
   }
   .features-tag {
     font-size: 11px;
@@ -2431,13 +2438,23 @@ footer {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
-    padding-top: 20px;
+    border-top: none;
+    padding-top: 0;
   }
   .feat-counter {
     font-size: 13px;
   }
   .feat-counter .cur {
     font-size: 20px;
+  }
+  .feat-slide-label {
+    display: inline;
+    margin-left: 14px;
+    font-family: var(--font-instrument), -apple-system, sans-serif;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--paper);
+    opacity: 0.8;
   }
   .feat-thumbs {
     width: 100%;
@@ -2499,6 +2516,7 @@ footer {
   .foot-heading,
   .btn,
   .cta-input::placeholder,
+  .feat-slide-label,
   .feat-thumb-label {
     font-size: var(--mobile-meta) !important;
   }

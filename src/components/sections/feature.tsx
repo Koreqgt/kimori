@@ -10,6 +10,7 @@ type FeatureProps = {
   desc: string;
   caption?: string;
   align?: "start" | "end" | "bottom";
+  focus?: "top" | "center" | "bottom" | `${number}%`;
   scrim?: "left" | "right" | "bottom";
   waveTop?: string;
   waveBottom?: string;
@@ -27,6 +28,7 @@ export function Feature({
   caption,
   align = "start",
   scrim = "left",
+  focus = "center",
   waveTop,
   waveBottom,
   waveTopFlip,
@@ -34,7 +36,7 @@ export function Feature({
 }: FeatureProps) {
   return (
     <section className="feature" aria-label={tag}>
-      <ParallaxImage src={img} alt={alt} strength={80} sizes="100vw" />
+      <ParallaxImage src={img} alt={alt} strength={80} sizes="100vw" focus={focus} />
       <div className={`feature-scrim ${scrim}`} aria-hidden="true" />
 
       {waveTop && (

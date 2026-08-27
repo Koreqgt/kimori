@@ -28,6 +28,7 @@ export default function Home() {
           caption="North Elevation"
           align="start"
           scrim="left"
+          focus="bottom"
         />
 
         <Philosophy />
