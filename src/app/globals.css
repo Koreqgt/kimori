@@ -2295,29 +2295,50 @@ footer {
     --mobile-small: 13px;
     --mobile-meta: 12px;
     --mobile-number: 42px;
+    /* Multiplies all three mobile scrims at once, as an opacity on the scrim
+       element rather than baked into every stop -- the gradients below stay
+       the *shape* of the wash and this stays the strength, so tuning on a
+       real handset is one number instead of thirty-odd alphas.
+
+       It is here because a phone is darker than the devtools frame suggests,
+       for reasons that do not show up on a desktop panel: the 14 Pro Max is
+       OLED, so where an LCD floors out at a lifted grey these stops drive
+       subpixels to true black; auto-brightness indoors typically runs the
+       panel far below the fixed brightness of a monitor, which crushes the
+       low end further; and real Safari keeps its chrome, so 100svh resolves
+       shorter than the emulator's full-height viewport and the ramp is
+       compressed into fewer pixels. All three push the same direction. */
+    --scrim-strength: 0.72;
   }
   /* Neutral black, not the near-forest 20/26/22 the desktop scrims are mixed
      from: at these alphas a tinted wash reads as a colour filter laid over the
      photograph, where pure black reads as exposure and the eye lets it pass.
      It is also confined to the two bands that actually carry type -- a short
-     cap under the nav, and the lower half behind the headline -- leaving the
-     middle of the image at full colour. The stop count is the point: a
+     cap under the nav, and the lower two thirds behind the headline --
+     leaving the image clear where it reads. The stop count is the point: a
      two-stop ramp over this distance bands visibly on a phone's narrow frame,
      so the alphas follow an ease curve instead. */
   .hero-scrim {
+    opacity: var(--scrim-strength);
     background: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0.42) 0%,
       rgba(0, 0, 0, 0.3) 6%,
       rgba(0, 0, 0, 0.12) 13%,
       rgba(0, 0, 0, 0) 20%,
-      rgba(0, 0, 0, 0) 42%,
-      rgba(0, 0, 0, 0.05) 50%,
-      rgba(0, 0, 0, 0.14) 58%,
-      rgba(0, 0, 0, 0.28) 66%,
-      rgba(0, 0, 0, 0.44) 74%,
-      rgba(0, 0, 0, 0.58) 82%,
-      rgba(0, 0, 0, 0.68) 90%,
+      /* The ease-in meets the top of the copy block instead of starting
+         mid-frame. With the shortened eyebrow and lede that block tops out
+         around 35% of the band on a 375x667 screen; at the old 42% the
+         eyebrow and the crown of KIMORI sat over unwashed image, carried by
+         text-shadow alone. */
+      rgba(0, 0, 0, 0) 34%,
+      rgba(0, 0, 0, 0.04) 42%,
+      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0.2) 58%,
+      rgba(0, 0, 0, 0.32) 66%,
+      rgba(0, 0, 0, 0.45) 74%,
+      rgba(0, 0, 0, 0.57) 82%,
+      rgba(0, 0, 0, 0.67) 90%,
       rgba(0, 0, 0, 0.74) 100%
     );
   }
@@ -2329,8 +2350,8 @@ footer {
        was standing in for a scrim that was not covering the type, and put a
        grey cloud around every line to do it. */
     text-shadow:
-      0 1px 2px rgba(0, 0, 0, 0.55),
-      0 2px 12px rgba(0, 0, 0, 0.38);
+      0 1px 2px rgba(0, 0, 0, 0.62),
+      0 2px 14px rgba(0, 0, 0, 0.48);
   }
   .hero-eyebrow {
     font-size: var(--mobile-meta);
@@ -2414,12 +2435,13 @@ footer {
   .feature-text {
     max-width: none;
     text-shadow:
-      0 1px 2px rgba(0, 0, 0, 0.5),
-      0 2px 12px rgba(0, 0, 0, 0.35);
+      0 1px 2px rgba(0, 0, 0, 0.6),
+      0 2px 14px rgba(0, 0, 0, 0.45);
   }
   .feature-scrim,
   .feature-scrim.right,
   .feature-scrim.bottom {
+    opacity: var(--scrim-strength);
     background: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0) 0%,
@@ -2440,8 +2462,8 @@ footer {
     max-width: none;
     padding: 0 20px;
     text-shadow:
-      0 1px 2px rgba(0, 0, 0, 0.5),
-      0 2px 10px rgba(0, 0, 0, 0.3);
+      0 1px 2px rgba(0, 0, 0, 0.58),
+      0 2px 12px rgba(0, 0, 0, 0.42);
   }
   .features-section-head .sec-eyebrow {
     font-size: 11px;
@@ -2459,6 +2481,7 @@ footer {
      floor -- so it keeps two bands rather than one, and the slide itself clears
      between roughly 38% and 58%. */
   .features-scrim {
+    opacity: var(--scrim-strength);
     background: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0.55) 0%,

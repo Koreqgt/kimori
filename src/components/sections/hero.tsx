@@ -37,8 +37,12 @@ export function Hero() {
       </motion.div>
       <div className="hero-scrim" aria-hidden="true" />
       <div className="hero-content">
+        {/* Kept to one line. The rule before it is a fixed 44px flex item,
+            so at 12px in 0.18em caps the old "Freehold Residences · Serdang
+            Hilltop" overran a 375px column and broke to a second line beside
+            it. "Residences" is already the h1's second line. */}
         <div className="hero-eyebrow">
-          Freehold Residences · Serdang Hilltop
+          Freehold · Serdang Hilltop
         </div>
         <Reveal delay={0.25}>
           <h1 className="hero-title">
@@ -50,9 +54,8 @@ export function Hero() {
         </Reveal>
         <Reveal delay={0.4}>
           <p className="hero-sub">
-            KIMORI Residences at Bukit Serdang is a quiet ascent above the
-            city. Freehold homes shaped by Japanese principles of balance,
-            light, and lasting craft, perched on the hill&apos;s highest peak.
+            A quiet ascent above the city. Freehold homes shaped by Japanese
+            principles of balance, light, and lasting craft.
           </p>
         </Reveal>
         <Reveal delay={0.55}>
