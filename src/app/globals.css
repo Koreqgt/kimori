@@ -2361,10 +2361,19 @@ footer {
       rgba(0, 0, 0, 0.12) 13%,
       rgba(0, 0, 0, 0) 20%,
       /* The ease-in meets the top of the copy block instead of starting
-         mid-frame. With the shortened eyebrow and lede that block tops out
-         around 35% of the band on a 375x667 screen; at the old 42% the
-         eyebrow and the crown of KIMORI sat over unwashed image, carried by
-         text-shadow alone. */
+         mid-frame. This was set to 34% when the block still carried the lede
+         and topped out around 35% on a 375x667 screen; at the 42% before that
+         the eyebrow and the crown of KIMORI sat over unwashed image, carried
+         by text-shadow alone.
+
+         The lede is display:none here now, which takes roughly three lines of
+         16px body and its 28px margin out of the block -- about 90px net once
+         .hero-title picks up the spacing, or ~13% of the band on that screen.
+         So the copy now tops out nearer 49% and this ramp begins ~15% above
+         anything it needs to cover. Left at 34% deliberately: the surplus only
+         darkens sky, which costs nothing, and these alphas were tuned against
+         a real handset rather than a devtools frame. Shift the ease-in to ~44%
+         and compress the stops below it if that headroom ever reads as heavy. */
       rgba(0, 0, 0, 0) 34%,
       rgba(0, 0, 0, 0.04) 42%,
       rgba(0, 0, 0, 0.1) 50%,
@@ -2378,7 +2387,6 @@ footer {
   }
   .hero-title,
   .hero-title-sub,
-  .hero-sub,
   .hero-eyebrow {
     /* One tight edge shadow and one short halo. The 44px glow this replaces
        was standing in for a scrim that was not covering the type, and put a
@@ -2392,15 +2400,24 @@ footer {
   }
   .hero-title {
     font-size: var(--mobile-display-title);
-    margin-bottom: 16px;
+    /* 32px, not the 16px this was: .hero-sub below is display:none on mobile
+       and a hidden element contributes no margin, so the 28px it used to hold
+       open above the buttons vanished with it. This replaces that gap rather
+       than adding one -- the rendered spacing is unchanged from before. */
+    margin-bottom: 32px;
   }
   .hero-title-sub {
     font-size: var(--mobile-subtitle);
     margin-top: 8px;
   }
+  /* The lede is desktop-only. On a 375px column it ran to three lines of
+     16px body directly under a 42px display title, which is the widest and
+     busiest block in the composition on the screen with the least room for
+     it -- and it says nothing the h1 and the eyebrow above it do not already
+     carry. Hidden rather than removed from the markup so desktop keeps it and
+     it stays in the document for crawlers. */
   .hero-sub {
-    font-size: var(--mobile-body);
-    margin-bottom: 28px;
+    display: none;
   }
   .phil-watermark {
     display: none;
