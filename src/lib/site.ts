@@ -5,8 +5,8 @@ export const siteConfig = {
     "KIMORI Serdang Project | New Freehold Condominium in Bukit Serdang, Seri Kembangan",
   description:
     "KIMORI Residences is the new Serdang project by Premierex Development, a 418-unit freehold condominium on Bukit Serdang's highest peak in Seri Kembangan, Selangor, shaped by Japanese principles of balance, light, and lasting craft.",
-  url: "https://www.kimori.my",
-  homeUrl: "https://www.kimori.my/",
+  url: "https://www.kimoriresidences.com",
+  homeUrl: "https://www.kimoriresidences.com/",
   developer: "Premierex Development",
   locale: "en_MY",
   phone: "+60 12-375 6880",

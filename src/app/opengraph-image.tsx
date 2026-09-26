@@ -90,7 +90,7 @@ export default async function OpengraphImage() {
             color: "rgba(250, 248, 243, 0.72)",
           }}
         >
-          <div>kimori.my</div>
+          <div>kimoriresidences.com</div>
           <div>418 Units · 34 Facilities · Freehold</div>
         </div>
       </div>

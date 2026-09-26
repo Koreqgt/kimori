@@ -20,11 +20,11 @@ type Spec = {
 const TYPES: Record<ResKey, Spec> = {
   A: {
     size: "1,095",
-    beds: "4+1",
+    beds: "4",
     baths: "2",
     cars: "2",
     tag: "KLCC & Facilities View",
-    desc: "The largest floorplate, planned as a family sanctuary with a wide balcony, formal dining, and four generous bedrooms plus a utility room.",
+    desc: "The largest floorplate, planned as a family sanctuary with a wide balcony, formal dining, and four generous bedrooms.",
     tour: siteConfig.tour360TypeA,
   },
   B: {

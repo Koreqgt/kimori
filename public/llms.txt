@@ -17,7 +17,7 @@
 
 | Type | Built-up | Bedrooms | Bathrooms | Carparks | View |
 |------|----------|----------|-----------|----------|------|
-| A    | 1,095 sq ft | 4+1 | 2 | 2 | KLCC & Facilities |
+| A    | 1,095 sq ft | 4   | 2 | 2 | KLCC & Facilities |
 | B    | 857 sq ft   | 3   | 2 | 2 | Dual North–South  |
 
 ## Signature Facilities
@@ -43,7 +43,7 @@ Premierex Development Sdn Bhd is a Malaysian property developer with 30+ years o
 
 ## Contact & Experience
 
-- **Website:** https://www.kimori.my/
+- **Website:** https://www.kimoriresidences.com/
 - **Phone:** +60 3-XXXX XXXX
 - **360° Virtual Tour (Type A, 1,095 sq ft):** https://www.7degree.com.my/360VR/Kimori/
 - **360° Virtual Tour (Type B, 857 sq ft):** https://my.treedis.com/tour/kimori-residences-type-b

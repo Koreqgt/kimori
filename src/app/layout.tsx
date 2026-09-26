@@ -335,7 +335,7 @@ export default function RootLayout({
             name: "How many units does KIMORI have?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "KIMORI Phase 1 comprises 418 residential units across 28 levels. Two unit types are offered: Type A at 1,095 sq ft (4+1 bedrooms, 2 bathrooms, 2 carparks) and Type B at 857 sq ft (3 bedrooms, 2 bathrooms, 2 carparks).",
+              text: "KIMORI Phase 1 comprises 418 residential units across 28 levels. Two unit types are offered: Type A at 1,095 sq ft (4 bedrooms, 2 bathrooms, 2 carparks) and Type B at 857 sq ft (3 bedrooms, 2 bathrooms, 2 carparks).",
             },
           },
           {
@@ -343,7 +343,7 @@ export default function RootLayout({
             name: "What unit types are available at KIMORI?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "KIMORI offers two unit types. Type A is 1,095 sq ft with 4+1 bedrooms, 2 bathrooms, and 2 carparks, featuring unblocked KLCC and facilities views. Type B is 857 sq ft with 3 bedrooms, 2 bathrooms, and 2 carparks, designed with north–south ventilation and a dual outlook.",
+              text: "KIMORI offers two unit types. Type A is 1,095 sq ft with 4 bedrooms, 2 bathrooms, and 2 carparks, featuring unblocked KLCC and facilities views. Type B is 857 sq ft with 3 bedrooms, 2 bathrooms, and 2 carparks, designed with north–south ventilation and a dual outlook.",
             },
           },
           {
