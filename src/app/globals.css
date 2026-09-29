@@ -1784,6 +1784,8 @@ footer {
   column-gap: 28px;
   row-gap: 6px;
   margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.06em;
 }
 .foot-permits > div {
   display: flex;
@@ -3035,7 +3037,7 @@ footer {
   }
   .foot-permits {
     flex-direction: column;
-    row-gap: 12px;
+    row-gap: 8px;
   }
   .foot-permits > div {
     flex-direction: column;
