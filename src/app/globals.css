@@ -1778,6 +1778,25 @@ footer {
   gap: 16px;
   flex-wrap: wrap;
 }
+.foot-permits {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 28px;
+  row-gap: 6px;
+  margin: 0;
+}
+.foot-permits > div {
+  display: flex;
+  gap: 0.5em;
+  white-space: nowrap;
+}
+.foot-permits dt::after {
+  content: ":";
+}
+.foot-permits dd {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+}
 
 /* On a landscape screen the registration block and the footer are meant to
    read as one screen, so the whole section is locked to the band under the nav
@@ -3013,5 +3032,17 @@ footer {
   .foot-bottom {
     margin-top: clamp(12px, 2vh, 28px);
     padding-top: clamp(10px, 1.6vh, 22px);
+  }
+  .foot-permits {
+    flex-direction: column;
+    row-gap: 12px;
+  }
+  .foot-permits > div {
+    flex-direction: column;
+    gap: 2px;
+    white-space: normal;
+  }
+  .foot-permits dt::after {
+    content: none;
   }
 }

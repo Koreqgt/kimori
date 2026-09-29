@@ -274,7 +274,16 @@ export function CTA() {
             © {new Date().getFullYear()} KIMORI Residences. All rights
             reserved.
           </div>
-          <div>Developer License · Advertising Permit · Terms</div>
+          <dl className="foot-permits">
+            <div>
+              <dt>Developer License No.</dt>
+              <dd>{siteConfig.developerLicense}</dd>
+            </div>
+            <div>
+              <dt>Advertising Permit No.</dt>
+              <dd>{siteConfig.advertisingPermit}</dd>
+            </div>
+          </dl>
         </div>
       </footer>
     </section>
