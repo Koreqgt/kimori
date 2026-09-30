@@ -1702,6 +1702,51 @@ textarea.cta-input {
 .cta-input option {
   color: var(--ink);
 }
+/* PDPA consent. A square that fills with the brand tan when ticked, drawn by
+   hand because the native box cannot be recoloured to match the form's hairline
+   inputs. */
+.cta-consent {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: clamp(2px, 0.8vh, 8px);
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+.cta-consent input {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: transparent center / 10px no-repeat;
+  cursor: pointer;
+  transition:
+    border-color 0.3s,
+    background-color 0.3s;
+}
+.cta-consent input:hover {
+  border-color: var(--wood);
+}
+.cta-consent input:focus-visible {
+  outline: 1px solid var(--wood);
+  outline-offset: 3px;
+}
+.cta-consent input:checked {
+  background-color: var(--wood);
+  border-color: var(--wood);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2l2.3 2.3 4.7-5' fill='none' stroke='%232a2622' stroke-width='1.6'/%3E%3C/svg%3E");
+}
+.cta-consent a {
+  color: var(--wood);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .cta-submit {
   grid-column: 1 / -1;
   justify-self: start;
@@ -1778,6 +1823,9 @@ footer {
   gap: 16px;
   flex-wrap: wrap;
 }
+.foot-bottom a:hover {
+  color: var(--paper);
+}
 .foot-permits {
   display: flex;
   flex-wrap: wrap;
@@ -1798,6 +1846,17 @@ footer {
 .foot-permits dd {
   margin: 0;
   color: rgba(255, 255, 255, 0.6);
+}
+.foot-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+}
+.foot-legal-links a {
+  color: var(--wood);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(255, 255, 255, 0.2);
 }
 
 /* On a landscape screen the registration block and the footer are meant to
@@ -3046,5 +3105,290 @@ footer {
   }
   .foot-permits dt::after {
     content: none;
+  }
+}
+
+
+/* particulars & disclaimer page. Borrows the home page's pieces rather than
+   inventing new ones: the header is the nav in its scrolled state, the headings
+   are .sec-eyebrow/.sec-title over the About kanji, the particulars read like
+   the residence spec rows, and the page closes on the CTA footer's dark band. */
+.legal-top {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 40px;
+  background: rgba(250, 248, 243, 0.88);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--ink);
+}
+.legal-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-cormorant), serif;
+  font-size: 20px;
+  letter-spacing: 0.28em;
+  font-weight: 600;
+}
+.legal-logo .tree-mark {
+  width: 22px;
+  height: 22px;
+}
+.legal-wordmark {
+  opacity: 0.88;
+}
+.legal-hero {
+  padding: 140px 0 110px;
+}
+.legal-lede {
+  margin-top: 32px;
+}
+.legal-section {
+  padding-bottom: 130px;
+}
+.legal-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  gap: 100px;
+  align-items: start;
+  padding-top: 72px;
+  border-top: 1px solid var(--line);
+}
+.legal-aside {
+  position: sticky;
+  top: 140px;
+}
+.legal-num {
+  font-family: var(--font-cormorant), serif;
+  font-size: 36px;
+  line-height: 1;
+  font-variant-numeric: lining-nums;
+  color: var(--wood);
+  margin-bottom: 16px;
+}
+.legal-h2 {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 300;
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1.04;
+  color: var(--ink);
+}
+.legal-h2 em {
+  font-style: italic;
+  color: var(--forest);
+}
+/* dense, so the short Type entry backfills the row beside Developer instead of
+   leaving a hole where the full-width address drops to its own row */
+.legal-particulars {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-flow: row dense;
+  column-gap: 48px;
+  /* every entry carries the same top padding, so the first row is pulled up
+     by it instead of singled out - which entries land in that row depends on
+     the dense packing, not on source order */
+  margin-top: -22px;
+}
+.legal-particulars > div {
+  padding: 22px 0 24px;
+  border-bottom: 1px solid var(--line);
+}
+.legal-particulars .wide {
+  grid-column: 1 / -1;
+}
+.legal-particulars dt {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 8px;
+}
+.legal-particulars dd {
+  font-family: var(--font-cormorant), serif;
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 400;
+  /* Cormorant's default old-style figures send licence and permit numbers
+     up and down the line; lining figures keep them readable at a glance */
+  font-variant-numeric: lining-nums;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.legal-particulars dd span {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-instrument), sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+.legal-note {
+  margin-top: 48px;
+  padding: 32px 36px;
+  background: var(--paper-2);
+  border: 1px solid var(--line-soft);
+}
+.legal-note-label {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--wood-deep);
+  margin-bottom: 12px;
+}
+.legal-note p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+.legal-note .legal-teduh {
+  margin-top: 18px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--forest);
+}
+.legal-teduh a,
+.legal-prose a {
+  color: var(--forest);
+  text-decoration: underline;
+  text-decoration-color: var(--wood);
+  text-underline-offset: 4px;
+}
+.legal-prose {
+  max-width: 720px;
+}
+.legal-prose p:last-child {
+  margin-bottom: 0;
+}
+.legal-effective {
+  margin-top: 20px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.legal-clause {
+  margin-top: 40px;
+}
+/* .about-body drops a cap on the first paragraph of every parent, which inside
+   the clauses would put one at the head of each clause - only the intro gets it */
+.legal-clause p:first-of-type::first-letter {
+  float: none;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+}
+.legal-clause h3 {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--wood-deep);
+  margin-bottom: 12px;
+}
+.legal-clause ul {
+  margin: -8px 0 24px;
+  padding-left: 1.2em;
+  list-style: disc;
+}
+.legal-clause li {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  padding-left: 0.3em;
+}
+.legal-clause li::marker {
+  color: var(--wood);
+}
+.legal-address {
+  font-style: normal;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+.legal-address a {
+  color: var(--forest);
+  text-decoration: underline;
+  text-decoration-color: var(--wood);
+  text-underline-offset: 4px;
+}
+/* `footer` carries the CTA footer's margins and padding globally, so they are
+   all reset here rather than inherited */
+footer.legal-foot {
+  margin: 0;
+  padding: 80px 0 40px;
+  border-top: 0;
+  background: var(--ink);
+  color: var(--paper);
+}
+.legal-foot-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.legal-foot-address {
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.65);
+}
+.legal-foot-address a {
+  color: var(--wood);
+}
+.legal-foot-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+}
+@media (max-width: 960px) {
+  .legal-top {
+    padding: 16px 20px;
+  }
+  .legal-hero {
+    padding: 90px 0 70px;
+  }
+  .legal-section {
+    padding-bottom: 90px;
+  }
+  .legal-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+    padding-top: 48px;
+  }
+  .legal-aside {
+    position: static;
+  }
+}
+@media (max-width: 620px) {
+  .legal-h2 {
+    font-size: 34px;
+  }
+  .legal-particulars {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .legal-particulars dd {
+    font-size: 20px;
+  }
+  .legal-clause li,
+  .legal-address {
+    font-size: var(--mobile-body);
+    line-height: 1.7;
+  }
+  .legal-note {
+    padding: 24px 20px;
+  }
+  footer.legal-foot {
+    padding: 56px 0 28px;
   }
 }

@@ -5,6 +5,17 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 const RECIPIENT = "premierexmkt@gmail.com";
 
+// Every field is visitor input going into the HTML body, so it is escaped
+// before it is interpolated anywhere in the template.
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function emailHtml(data: {
   name: string;
   email: string;
@@ -12,7 +23,13 @@ function emailHtml(data: {
   unitType: string;
   message: string;
 }) {
-  const { name, email, phone, unitType, message } = data;
+  const [name, email, phone, unitType, message] = [
+    data.name,
+    data.email,
+    data.phone,
+    data.unitType,
+    data.message,
+  ].map(escapeHtml);
   const submitted = new Date().toLocaleString("en-MY", {
     timeZone: "Asia/Kuala_Lumpur",
     dateStyle: "full",
@@ -86,6 +103,14 @@ function emailHtml(data: {
                     ${unitType}
                   </td>
                 </tr>
+                <tr>
+                  <td style="padding:14px 0;border-bottom:1px solid #ece8e1;vertical-align:top;">
+                    <span style="color:#9ab89a;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-family:monospace;">PDPA Consent</span>
+                  </td>
+                  <td style="padding:14px 0;border-bottom:1px solid #ece8e1;color:#1a2e1a;font-size:16px;">
+                    Agreed to the Privacy Notice
+                  </td>
+                </tr>
                 ${
                   message
                     ? `<tr>
@@ -128,18 +153,33 @@ function emailHtml(data: {
 </html>`;
 }
 
+function isFilled(value: unknown): value is string {
+  return typeof value === "string" && value.trim() !== "";
+}
+
 export async function POST(request: NextRequest) {
-  let body: Record<string, string>;
+  let body: Record<string, unknown>;
   try {
     body = await request.json();
   } catch {
     return Response.json({ error: "Invalid request body" }, { status: 400 });
   }
 
-  const { name, email, phone, unitType, message = "" } = body;
+  const { name, email, phone, unitType, message = "", consent } = body;
 
-  if (!name || !email || !phone || !unitType) {
+  if (
+    !isFilled(name) ||
+    !isFilled(email) ||
+    !isFilled(phone) ||
+    !isFilled(unitType) ||
+    typeof message !== "string"
+  ) {
     return Response.json({ error: "Missing required fields" }, { status: 400 });
+  }
+
+  // PDPA: nothing is sent on without the visitor's consent to the notice
+  if (consent !== true) {
+    return Response.json({ error: "Consent is required" }, { status: 400 });
   }
 
   const { error } = await resend.emails.send({

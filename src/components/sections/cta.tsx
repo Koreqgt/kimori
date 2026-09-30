@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
 import { TreeMark } from "@/components/ui/tree-mark";
 import { siteConfig } from "@/lib/site";
+import { advertisingPermit, developerLicense } from "@/lib/legal";
 
 export function CTA() {
   const [submitted, setSubmitted] = useState(false);
@@ -15,15 +17,21 @@ export function CTA() {
   async function onSubmit(e: { preventDefault(): void; currentTarget: HTMLFormElement }) {
     e.preventDefault();
     setError(null);
-    setLoading(true);
 
     const form = e.currentTarget as HTMLFormElement;
+    if (!(form.elements.namedItem("consent") as HTMLInputElement).checked) {
+      setError("Please tick the box to agree to the Privacy Notice.");
+      return;
+    }
+    setLoading(true);
+
     const data = {
       name: (form.elements.namedItem("name") as HTMLInputElement).value,
       email: (form.elements.namedItem("email") as HTMLInputElement).value,
       phone: (form.elements.namedItem("phone") as HTMLInputElement).value,
       unitType: (form.elements.namedItem("unitType") as HTMLSelectElement).value,
       message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+      consent: true,
     };
 
     try {
@@ -173,6 +181,17 @@ export function CTA() {
                 style={{ gridColumn: "1 / -1", resize: "vertical" }}
                 disabled={loading}
               />
+              <label className="cta-consent">
+                <input type="checkbox" name="consent" disabled={loading} />
+                <span>
+                  I have read the{" "}
+                  <Link href="/privacy" target="_blank">
+                    Privacy Notice
+                  </Link>{" "}
+                  and agree to Premierex contacting me about KIMORI
+                  Residences.
+                </span>
+              </label>
               {error && (
                 <p
                   role="alert"
@@ -277,13 +296,17 @@ export function CTA() {
           <dl className="foot-permits">
             <div>
               <dt>Developer License No.</dt>
-              <dd>{siteConfig.developerLicense}</dd>
+              <dd>{developerLicense}</dd>
             </div>
             <div>
               <dt>Advertising Permit No.</dt>
-              <dd>{siteConfig.advertisingPermit}</dd>
+              <dd>{advertisingPermit}</dd>
             </div>
           </dl>
+          <div className="foot-legal-links">
+            <Link href="/disclaimer">Particulars &amp; Disclaimer</Link>
+            <Link href="/privacy">Privacy Notice</Link>
+          </div>
         </div>
       </footer>
     </section>

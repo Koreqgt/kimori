@@ -11,8 +11,6 @@ export const siteConfig = {
   locale: "en_MY",
   phone: "+60 12-375 6880",
   whatsapp: "60123756880",
-  developerLicense: "31392/05-2031/0139(N)",
-  advertisingPermit: "31392-1/09-2029/0718(N)-(S)",
   address: {
     street: "No. LG69-70, Jalan BS 1/2, Bukit Serdang",
     postal: "43300",
