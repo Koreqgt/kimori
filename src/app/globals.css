@@ -3108,6 +3108,23 @@ footer {
   }
 }
 
+/* Stacked to one column, the footer kept the desktop's 60px gap between its
+   groups while everything inside them stayed tight, so it read as four loose
+   blocks with a cramped bar tacked on the end. One rhythm instead: the same
+   step between groups and down to the bottom rule, and the bottom bar set as
+   a column rather than wrapping wherever its items happen to run out of room. */
+@media (max-width: 620px) {
+  .foot-grid {
+    gap: 36px;
+  }
+  .foot-bottom {
+    margin-top: 36px;
+    padding-top: 24px;
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
 
 /* particulars & disclaimer page. Borrows the home page's pieces rather than
    inventing new ones: the header is the nav in its scrolled state, the headings
