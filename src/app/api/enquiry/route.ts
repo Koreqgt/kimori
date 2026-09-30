@@ -183,7 +183,7 @@ export async function POST(request: NextRequest) {
   }
 
   const { error } = await resend.emails.send({
-    from: "KIMORI Residences <onboarding@resend.dev>",
+    from: "KIMORI Residences <enquiry@kimoriresidences.com>",
     to: [RECIPIENT],
     replyTo: email,
     subject: `New Viewing Request: ${name}`,
