@@ -36,12 +36,12 @@ export default function ApdlPage() {
             木森
           </div>
           <h1 className="sec-title">
-            APDL &amp;
+            Advertising Permit &amp;
             <br />
-            <em>disclaimer.</em>
+            <em>Developer License.</em>
           </h1>
           <p className="sec-lede legal-lede">
-            The advertising permit, developer&apos;s licence and other
+            The advertising permit, developer&apos;s license and other
             statutory particulars of the KIMORI Residences development, and
             the terms on which this website is provided.
           </p>
