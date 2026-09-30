@@ -7,12 +7,12 @@ import {
   teduhUrl,
 } from "@/lib/legal";
 
-const pageUrl = `${siteConfig.url}/disclaimer`;
+const pageUrl = `${siteConfig.url}/apdl`;
 const description =
-  "Project particulars and website disclaimer for KIMORI Residences, developed by Premierex Sdn Bhd.";
+  "Advertising permit, developer's licence and project particulars (APDL) for KIMORI Residences by Premierex Sdn Bhd, with the website disclaimer.";
 
 export const metadata: Metadata = {
-  title: "Particulars & Disclaimer",
+  title: "APDL & Disclaimer",
   description,
   alternates: { canonical: pageUrl },
   openGraph: {
@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     locale: siteConfig.locale,
     url: pageUrl,
     siteName: siteConfig.name,
-    title: `Particulars & Disclaimer · ${siteConfig.name}`,
+    title: `APDL & Disclaimer · ${siteConfig.name}`,
     description,
   },
   robots: { index: false, follow: true },
 };
 
-export default function DisclaimerPage() {
+export default function ApdlPage() {
   return (
     <>
       <section className="legal-hero">
@@ -36,13 +36,14 @@ export default function DisclaimerPage() {
             木森
           </div>
           <h1 className="sec-title">
-            Particulars &amp;
+            APDL &amp;
             <br />
             <em>disclaimer.</em>
           </h1>
           <p className="sec-lede legal-lede">
-            The statutory particulars of the KIMORI Residences development,
-            and the terms on which this website is provided.
+            The advertising permit, developer&apos;s licence and other
+            statutory particulars of the KIMORI Residences development, and
+            the terms on which this website is provided.
           </p>
         </div>
       </section>

@@ -7,7 +7,6 @@ import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
 import { TreeMark } from "@/components/ui/tree-mark";
 import { siteConfig } from "@/lib/site";
-import { advertisingPermit, developerLicense } from "@/lib/legal";
 
 export function CTA() {
   const [submitted, setSubmitted] = useState(false);
@@ -293,18 +292,8 @@ export function CTA() {
             © {new Date().getFullYear()} KIMORI Residences. All rights
             reserved.
           </div>
-          <dl className="foot-permits">
-            <div>
-              <dt>Developer License No.</dt>
-              <dd>{developerLicense}</dd>
-            </div>
-            <div>
-              <dt>Advertising Permit No.</dt>
-              <dd>{advertisingPermit}</dd>
-            </div>
-          </dl>
           <div className="foot-legal-links">
-            <Link href="/disclaimer">Particulars &amp; Disclaimer</Link>
+            <Link href="/apdl">APDL</Link>
             <Link href="/privacy">Privacy Notice</Link>
           </div>
         </div>

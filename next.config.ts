@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
     imageSizes: [64, 128, 256, 384],
     minimumCacheTTL: 31536000,
   },
+  // The APDL page was first published at /disclaimer; keep that link working.
+  async redirects() {
+    return [{ source: "/disclaimer", destination: "/apdl", permanent: true }];
+  },
 };
 
 export default nextConfig;

@@ -3,7 +3,7 @@ import { TreeMark } from "@/components/ui/tree-mark";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site";
 
-// Shared chrome for the disclaimer and privacy pages: the nav bar in its
+// Shared chrome for the APDL and privacy pages: the nav bar in its
 // scrolled state on top, the CTA footer's dark band underneath.
 export default function LegalLayout({
   children,
@@ -48,7 +48,7 @@ export default function LegalLayout({
               reserved.
             </div>
             <div className="legal-foot-links">
-              <Link href="/disclaimer">Particulars &amp; Disclaimer</Link>
+              <Link href="/apdl">APDL</Link>
               <Link href="/privacy">Privacy Notice</Link>
             </div>
           </div>

@@ -8,8 +8,8 @@ export type Particular = {
 export const developerName = "Premierex Sdn Bhd (381130-W)";
 export const developerAddress =
   "The Property Gallery, No. 69LG & 70LG, Jalan BS 1/2, Pusat Perniagaan Olive Hill, Taman Bukit Serdang, Seksyen 1, 43300 Seri Kembangan, Selangor Darul Ehsan";
-export const developerLicense = "31392/05-2031/0139(N)";
-export const advertisingPermit = "31392-1/09-2029/0718(N)-(S)";
+const developerLicense = "31392/05-2031/0139(N)";
+const advertisingPermit = "31392-1/09-2029/0718(N)-(S)";
 
 export const particulars: Particular[] = [
   { label: "Developer", value: developerName },

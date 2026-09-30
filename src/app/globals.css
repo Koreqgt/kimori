@@ -1826,27 +1826,6 @@ footer {
 .foot-bottom a:hover {
   color: var(--paper);
 }
-.foot-permits {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 28px;
-  row-gap: 6px;
-  margin: 0;
-  font-size: 11px;
-  letter-spacing: 0.06em;
-}
-.foot-permits > div {
-  display: flex;
-  gap: 0.5em;
-  white-space: nowrap;
-}
-.foot-permits dt::after {
-  content: ":";
-}
-.foot-permits dd {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.6);
-}
 .foot-legal-links {
   display: flex;
   flex-wrap: wrap;
@@ -3093,18 +3072,6 @@ footer {
   .foot-bottom {
     margin-top: clamp(12px, 2vh, 28px);
     padding-top: clamp(10px, 1.6vh, 22px);
-  }
-  .foot-permits {
-    flex-direction: column;
-    row-gap: 8px;
-  }
-  .foot-permits > div {
-    flex-direction: column;
-    gap: 2px;
-    white-space: normal;
-  }
-  .foot-permits dt::after {
-    content: none;
   }
 }
 
