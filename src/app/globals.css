@@ -3442,8 +3442,18 @@ footer.legal-foot {
   }
 }
 @media (max-width: 620px) {
+  /* Off the mobile scale on purpose: the next step up from --mobile-body is
+     --mobile-subtitle (22px), which stacks eleven two-line questions into a
+     wall. Cormorant runs small on the x-height, so 18px only sits level with
+     the 16px Instrument answer underneath -- the 500 weight is what keeps the
+     question reading as the heading over it. */
+  .faq-q {
+    padding: 20px 0;
+  }
   .faq-q h3 {
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
   }
   .faq-a {
     padding-right: 0;
