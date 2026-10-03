@@ -8,6 +8,7 @@ import { Philosophy } from "@/components/sections/philosophy";
 import { Location } from "@/components/sections/location";
 import { Residences } from "@/components/sections/residences";
 import { Facilities } from "@/components/sections/facilities";
+import { Faq } from "@/components/sections/faq";
 import { CTA } from "@/components/sections/cta";
 
 export default function Home() {
@@ -52,6 +53,7 @@ export default function Home() {
 
         <Residences />
         <Facilities />
+        <Faq />
 
         <CTA />
       </main>

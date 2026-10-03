@@ -1,10 +1,9 @@
 export const siteConfig = {
   name: "KIMORI",
   brandLine: "木森 · A Serene Ascent Above Serdang",
-  title:
-    "KIMORI Serdang Project | New Freehold Condominium in Bukit Serdang, Seri Kembangan",
+  title: "KIMORI Serdang | New Freehold Development Project, Bukit Serdang",
   description:
-    "KIMORI Residences is the new Serdang project by Premierex Development, a 418-unit freehold condominium on Bukit Serdang's highest peak in Seri Kembangan, Selangor, shaped by Japanese principles of balance, light, and lasting craft.",
+    "KIMORI Residences is a new freehold condominium development project in Bukit Serdang, Seri Kembangan, by Premierex Development: 418 units, 34 facilities, KLCC views, 3 km to MRT UPM.",
   url: "https://www.kimoriresidences.com",
   homeUrl: "https://www.kimoriresidences.com/",
   developer: "Premierex Development",
@@ -28,6 +27,8 @@ export const siteConfig = {
     "Kimori Bukit Serdang",
     "Serdang project",
     "Serdang new project",
+    "Serdang development project",
+    "new development in Serdang",
     "new property project in Serdang",
     "Bukit Serdang project",
     "Bukit Serdang new project",

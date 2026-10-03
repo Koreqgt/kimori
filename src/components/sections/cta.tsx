@@ -240,6 +240,9 @@ export function CTA() {
               <li>
                 <a href="#facilities">Facility List</a>
               </li>
+              <li>
+                <a href="#faq">Questions</a>
+              </li>
             </ul>
           </div>
           <div className="foot-col">

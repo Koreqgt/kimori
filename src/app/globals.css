@@ -3376,3 +3376,82 @@ footer.legal-foot {
     padding: 56px 0 28px;
   }
 }
+
+/* faq -- same two-column rhythm as .about; native <details> so the answers
+   ship in the server HTML that the FAQPage JSON-LD points at */
+.faq {
+  padding: 160px 0;
+  background: var(--paper);
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 100px;
+  align-items: start;
+}
+.faq-list {
+  border-top: 1px solid var(--line);
+}
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+.faq-q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 0;
+  cursor: pointer;
+  list-style: none;
+}
+.faq-q::-webkit-details-marker {
+  display: none;
+}
+.faq-q h3 {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.faq-chev {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--ink-muted);
+  border-bottom: 1px solid var(--ink-muted);
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.3s;
+}
+.faq-item[open] .faq-chev {
+  transform: translateY(1px) rotate(225deg);
+}
+.faq-a {
+  padding: 0 40px 28px 0;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+@media (max-width: 960px) {
+  .faq {
+    padding: 100px 0;
+  }
+  .faq-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+}
+@media (max-width: 620px) {
+  .faq-q h3 {
+    font-size: 20px;
+  }
+  .faq-a {
+    padding-right: 0;
+    font-size: var(--mobile-body);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-chev {
+    transition: none;
+  }
+}
