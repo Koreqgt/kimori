@@ -7,6 +7,7 @@ import {
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
 import { FAQS } from "@/lib/faq";
+import { developerSiteUrl } from "@/lib/legal";
 import { Analytics } from "@vercel/analytics/next";
 
 // Loaded variable (no `weight`) so the whole 400-700 range costs one file.
@@ -196,38 +197,27 @@ export default function RootLayout({
         datePosted: "2026-04-25",
         about: { "@id": `${siteConfig.url}/#residence` },
       },
+      // Same @id premierex.my publishes for itself, so search engines read
+      // this as one developer that owns KIMORI rather than treating this
+      // domain as Premierex's homepage. Full details live on premierex.my.
       {
         "@type": "Organization",
-        "@id": `${siteConfig.url}/#developer`,
-        name: "Premierex Development Sdn Bhd",
-        alternateName: "Premierex",
-        url: siteConfig.homeUrl,
-        telephone: siteConfig.phone,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: siteConfig.address.street,
-          addressLocality: siteConfig.address.locality,
-          addressRegion: siteConfig.address.region,
-          postalCode: siteConfig.address.postal,
-          addressCountry: "MY",
-        },
-        areaServed: [
-          { "@type": "AdministrativeArea", name: "Selangor" },
-          { "@type": "AdministrativeArea", name: "Klang Valley" },
-          { "@type": "Place", name: "Bukit Serdang" },
-          { "@type": "Place", name: "Seri Kembangan" },
-          { "@type": "Place", name: "Serdang" },
-          { "@type": "Country", name: "Malaysia" },
-        ],
+        "@id": `${developerSiteUrl}/#organization`,
+        name: "Premierex Sdn. Bhd.",
+        alternateName: ["Premierex", "Premierex Development"],
+        url: developerSiteUrl,
+        sameAs: [developerSiteUrl],
+        owns: { "@id": `${siteConfig.url}/#residence` },
       },
       {
         "@type": "WebSite",
         "@id": `${siteConfig.url}/#website`,
         url: siteConfig.homeUrl,
-        name: siteConfig.name,
+        name: "KIMORI Residences",
+        alternateName: ["KIMORI", "Kimori", "Kimori Serdang"],
         description: siteConfig.description,
         inLanguage: "en-MY",
-        publisher: { "@id": `${siteConfig.url}/#developer` },
+        publisher: { "@id": `${developerSiteUrl}/#organization` },
       },
       {
         "@type": "WebPage",
